@@ -1,3 +1,5 @@
+'use client';
+
 import { AppSidebar } from '@/components/app-sidebar';
 import { PageSidebar } from '@/components/page-sidebar';
 import {
@@ -8,12 +10,25 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
+import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet';
 import { SidebarInset, SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
 import { cn } from '@/lib/utils';
+import { PlusCircleIcon } from 'lucide-react';
+import React from 'react';
 
 export default function Page() {
   const isPageSidebar = true;
+  const [isOpen, setIsOpen] = React.useState(false);
 
   return (
     <SidebarProvider>
@@ -41,7 +56,26 @@ export default function Page() {
                 </Breadcrumb>
               </div>
             </header>
-            <div className="flex flex-1 flex-col gap-4 p-4">
+            <div className="relative flex flex-1 flex-col gap-4 p-4">
+              <Sheet open={isOpen} onOpenChange={setIsOpen}>
+                <SheetTrigger asChild>
+                  <Button className="flex h-8" onClick={() => setIsOpen(true)}>
+                    <PlusCircleIcon className="mr-2 h-4 w-4" />
+                    Open Drawer
+                  </Button>
+                </SheetTrigger>
+
+                <SheetContent onInteractOutside={(event) => event.preventDefault()}>
+                  <SheetHeader>
+                    <SheetClose onClick={() => setIsOpen(false)} />
+                    <SheetTitle>Are you absolutely sure?</SheetTitle>
+                    <SheetDescription>
+                      This action cannot be undone. This will permanently delete your account and remove your data from
+                      our servers.
+                    </SheetDescription>
+                  </SheetHeader>
+                </SheetContent>
+              </Sheet>
               <div className="grid auto-rows-min gap-4 md:grid-cols-3">
                 <div className="aspect-video rounded-xl bg-muted/50" />
                 <div className="aspect-video rounded-xl bg-muted/50" />
