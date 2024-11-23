@@ -4,8 +4,6 @@ import * as React from 'react';
 import {
   AppWindowMac,
   AudioWaveform,
-  BookOpen,
-  Bot,
   Box,
   Command,
   Frame,
@@ -16,7 +14,6 @@ import {
   PieChart,
   Settings2,
   SquareDashedMousePointer,
-  SquareTerminal,
 } from 'lucide-react';
 
 import { NavMain } from '@/components/nav-main';
@@ -57,20 +54,6 @@ const data = {
       url: '#',
       icon: Gauge,
       isActive: true,
-      items: [
-        {
-          title: 'Overview',
-          url: '#',
-        },
-        {
-          title: 'Recent Projects',
-          url: '#',
-        },
-        {
-          title: 'Cost Summary',
-          url: '#',
-        },
-      ],
     },
     {
       title: 'Architecture',
