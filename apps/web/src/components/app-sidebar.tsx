@@ -2,15 +2,20 @@
 
 import * as React from 'react';
 import {
+  AppWindowMac,
   AudioWaveform,
   BookOpen,
   Bot,
+  Box,
   Command,
   Frame,
   GalleryVerticalEnd,
+  Gauge,
+  HandCoins,
   Map,
   PieChart,
   Settings2,
+  SquareDashedMousePointer,
   SquareTerminal,
 } from 'lucide-react';
 
@@ -20,6 +25,7 @@ import { NavUser } from '@/components/nav-user';
 import { TeamSwitcher } from '@/components/team-switcher';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarRail } from '@/components/ui/sidebar';
 import { StorageCard } from './storage-card';
+import { SearchForm } from './search-form';
 
 // This is sample data.
 const data = {
@@ -47,63 +53,141 @@ const data = {
   ],
   navMain: [
     {
-      title: 'Playground',
+      title: 'Dashboard',
       url: '#',
-      icon: SquareTerminal,
+      icon: Gauge,
       isActive: true,
       items: [
         {
-          title: 'History',
+          title: 'Overview',
           url: '#',
         },
         {
-          title: 'Starred',
+          title: 'Recent Projects',
           url: '#',
         },
         {
-          title: 'Settings',
-          url: '#',
-        },
-      ],
-    },
-    {
-      title: 'Models',
-      url: '#',
-      icon: Bot,
-      items: [
-        {
-          title: 'Genesis',
-          url: '#',
-        },
-        {
-          title: 'Explorer',
-          url: '#',
-        },
-        {
-          title: 'Quantum',
+          title: 'Cost Summary',
           url: '#',
         },
       ],
     },
     {
-      title: 'Documentation',
+      title: 'Architecture',
       url: '#',
-      icon: BookOpen,
+      icon: SquareDashedMousePointer,
       items: [
         {
-          title: 'Introduction',
+          title: 'New Design',
           url: '#',
         },
         {
-          title: 'Get Started',
+          title: 'Import Resources',
           url: '#',
         },
         {
-          title: 'Tutorials',
+          title: 'Bicep Files',
           url: '#',
         },
         {
-          title: 'Changelog',
+          title: 'Deployments',
+          url: '#',
+        },
+        {
+          title: 'Costs & Estimation',
+          url: '#',
+        },
+      ],
+    },
+    {
+      title: 'Projects',
+      url: '#',
+      icon: AppWindowMac,
+      items: [
+        {
+          title: 'My Projects',
+          url: '#',
+        },
+        {
+          title: 'Shared Projects',
+          url: '#',
+        },
+      ],
+    },
+    {
+      title: 'Resources',
+      url: '#',
+      icon: Box,
+      items: [
+        {
+          title: 'All',
+          url: '#',
+        },
+        {
+          title: 'Compute',
+          url: '#',
+        },
+        {
+          title: 'Networking',
+          url: '#',
+        },
+        {
+          title: 'Storage',
+          url: '#',
+        },
+        {
+          title: 'Databases',
+          url: '#',
+        },
+        {
+          title: 'Identity and Security',
+          url: '#',
+        },
+        {
+          title: 'Containers',
+          url: '#',
+        },
+        {
+          title: 'Web and Mobile',
+          url: '#',
+        },
+        {
+          title: 'Analytics and AI',
+          url: '#',
+        },
+        {
+          title: 'Monitoring and Management',
+          url: '#',
+        },
+        {
+          title: 'Developer Tools',
+          url: '#',
+        },
+        {
+          title: 'IoT',
+          url: '#',
+        },
+        {
+          title: 'Migration',
+          url: '#',
+        },
+      ],
+    },
+    {
+      title: 'Costs',
+      url: '#',
+      icon: HandCoins,
+      items: [
+        {
+          title: 'Estimation',
+          url: '#',
+        },
+        {
+          title: 'Usage',
+          url: '#',
+        },
+        {
+          title: 'Budgets',
           url: '#',
         },
       ],
@@ -156,6 +240,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     <Sidebar variant="inset" collapsible="icon" {...props}>
       <SidebarHeader>
         <TeamSwitcher teams={data.teams} />
+        <SearchForm className="mt-2" />
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />

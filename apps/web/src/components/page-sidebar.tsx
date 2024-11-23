@@ -95,7 +95,7 @@ export function PageSidebar() {
             <Switch className="shadow-none" />
           </Label>
         </div>
-        <SidebarInput placeholder="Type to search..." className="h-7 bg-gray-100" />
+        <SidebarInput placeholder="Search resource..." className="h-7 bg-gray-100" />
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup className="px-0">
