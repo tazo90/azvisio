@@ -5,6 +5,11 @@ export const LoginBody = t.Object({
   password: t.String(),
 });
 
+export const LoginSchema = {
+  tags: ['Auth'],
+  body: LoginBody,
+};
+
 export interface LoginBody extends Static<typeof LoginBody> {}
 
 export interface Auth extends Omit<LoginBody, 'password'> {

@@ -2,15 +2,6 @@ import path from 'node:path';
 import fastifyAutoload from '@fastify/autoload';
 import { FastifyInstance, FastifyPluginOptions } from 'fastify';
 
-export const options = {
-  ajv: {
-    customOptions: {
-      coerceTypes: 'array',
-      removeAdditional: 'all',
-    },
-  },
-};
-
 export default async function boostrap(app: FastifyInstance, opts: FastifyPluginOptions) {
   delete opts.skipOverride; // This option only serves testing purpose
 
