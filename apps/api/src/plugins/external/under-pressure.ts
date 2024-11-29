@@ -35,5 +35,5 @@ export const autoConfig = (app: FastifyInstance) => {
  * @see {@link https://www.youtube.com/watch?v=VI29mUA8n9w}
  */
 export default fp<FastifyUnderPressureOptions>(fastifyUnderPressure, {
-  dependencies: ['knex'],
+  dependencies: ['db'],
 });

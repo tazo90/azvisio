@@ -1,9 +1,9 @@
 import fastifyRateLimit from '@fastify/rate-limit';
 import { FastifyInstance } from 'fastify';
 
-export const autoConfig = (fastify: FastifyInstance) => {
+export const autoConfig = (app: FastifyInstance) => {
   return {
-    max: fastify.config.RATE_LIMIT_MAX,
+    max: app.config.RATE_LIMIT_MAX,
     timeWindow: '1 minute',
   };
 };
