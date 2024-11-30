@@ -6,9 +6,11 @@ import mikroOrmConfig from '@/config/mikro-orm.config';
 
 declare module 'fastify' {
   export interface FastifyInstance {
-    db: SqlEntityManager;
-    knex: Knex;
-    orm: MikroORM;
+    // db: SqlEntityManager;
+    // knex: Knex;
+    // orm: MikroORM;
+    db: Knex;
+    orm: SqlEntityManager;
   }
 }
 
@@ -16,17 +18,20 @@ export const autoConfig = () => mikroOrmConfig;
 
 export default fp(
   async (app: FastifyInstance) => {
-    const config = autoConfig(app);
+    const config = autoConfig();
 
     // Initialize MikroOrm
     const orm = await MikroORM.init(config);
 
-    // Get knex instance from MikroOrm
-    const knex = (orm.em as SqlEntityManager).getKnex();
+    // Get entity manager
+    const em = orm.em.fork();
 
-    app.decorate('orm', orm); // full orm
-    app.decorate('db', orm.em as SqlEntityManager); // entity manager
-    app.decorate('knex', knex); // knex instance
+    // Get knex instance from MikroOrm
+    const knex = em.getKnex();
+
+    // app.decorate('orm', orm); // full orm
+    app.decorate('orm', em); // entity manager
+    app.decorate('db', knex); // knex instance
 
     app.addHook('onClose', async () => {
       await orm.close();
