@@ -1,11 +1,11 @@
 import fastifySession from '@fastify/session';
 import fp from 'fastify-plugin';
 import fastifyCookie from '@fastify/cookie';
-import { Auth } from '@/modules/auth/auth.schema';
+// import { Auth } from '@/modules/auth/schemas/auth.schema';
 
 declare module 'fastify' {
   interface Session {
-    user: Auth;
+    // user: Auth;
   }
 }
 

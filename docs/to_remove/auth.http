@@ -4,6 +4,9 @@ POST http://localhost:4000/api/auth/login
 content-type: application/json
 
 {
-  "username": "basic",
+  "email": "basic@o2.pl",
   "password": "password123$"
 }
+
+### 2. Test
+GET http://localhost:4000/api/auth/test

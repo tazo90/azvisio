@@ -1,0 +1,70 @@
+@hostname = localhost
+@port = 4000
+@version = api
+@module = auth
+@host = {{hostname}}:{{port}}/{{version}}/{{module}}
+@contentType = application/json
+
+@email = adam13nas@gmail.com
+@password = Pchela90
+
+### 1. Login
+
+POST http://{{host}}/login
+Content-Type: {{contentType}}
+
+{
+  "email": "{{email}}",
+  "password": "{{password}}"
+}
+
+### 2. Register
+POST http://{{host}}/register
+Content-Type: {{contentType}}
+
+{
+  "email": "{{email}}",
+  "password": "{{password}}"
+}
+
+### 3. Account Confirm
+POST http://{{host}}/account/confirm
+Content-Type: {{contentType}}
+
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkYW0xM25hc0BnbWFpbC5jb20iLCJzY29wZSI6InNpZ251cCIsImlhdCI6MTcxMjg3MDU4OSwiZXhwIjoxNzEzNDc1Mzg5LCJpc3MiOiJtYXBzY2FsIn0.XURylLNG-ABQgU8nTcHvVms_plmlrBcbQ0lGc-U6o5U"
+}
+
+### 4. Refresh token
+POST http://{{host}}/refresh
+Content-Type: {{contentType}}
+
+{
+  "refreshToken": "ake-CPbL2uvkLk8ZuDr8hpBijfqrXpdsxCXm5WYnl-jklXYSYSTv2zsMh2kF4ZQ0"
+}
+
+### 5. Logout
+POST http://{{host}}/logout
+Content-Type: {{contentType}}
+
+{
+  "refreshToken": "0ECvIW0ZzfbqkedzpWW0e5MMhvetod9XivyVaD4VAo3U_e4O4pzGe2KSU_MR4owO"
+}
+
+
+### 6. Password reset request
+POST http://{{host}}/password/request
+Content-Type: {{contentType}}
+
+{
+  "email": "{{email}}"
+}
+
+### 7. Password reset
+POST http://{{host}}/password/reset
+Content-Type: {{contentType}}
+
+{
+  "password": "{{password}}",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkYW0xM25hc0BnbWFpbC5jb20iLCJzY29wZSI6InBhc3N3b3JkLXJlc2V0IiwiaGFzaCI6IjMyNzRhZWFkIiwiaWF0IjoxNzEyODc0ODkzLCJleHAiOjE3MTI5NjEyOTMsImlzcyI6Im1hcHNjYWwifQ.gIMmBAglkJkc3_QEKVtZl27Cf2_5RyTfUoF_t1EhOB0"
+}

@@ -1,0 +1,57 @@
+@hostname = localhost
+@port = 3000
+@version = v1
+@module = api-keys
+@host = {{hostname}}:{{port}}/{{version}}/{{module}}
+@contentType = application/json
+@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkYW0xM25hc0BnbWFpbC5jb20iLCJzY29wZSI6ImxvZ2luIiwiaWF0IjoxNzE1OTQ5NzU5LCJleHAiOjE3MTg1NDE3NTksImlzcyI6Im1hcHNjYWwifQ.VcveYNNksluUWUigvfzVXsvvG6fopli047VTpr-j5No
+
+### 1. List api keys
+
+GET http://{{host}}
+Content-Type: {{contentType}}
+Authorization: Bearer {{authToken}}
+
+### 2. Create api key
+
+POST http://{{host}}
+Content-Type: {{contentType}}
+Authorization: Bearer {{authToken}}
+
+  {
+  "name": "api-key",
+  "user_id": 2,
+  "note": "test",
+  "domains": ["o2.pl"]
+}
+
+### 3. Get api key
+
+GET http://{{host}}/12
+Content-Type: {{contentType}}
+Authorization: Bearer {{authToken}}
+
+### 4. Update api key
+
+PUT http://{{host}}/11
+Content-Type: {{contentType}}
+Authorization: Bearer {{authToken}}
+
+{
+  "name": "api-key-new2",
+  "note": "note",
+  "domains": ["o2.pl", "wp.pl"]
+}
+
+### 5. Delete api key
+
+DELETE http://{{host}}/12
+Content-Type: {{contentType}}
+Authorization: Bearer {{authToken}}
+
+
+### 6. Regenerate api key
+
+PUT http://{{host}}/11/regenerate
+Content-Type: {{contentType}}
+Authorization: Bearer {{authToken}}

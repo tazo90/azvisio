@@ -1,0 +1,96 @@
+@hostname = localhost
+@port = 3000
+@version = v1
+@module = users
+@host = {{hostname}}:{{port}}/{{version}}/{{module}}
+@contentType = application/json
+@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiZW1haWwiOiJhZGFtMTNuYXNAZ21haWwuY29tIiwid29ya3NwYWNlX2lkIjpudWxsLCJzY29wZSI6ImxvZ2luIiwiaWF0IjoxNzE3NzEwNTI4LCJleHAiOjE3MjAzMDI1MjgsImlzcyI6Im1hcHNjYWwifQ.hpT4OPyVL3Zd8nh7MWVLjLtXCr5meJ5lWw_BxjQ1NzE
+
+### 1. Me
+
+GET http://{{host}}/me
+Content-Type: {{contentType}}
+Authorization: Bearer {{authToken}}
+
+### 2. Users (find all)
+
+GET http://{{host}}/?page=1&limit=20&fields=username&fields=full_name&fields=email&sort=email:asc&fields=id
+Content-Type: {{contentType}}
+Authorization: Bearer {{authToken}}
+
+### 3. Users (find by id)
+
+GET http://{{host}}/14
+Content-Type: {{contentType}}
+Authorization: Bearer {{authToken}}
+
+### 4. Create user
+
+POST http://{{host}}
+Content-Type: {{contentType}}
+Authorization: Bearer {{authToken}}
+
+{
+  "email": "tazo90x@gmail.com",
+  "password": "abc"
+}
+
+### 5. Update user
+
+PUT http://{{host}}/2
+Content-Type: {{contentType}}
+Authorization: Bearer {{authToken}}
+
+{
+  "username": "tazo90x@",
+  "workspace_id": 34
+}
+
+### 6. Delete user
+
+DELETE http://{{host}}/5
+Content-Type: {{contentType}}
+Authorization: Bearer {{authToken}}
+
+### 7. Invite member
+
+POST http://{{host}}/invite
+Content-Type: {{contentType}}
+Authorization: Bearer {{authToken}}
+
+{
+  "email": "tazo90@gmail.com"
+}
+
+### 8. Accept invite
+
+POST http://{{host}}/invite/accept
+Content-Type: {{contentType}}
+Authorization: Bearer {{authToken}}
+
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkYW0xM25hc0BnbWFpbC5jb20iLCJzY29wZSI6Imludml0ZSIsImlhdCI6MTcxMzAzNTMxNiwiZXhwIjoxNzEzNjQwMTE2LCJpc3MiOiJtYXBzY2FsIn0.zHAaNpMOV6ipSVVxYTmmHhQFxL2eybkKSJt3_JExLjY",
+  "password": "test"
+}
+
+### 9. Resend invite
+
+POST http://{{host}}/invite/resend
+Content-Type: {{contentType}}
+Authorization: Bearer {{authToken}}
+
+{
+  "userId": 8,
+  "subject": "Hello Invite",
+  "url": "http://mapscal.com/admin/"
+}
+
+### 10. Revoke invite
+
+POST http://{{host}}/invite/revoke
+Content-Type: {{contentType}}
+Authorization: Bearer {{authToken}}
+
+{
+  "userId": 8
+}

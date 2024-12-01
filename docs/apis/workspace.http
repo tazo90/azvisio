@@ -1,0 +1,61 @@
+@hostname = localhost
+@port = 3000
+@version = v1
+@module = workspaces
+@host = {{hostname}}:{{port}}/{{version}}/{{module}}
+@contentType = application/json
+@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiZW1haWwiOiJhZGFtMTNuYXNAZ21haWwuY29tIiwid29ya3NwYWNlX2lkIjpudWxsLCJzY29wZSI6ImxvZ2luIiwiaWF0IjoxNzE3OTY4MjQyLCJleHAiOjE3MjA1NjAyNDIsImlzcyI6Im1hcHNjYWwifQ.SWWb9uaVdXShcHaJhbSUiJyIUg6LrcLQYSuLbv3PEW0
+
+### 1. Get user's workspaces
+
+GET http://{{host}}
+Content-Type: {{contentType}}
+Authorization: Bearer {{authToken}}
+
+### 2. Get user's workspace
+
+GET http://{{host}}/workspace-1
+Content-Type: {{contentType}}
+Authorization: Bearer {{authToken}}
+
+
+### 3. Create workspace
+
+POST http://{{host}}
+Content-Type: {{contentType}}
+Authorization: Bearer {{authToken}}
+
+{
+  "name": "workspace 6",
+  "plan": "free",
+  "billing_cycle_day": 1
+}
+
+
+### 4. Update workspace
+
+PATCH http://{{host}}/workspace-11
+Content-Type: {{contentType}}
+Authorization: Bearer {{authToken}}
+
+{
+  "name": "workspace 15",
+  "plan": "free",
+  "billing_cycle_day": 10
+}
+
+### 5. Delete workspace
+
+DELETE http://{{host}}/workspace-15
+Content-Type: {{contentType}}
+Authorization: Bearer {{authToken}}
+
+### 6. Set workspace
+
+PUT http://{{host}}/set-user-workspace
+Content-Type: {{contentType}}
+Authorization: Bearer {{authToken}}
+
+{
+  "workspace_id": 39
+}

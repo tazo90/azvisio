@@ -6,8 +6,8 @@ export default async function (app: FastifyInstance) {
       return;
     }
 
-    if (!request.session.user) {
-      reply.unauthorized('You must be authenticated to access this route.');
-    }
+    // if (!request.session.user) {
+    //   reply.unauthorized('You must be authenticated to access this route.');
+    // }
   });
 }
