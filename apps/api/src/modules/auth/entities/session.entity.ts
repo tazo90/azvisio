@@ -1,6 +1,6 @@
 import { Entity, Property, ManyToOne } from '@mikro-orm/core';
-import { BaseEntity } from '../../shared/entities/base.entity';
-import { User } from '../../user/user.entity';
+import { BaseEntity } from '@/modules/shared/entities/base.entity';
+import { User } from '@/modules/user/user.entity';
 
 @Entity()
 export class Session extends BaseEntity {

@@ -4,7 +4,7 @@ import fs from 'fs';
 import path from 'path';
 
 export const autoConfig = (app: FastifyInstance): FastifyStaticOptions => {
-  const dirPath = path.join(import.meta.dirname, '../../..', app.config.UPLOAD_DIRNAME);
+  const dirPath = path.join(__dirname, '../../..', app.config.UPLOAD_DIRNAME);
   if (!fs.existsSync(dirPath)) {
     fs.mkdirSync(dirPath);
   }
@@ -15,7 +15,7 @@ export const autoConfig = (app: FastifyInstance): FastifyStaticOptions => {
   }
 
   return {
-    root: path.join(import.meta.dirname, '../../..'),
+    root: path.join(__dirname, '../../..'),
     prefix: `/${app.config.UPLOAD_DIRNAME}`,
   };
 };
