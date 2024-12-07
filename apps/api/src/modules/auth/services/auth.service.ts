@@ -1,5 +1,5 @@
-import { EntityManager } from '@mikro-orm/core';
 import { User } from '@/modules/user/user.entity';
+import { Database } from '@/types';
 import { hash, compare } from 'bcrypt';
 // import { sign, verify } from 'jsonwebtoken';
 import jwt from 'jsonwebtoken';
@@ -7,7 +7,7 @@ import { v4 } from 'uuid';
 // import { sendEmail } from '../utils/email';
 
 export class AuthService {
-  constructor(private readonly db: EntityManager) {}
+  constructor(private readonly db: Database) {}
 
   async register(email: string, password: string) {
     const hashedPassword = await hash(password, 10);

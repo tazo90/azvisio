@@ -1,13 +1,12 @@
-import { EntityManager } from '@mikro-orm/core';
 import { Session } from '../entities/session.entity';
 import { User } from '../../user/user.entity';
 import { sign, verify } from 'jsonwebtoken';
-import { FastifyRequest } from 'fastify';
+import { Database, RequestMetadata } from '@/types';
 
 export class SessionService {
-  constructor(private readonly db: EntityManager) {}
+  constructor(private readonly db: Database) {}
 
-  async createSession(user: User, req: FastifyRequest): Promise<Session> {
+  async createSession(user: User, requestMetadata: RequestMetadata): Promise<Session> {
     await this.deactivateOldSessions(user.id);
 
     const token = sign({ userId: user.id }, process.env.JWT_SECRET!, { expiresIn: '15m' });
@@ -17,8 +16,8 @@ export class SessionService {
       user,
       token,
       refreshToken,
-      userAgent: req.headers['user-agent'],
-      ipAddress: req.ip,
+      userAgent: requestMetadata.userAgent,
+      ipAddress: requestMetadata.ip,
       expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 days
     });
 

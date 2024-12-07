@@ -1,13 +1,13 @@
-import { Type as t } from '@sinclair/typebox';
+import { Static, Type as t } from '@sinclair/typebox';
 
-export const loginSchema = {
+export const LoginSchema = {
   body: t.Object({
     email: t.String({ format: 'email' }),
-    password: t.String({ minlength: 6 }),
+    password: t.String({ minLength: 6 }),
   }),
 };
 
-export const registerSchema = {
+export const RegisterSchema = {
   body: t.Object({
     email: t.String({ format: 'email' }),
     password: t.String({ minLength: 6 }),
@@ -15,34 +15,38 @@ export const registerSchema = {
   }),
 };
 
-export const registerConfirmSchema = {
+export const RegisterConfirmSchema = {
   body: t.Object({
     tokeN: t.String(),
   }),
 };
 
-export const logoutSchema = {
+export const LogoutSchema = {
   body: t.Object({
     refreshToken: t.String(),
   }),
 };
 
-export const refreshSchema = {
+export const RefreshSchema = {
   body: t.Object({
     refreshToken: t.String(),
   }),
 };
 
-export const passwordResetRequestSchema = {
+export const PasswordResetRequestSchema = {
   body: t.Object({
     email: t.String({ format: 'email' }),
   }),
 };
 
-export const passwordResetSchema = {
+export const PasswordResetSchema = {
   body: t.Object({
     token: t.String(),
     password: t.String({ minLength: 6 }),
     confirmPassword: t.String(),
   }),
 };
+
+export type LoginDto = Static<typeof LoginSchema.body>;
+export type RegisterDto = Static<typeof RegisterSchema.body>;
+export type RegisterConfirmDto = Static<typeof RegisterConfirmSchema.body>;
