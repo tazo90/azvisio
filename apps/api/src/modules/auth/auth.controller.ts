@@ -1,29 +1,31 @@
 import { FastifyInstance } from 'fastify';
-import { loginSchema } from './schemas/auth.schema';
+import { LoginDto, LoginSchema, RegisterDto, RegisterSchema } from './schemas/auth.schema';
 import { AuthService } from './services/auth.service';
-// import { User } from './entities/session.entity';
-// import { LoginBody, LoginSchema } from './auth.schema';
+import { LoginUsecase } from './usecases/login.usecase';
+import { SessionService } from './services/session.service';
+import { RegisterUsecase } from './usecases/register.usecase';
 
 const AuthController = async (app: FastifyInstance) => {
-  // @todo: allow to pass orm (entity manager) and db (knex)
-  const authService = new AuthService(app.orm);
-  // app.post('/login', { schema: LoginSchema }, async (request, reply) => {
-  //   const { username, password } = request.body as LoginBody;
+  const authService = new AuthService(app.db);
+  const sessionService = new SessionService(app.db);
 
-  //   return {
-  //     success: true,
-  //     message: 'Hello' + username,
-  //   };
-  // });
+  // Login
+  app.post('/login', { schema: LoginSchema }, async (request) => {
+    const usecase = new LoginUsecase(app.db, sessionService);
 
-  // // Register
-  // app.post('/register', async (request, reply) => {
-  //   const { username, password } = request.body as any;
+    const metadata = {
+      userAgent: request.headers['user-agent'],
+      ip: request.ip,
+    };
 
-  //   return {
-  //     msg: 'register',
-  //   };
-  // });
+    return await usecase.execute(request.body as LoginDto, metadata);
+  });
+
+  // Register
+  app.post('/register', { schema: RegisterSchema }, async (request) => {
+    const usecase = new RegisterUsecase(app.db);
+    return await usecase.execute(request.body as RegisterDto);
+  });
 
   // // Register Confirm
   // app.post('/register/confirm', async (request, reply) => {
@@ -31,19 +33,6 @@ const AuthController = async (app: FastifyInstance) => {
   //     msg: 'register-confirm',
   //   };
   // });
-
-  // Login
-  app.post('/login', async (request, reply) => {
-    // const users = await app.orm.find(User, {});
-    // const result = await app.db('user').select('*');
-
-    const { email, password } = request.body as any;
-    const result = await authService.login(email, password);
-
-    return {
-      result,
-    };
-  });
 
   // // Logout
   // app.post('/logout', async (request, reply) => {

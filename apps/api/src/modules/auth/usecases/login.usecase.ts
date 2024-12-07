@@ -1,5 +1,4 @@
 import { Database, RequestMetadata } from '@/types';
-import { AuthService } from '../services/auth.service';
 import { SessionService } from '../services/session.service';
 import { LoginDto } from '../schemas/auth.schema';
 import { User } from '@/modules/user/user.entity';

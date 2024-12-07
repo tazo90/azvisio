@@ -11,7 +11,6 @@ export const RegisterSchema = {
   body: t.Object({
     email: t.String({ format: 'email' }),
     password: t.String({ minLength: 6 }),
-    confirmPassword: t.String(),
   }),
 };
 
