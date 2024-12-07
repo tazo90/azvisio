@@ -1,16 +1,12 @@
 import fp from 'fastify-plugin';
 import { FastifyInstance } from 'fastify';
-import { Knex } from 'knex';
-import { MikroORM, SqlEntityManager } from '@mikro-orm/postgresql';
+import { MikroORM } from '@mikro-orm/postgresql';
 import mikroOrmConfig from '@/config/mikro-orm.config';
+import { Database } from '@/types';
 
 declare module 'fastify' {
   export interface FastifyInstance {
-    // db: SqlEntityManager;
-    // knex: Knex;
-    // orm: MikroORM;
-    db: Knex;
-    orm: SqlEntityManager;
+    db: Database;
   }
 }
 
@@ -26,12 +22,9 @@ export default fp(
     // Get entity manager
     const em = orm.em.fork();
 
-    // Get knex instance from MikroOrm
-    const knex = em.getKnex();
+    const db: Database = Object.assign(em, { knex: em.getKnex() });
 
-    // app.decorate('orm', orm); // full orm
-    app.decorate('orm', em); // entity manager
-    app.decorate('db', knex); // knex instance
+    app.decorate('db', db);
 
     app.addHook('onClose', async () => {
       await orm.close();

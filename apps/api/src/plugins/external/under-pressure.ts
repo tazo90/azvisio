@@ -12,7 +12,7 @@ export const autoConfig = (app: FastifyInstance) => {
     retryAfter: 50,
     healthCheck: async () => {
       try {
-        await app.db.raw('SELECT 1');
+        await app.db.knex.raw('SELECT 1');
         return true;
         /* c8 ignore start */
       } catch (err) {
