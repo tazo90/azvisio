@@ -16,7 +16,7 @@ export const RegisterSchema = {
 
 export const RegisterConfirmSchema = {
   body: t.Object({
-    tokeN: t.String(),
+    token: t.String(),
   }),
 };
 

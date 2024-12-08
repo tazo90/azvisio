@@ -1,12 +1,18 @@
 import { FastifyInstance } from 'fastify';
-import { LoginDto, LoginSchema, RegisterDto, RegisterSchema } from './schemas/auth.schema';
-import { AuthService } from './services/auth.service';
+import {
+  LoginDto,
+  LoginSchema,
+  RegisterConfirmDto,
+  RegisterConfirmSchema,
+  RegisterDto,
+  RegisterSchema,
+} from './schemas/auth.schema';
 import { LoginUsecase } from './usecases/login.usecase';
 import { SessionService } from './services/session.service';
 import { RegisterUsecase } from './usecases/register.usecase';
+import { RegisterConfirmUsecase } from './usecases/register-confirm.usecase';
 
 const AuthController = async (app: FastifyInstance) => {
-  const authService = new AuthService(app.db);
   const sessionService = new SessionService(app.db);
 
   // Login
@@ -27,12 +33,11 @@ const AuthController = async (app: FastifyInstance) => {
     return await usecase.execute(request.body as RegisterDto);
   });
 
-  // // Register Confirm
-  // app.post('/register/confirm', async (request, reply) => {
-  //   return {
-  //     msg: 'register-confirm',
-  //   };
-  // });
+  // Register Confirm
+  app.post('/register/confirm', { schema: RegisterConfirmSchema }, async (request) => {
+    const usecase = new RegisterConfirmUsecase(app.db);
+    return await usecase.execute(request.body as RegisterConfirmDto);
+  });
 
   // // Logout
   // app.post('/logout', async (request, reply) => {
