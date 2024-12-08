@@ -11,9 +11,11 @@ import { LoginUsecase } from './usecases/login.usecase';
 import { SessionService } from './services/session.service';
 import { RegisterUsecase } from './usecases/register.usecase';
 import { RegisterConfirmUsecase } from './usecases/register-confirm.usecase';
+import { MailService } from '../mail/mail.service';
 
 const AuthController = async (app: FastifyInstance) => {
   const sessionService = new SessionService(app.db);
+  const mailService = new MailService(app);
 
   // Login
   app.post('/login', { schema: LoginSchema }, async (request) => {
@@ -29,7 +31,7 @@ const AuthController = async (app: FastifyInstance) => {
 
   // Register
   app.post('/register', { schema: RegisterSchema }, async (request) => {
-    const usecase = new RegisterUsecase(app.db);
+    const usecase = new RegisterUsecase(app.db, mailService);
     return await usecase.execute(request.body as RegisterDto);
   });
 

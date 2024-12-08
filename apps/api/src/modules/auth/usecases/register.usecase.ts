@@ -3,9 +3,13 @@ import { RegisterDto } from '../schemas/auth.schema';
 import { User } from '@/modules/user/user.entity';
 import { v4 as uuidv4 } from 'uuid';
 import { hash } from 'bcrypt';
+import { MailService } from '@/modules/mail/mail.service';
 
 export class RegisterUsecase {
-  constructor(private readonly db: Database) {}
+  constructor(
+    private readonly db: Database,
+    private readonly mailService: MailService
+  ) {}
 
   async execute(dto: RegisterDto) {
     // Check if email already taken
@@ -29,6 +33,16 @@ export class RegisterUsecase {
     await this.db.persistAndFlush(user);
 
     // Send confirmation email
+    await this.mailService.queueMail({
+      to: user.email,
+      subject: 'Reset Your Password',
+      template: 'password-reset',
+      context: {
+        name: user.email,
+        resetUrl: `${process.env.APP_URL}/reset-password?token=${confirmationToken}`,
+        expiresIn: 3600, // 1h
+      },
+    });
 
     return {
       id: user.id,

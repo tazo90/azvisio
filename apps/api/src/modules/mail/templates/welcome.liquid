@@ -1,0 +1,26 @@
+{% layout 'layouts/main' %}
+{% block content %}
+  <p>Hello {{ name }},</p>
+  
+  <p>Thank you for joining our platform! We're excited to have you on board.</p>
+  
+  <p>To get started, please confirm your email address by clicking the button below:</p>
+  
+  <p style="text-align: center;">
+    <a href="{{ confirmationUrl }}" class="button">Confirm Email</a>
+  </p>
+  
+  <p>If the button doesn't work, you can also copy and paste this link into your browser:</p>
+  <p style="word-break: break-all;">{{ confirmationUrl }}</p>
+  
+  <p>Here are a few things you can do with our platform:</p>
+  <ul>
+    <li>Create workspaces to organize your work</li>
+    <li>Invite team members to collaborate</li>
+    <li>Generate API keys for integration</li>
+  </ul>
+  
+  <p>If you have any questions, feel free to reply to this email.</p>
+  
+  <p>Best regards,<br>The Team</p>
+{% endblock %}
