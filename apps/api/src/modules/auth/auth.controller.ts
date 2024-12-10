@@ -7,38 +7,36 @@ import {
   RegisterDto,
   RegisterSchema,
 } from './schemas/auth.schema';
-import { LoginUsecase } from './usecases/login.usecase';
-import { SessionService } from './services/session.service';
-import { RegisterUsecase } from './usecases/register.usecase';
-import { RegisterConfirmUsecase } from './usecases/register-confirm.usecase';
-import { MailService } from '../mail/mail.service';
 
 const AuthController = async (app: FastifyInstance) => {
-  const sessionService = new SessionService(app.db);
-  const mailService = new MailService(app);
+  // const sessionService = new SessionService(app.db);
+  // const mailService = new MailService(app);
 
   // Login
   app.post('/login', { schema: LoginSchema }, async (request) => {
-    const usecase = new LoginUsecase(app.db, sessionService);
+    const loginUsecase = app.usecase('login');
 
     const metadata = {
       userAgent: request.headers['user-agent'],
       ip: request.ip,
     };
 
-    return await usecase.execute(request.body as LoginDto, metadata);
+    return await loginUsecase.execute(request.body as LoginDto, metadata);
   });
 
   // Register
   app.post('/register', { schema: RegisterSchema }, async (request) => {
-    const usecase = new RegisterUsecase(app.db, mailService);
-    return await usecase.execute(request.body as RegisterDto);
+    const registerUsecase = app.usecase('register');
+
+    return await registerUsecase.execute(request.body as RegisterDto);
   });
 
   // Register Confirm
   app.post('/register/confirm', { schema: RegisterConfirmSchema }, async (request) => {
-    const usecase = new RegisterConfirmUsecase(app.db);
-    return await usecase.execute(request.body as RegisterConfirmDto);
+    // const usecase = new RegisterConfirmUsecase(app.db);
+    const registerConfirmUsecase = app.usecase('registerConfirm');
+
+    return await registerConfirmUsecase.execute(request.body as RegisterConfirmDto);
   });
 
   // // Logout

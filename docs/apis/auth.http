@@ -27,8 +27,8 @@ Content-Type: {{contentType}}
   "password": "{{password}}"
 }
 
-### 3. Account Confirm
-POST http://{{host}}/account/confirm
+### 3. Register Confirm
+POST http://{{host}}/register/confirm
 Content-Type: {{contentType}}
 
 {
