@@ -41,7 +41,7 @@ POST http://{{host}}/refresh
 Content-Type: {{contentType}}
 
 {
-  "refreshToken": "ake-CPbL2uvkLk8ZuDr8hpBijfqrXpdsxCXm5WYnl-jklXYSYSTv2zsMh2kF4ZQ0"
+  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJlMmY3YzZhMC05NmM3LTRmNWItYjVmMi1kYTY4NTljOTBjNzYiLCJpYXQiOjE3MzM5NTk4NTMsImV4cCI6MTczNDU2NDY1M30.Pm560amxvSgIDNCaVco21fkj6fduo6E_tpqQ6waO6Og"
 }
 
 ### 5. Logout

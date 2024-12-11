@@ -2,6 +2,7 @@ import { FastifyInstance } from 'fastify';
 import {
   LoginDto,
   LoginSchema,
+  RefreshSchema,
   RegisterConfirmDto,
   RegisterConfirmSchema,
   RegisterDto,
@@ -44,12 +45,12 @@ const AuthController = async (app: FastifyInstance) => {
     },
   });
 
-  // // Refresh
-  // app.post('/refresh', async (request, reply) => {
-  //   return {
-  //     msg: 'logout',
-  //   };
-  // });
+  // Refresh
+  app.post('/refresh', { schema: RefreshSchema }, async (request) => {
+    const refreshUsecase = app.usecase('refresh');
+
+    return await refreshUsecase.execute(request.body.refreshToken);
+  });
 
   // // Password Request
   // app.post('/password/request', async (request, reply) => {
