@@ -1,17 +1,9 @@
 import { FastifyInstance } from 'fastify';
-import {
-  LoginDto,
-  LoginSchema,
-  RefreshSchema,
-  RegisterConfirmDto,
-  RegisterConfirmSchema,
-  RegisterDto,
-  RegisterSchema,
-} from './schemas/auth.schema';
+import * as AuthSchema from './schemas/auth.schema';
 
 const AuthController = async (app: FastifyInstance) => {
   // Login
-  app.post('/login', { schema: LoginSchema }, async (request) => {
+  app.post('/login', { schema: AuthSchema.LoginSchema }, async (request) => {
     const loginUsecase = app.usecase('login');
 
     const metadata = {
@@ -19,21 +11,21 @@ const AuthController = async (app: FastifyInstance) => {
       ip: request.ip,
     };
 
-    return await loginUsecase.execute(request.body as LoginDto, metadata);
+    return await loginUsecase.execute(request.body as AuthSchema.LoginDto, metadata);
   });
 
   // Register
-  app.post('/register', { schema: RegisterSchema }, async (request) => {
+  app.post('/register', { schema: AuthSchema.RegisterSchema }, async (request) => {
     const registerUsecase = app.usecase('register');
 
-    return await registerUsecase.execute(request.body as RegisterDto);
+    return await registerUsecase.execute(request.body as AuthSchema.RegisterDto);
   });
 
   // Register Confirm
-  app.get('/register/confirm/:token', { schema: RegisterConfirmSchema }, async (request) => {
+  app.get('/register/confirm/:token', { schema: AuthSchema.RegisterConfirmSchema }, async (request) => {
     const registerConfirmUsecase = app.usecase('registerConfirm');
 
-    return await registerConfirmUsecase.execute(request.params as RegisterConfirmDto);
+    return await registerConfirmUsecase.execute(request.params as AuthSchema.RegisterConfirmDto);
   });
 
   // Logout
@@ -46,25 +38,25 @@ const AuthController = async (app: FastifyInstance) => {
   });
 
   // Refresh
-  app.post('/refresh', { schema: RefreshSchema }, async (request) => {
+  app.post('/refresh', { schema: AuthSchema.RefreshSchema }, async (request) => {
     const refreshUsecase = app.usecase('refresh');
 
     return await refreshUsecase.execute(request.body.refreshToken);
   });
 
-  // // Password Request
-  // app.post('/password/request', async (request, reply) => {
-  //   return {
-  //     msg: 'pass request',
-  //   };
-  // });
+  // Password Reset Request
+  app.post('/password/request', { schema: AuthSchema.PasswordResetRequestSchema }, async (request) => {
+    const passwordResetRequestUsecase = app.usecase('passwordResetRequest').execute(request.body.refreshToken);
 
-  // // Password Reset
-  // app.post('/password/reset', async (request, reply) => {
-  //   return {
-  //     msg: 'pass reset',
-  //   };
-  // });
+    return await passwordResetRequestUsecase.execute(request.body.refreshToken);
+  });
+
+  // Password Reset
+  app.post('/password/reset', { schema: AuthSchema.PasswordResetSchema }, async (request) => {
+    const passwordResetUsecase = app.usecase('passwordReset');
+
+    return await passwordResetUsecase.execute(request.body);
+  });
 };
 
 export default AuthController;
