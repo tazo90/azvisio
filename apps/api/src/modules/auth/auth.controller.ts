@@ -9,9 +9,6 @@ import {
 } from './schemas/auth.schema';
 
 const AuthController = async (app: FastifyInstance) => {
-  // const sessionService = new SessionService(app.db);
-  // const mailService = new MailService(app);
-
   // Login
   app.post('/login', { schema: LoginSchema }, async (request) => {
     const loginUsecase = app.usecase('login');
@@ -33,7 +30,6 @@ const AuthController = async (app: FastifyInstance) => {
 
   // Register Confirm
   app.post('/register/confirm', { schema: RegisterConfirmSchema }, async (request) => {
-    // const usecase = new RegisterConfirmUsecase(app.db);
     const registerConfirmUsecase = app.usecase('registerConfirm');
 
     return await registerConfirmUsecase.execute(request.body as RegisterConfirmDto);

@@ -71,11 +71,6 @@ export class MailService {
     this.mailQueue.on('failed', (job, error) => {
       this.app.log.error(`Mail job ${job.id} failed: ${error.message}`);
     });
-
-    // Graceful shutdown
-    this.app.addHook('onClose', async () => {
-      await this.mailQueue.close();
-    });
   }
 
   private async sendMail(options: MailOptions) {
