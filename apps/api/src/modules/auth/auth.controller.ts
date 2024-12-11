@@ -29,18 +29,20 @@ const AuthController = async (app: FastifyInstance) => {
   });
 
   // Register Confirm
-  app.post('/register/confirm', { schema: RegisterConfirmSchema }, async (request) => {
+  app.get('/register/confirm/:token', { schema: RegisterConfirmSchema }, async (request) => {
     const registerConfirmUsecase = app.usecase('registerConfirm');
 
-    return await registerConfirmUsecase.execute(request.body as RegisterConfirmDto);
+    return await registerConfirmUsecase.execute(request.params as RegisterConfirmDto);
   });
 
-  // // Logout
-  // app.post('/logout', async (request, reply) => {
-  //   return {
-  //     msg: 'logout',
-  //   };
-  // });
+  // Logout
+  app.post('/logout', {
+    preHandler: [app.authenticate],
+    handler: async (request) => {
+      const token = request.headers.authorization?.split(' ')[1];
+      return app.usecase('logout').execute(token!);
+    },
+  });
 
   // // Refresh
   // app.post('/refresh', async (request, reply) => {

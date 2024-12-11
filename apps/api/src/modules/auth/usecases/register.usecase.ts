@@ -33,16 +33,19 @@ export class RegisterUsecase {
     await this.db.persistAndFlush(user);
 
     // Send confirmation email
-    await this.mailService.queueMail({
-      to: user.email,
-      subject: 'Reset Your Password',
-      template: 'password-reset',
-      context: {
-        name: user.email,
-        resetUrl: `${process.env.APP_URL}/reset-password?token=${confirmationToken}`,
-        expiresIn: 3600, // 1h
-      },
-    });
+    // await this.mailService.queueMail({
+    //   to: user.email,
+    //   subject: 'Welcome',
+    //   template: 'welcome',
+    //   context: {
+    //     name: user.email,
+    //     confirmationUrl: `${process.env.APP_URL}/reset-password?token=${confirmationToken}`,
+    //     expiresIn: 3600, // 1h
+    //   },
+    // });
+
+    // Send confirmation email
+    await this.mailService.sendWelcomeEmail(user);
 
     return {
       id: user.id,

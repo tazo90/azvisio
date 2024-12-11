@@ -32,6 +32,9 @@ importers:
       '@fastify/env':
         specifier: ^5.0.1
         version: 5.0.1
+      '@fastify/error':
+        specifier: ^4.0.0
+        version: 4.0.0
       '@fastify/helmet':
         specifier: ^12.0.0
         version: 12.0.1

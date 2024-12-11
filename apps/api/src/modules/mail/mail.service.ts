@@ -75,16 +75,9 @@ export class MailService {
 
   private async sendMail(options: MailOptions) {
     // Render content
-    const content = await this.liquid.renderFile(options.template, {
+    const html = await this.liquid.renderFile(options.template, {
       ...options.context,
       subject: options.subject,
-    });
-
-    // Render layout with content
-    const html = await this.liquid.renderFile('layouts/main', {
-      ...options.context,
-      subject: options.subject,
-      content, // pass rendered content to layout
     });
 
     const mailOptions = {
@@ -115,7 +108,7 @@ export class MailService {
       template: 'welcome',
       context: {
         name: user.name || 'there',
-        confirmationUrl: `${process.env.APP_URL}/confirm-email?token=${user.emailConfirmationToken}`,
+        confirmationUrl: `${process.env.APP_URL}/confirm-account?token=${user.emailConfirmationToken}`,
       },
     });
   }

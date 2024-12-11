@@ -5,6 +5,7 @@
 @host = {{hostname}}:{{port}}/{{version}}/{{module}}
 @contentType = application/json
 
+@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJlMmY3YzZhMC05NmM3LTRmNWItYjVmMi1kYTY4NTljOTBjNzYiLCJpYXQiOjE3MzM5NTgzMTgsImV4cCI6MTczMzk1OTIxOH0.26PrbPaz3SznfLHxmrG7SixeWb53aThRCxwhc4liOcQ
 @email = adam13nas@gmail.com
 @password = Pchela90
 
@@ -46,9 +47,10 @@ Content-Type: {{contentType}}
 ### 5. Logout
 POST http://{{host}}/logout
 Content-Type: {{contentType}}
+Authorization: Bearer {{authToken}}
 
 {
-  "refreshToken": "0ECvIW0ZzfbqkedzpWW0e5MMhvetod9XivyVaD4VAo3U_e4O4pzGe2KSU_MR4owO"
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJlMmY3YzZhMC05NmM3LTRmNWItYjVmMi1kYTY4NTljOTBjNzYiLCJpYXQiOjE3MzM5NTgzMTgsImV4cCI6MTczMzk1OTIxOH0.26PrbPaz3SznfLHxmrG7SixeWb53aThRCxwhc4liOcQ"
 }
 
 
