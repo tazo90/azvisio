@@ -1,6 +1,6 @@
 import { Database } from '@/types';
 import { Session } from '../entities/session.entity';
-import { sign } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 
 export class RefreshUsecase {
   constructor(private readonly db: Database) {}
@@ -22,7 +22,7 @@ export class RefreshUsecase {
       throw new Error('Refresh token expired');
     }
 
-    const newToken = sign({ userId: session.user.id }, process.env.JWT_SECRET!, { expiresIn: '1h' });
+    const newToken = jwt.sign({ userId: session.user.id }, process.env.JWT_SECRET!, { expiresIn: '1h' });
 
     session.token = newToken;
     session.lastActivity = new Date();

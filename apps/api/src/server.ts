@@ -22,7 +22,7 @@ function getLoggerOptions() {
   return { level: process.env.LOG_LEVEL ?? 'silent' };
 }
 
-const app = Fastify({
+export const app = Fastify({
   logger: getLoggerOptions(),
   ajv: {
     customOptions: {
@@ -35,22 +35,36 @@ const app = Fastify({
 async function init() {
   app.register(fp(boostrap));
 
-  closeWithGrace({ delay: parseInt(process.env.FASTIFY_CLOSE_GRACE_DELAY!) ?? 500 }, async ({ err }) => {
-    if (err != null) {
-      app.log.error(err);
-    }
-
-    await app.close();
-  });
+  // Graceful shutdown tylko w produkcji
+  if (process.env.PROD) {
+    closeWithGrace({ delay: parseInt(process.env.FASTIFY_CLOSE_GRACE_DELAY!) ?? 500 }, async ({ err }) => {
+      if (err != null) {
+        app.log.error(err);
+      }
+      await app.close();
+    });
+  }
 
   await app.ready();
 
+  // Uruchamiamy serwer zawsze, nie tylko w produkcji
   try {
-    await app.listen({ port: parseInt(process.env.PORT!) ?? 4000 });
+    const port = parseInt(process.env.PORT!) ?? 4000;
+    await app.listen({
+      port,
+      host: '0.0.0.0', // lub 'localhost' jeśli chcesz tylko lokalnie
+    });
+    app.log.info(`Server is running on http://localhost:${port}`);
   } catch (err) {
     app.log.error(err);
     process.exit(1);
   }
 }
 
-init();
+// Zawsze uruchamiamy init()
+init().catch((err) => {
+  console.error('Failed to start server:', err);
+  process.exit(1);
+});
+
+export default app;
