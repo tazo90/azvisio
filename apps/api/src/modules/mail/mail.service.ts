@@ -1,9 +1,12 @@
 import { Liquid } from 'liquidjs';
 import nodemailer from 'nodemailer';
 import { FastifyInstance } from 'fastify';
-import path from 'path';
+import path, { dirname } from 'path';
 import Queue from 'bull';
 import 'dotenv/config';
+import { fileURLToPath } from 'url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 interface MailOptions {
   to: string;

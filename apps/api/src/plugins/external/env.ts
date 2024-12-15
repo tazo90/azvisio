@@ -1,7 +1,9 @@
-import env from '@fastify/env';
+import fastifyEnv from '@fastify/env';
+import { FastifyInstance } from 'fastify';
+import fp from 'fastify-plugin';
 
 declare module 'fastify' {
-  export interface FastifyInstance {
+  interface FastifyInstance {
     config: {
       PORT: number;
       DB_HOST: string;
@@ -64,7 +66,7 @@ const schema = {
     },
     RATE_LIMIT_MAX: {
       type: 'number',
-      default: 100, // Put it to 4 in your .env file for tests
+      default: 100,
     },
 
     // Files
@@ -79,30 +81,16 @@ const schema = {
   },
 };
 
-export const autoConfig = {
-  // Decorate Fastify instance with `config` key
-  // Optional, default: 'config'
-  confKey: 'config',
-
-  // Schema to validate
-  schema,
-
-  // Needed to read .env in root folder
-  dotenv: true,
-  // or, pass config options available on dotenv module
-  // dotenv: {
-  //   path: `${import.meta.dirname}/.env`,
-  //   debug: true
-  // }
-
-  // Source for the configuration data
-  // Optional, default: process.env
-  data: process.env,
-};
-
-/**
- * This plugins helps to check environment variables.
- *
- * @see {@link https://github.com/fastify/fastify-env}
- */
-export default env;
+export default fp(
+  async function (fastify: FastifyInstance) {
+    await fastify.register(fastifyEnv, {
+      confKey: 'config',
+      schema,
+      dotenv: true,
+      data: process.env,
+    });
+  },
+  {
+    name: 'config',
+  }
+);
