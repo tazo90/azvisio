@@ -37,5 +37,5 @@ export async function registerPlugins(app: FastifyInstance) {
   await app.register(session);
   await app.register(staticFiles, staticFilesConfig);
   await app.register(swagger);
-  await app.register(underPressure, underPressureConfig);
+  // await app.register(underPressure, underPressureConfig);
 }

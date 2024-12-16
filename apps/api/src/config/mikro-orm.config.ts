@@ -17,7 +17,7 @@ export default defineConfig({
   entitiesTs: ['./src/**/*.entity.ts'],
   implicitTransactions: true,
   pool: { min: 2, max: 10 },
-  debug: process.env.NODE_ENV !== 'production',
+  // debug: process.env.NODE_ENV !== 'production',
   migrations: {
     path: './dist/migrations',
     pathTs: './src/migrations',

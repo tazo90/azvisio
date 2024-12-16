@@ -54,6 +54,17 @@ async function init() {
       port,
       host: '0.0.0.0', // lub 'localhost' jeśli chcesz tylko lokalnie
     });
+
+    if (import.meta.hot) {
+      import.meta.hot.on('vite:beforeFullReload', () => {
+        app.close();
+      });
+
+      import.meta.hot.dispose(() => {
+        app.close();
+      });
+    }
+
     app.log.info(`Server is running on http://localhost:${port}`);
   } catch (err) {
     app.log.error(err);

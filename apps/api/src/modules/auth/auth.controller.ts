@@ -6,6 +6,7 @@ const AuthController = async (app: FastifyInstance) => {
   app.post('/login', { schema: AuthSchema.LoginSchema }, async (request) => {
     const loginUsecase = app.usecase('login');
 
+    console.log('ZZ');
     const metadata = {
       userAgent: request.headers['user-agent'],
       ip: request.ip,

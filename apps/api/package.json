@@ -5,8 +5,7 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "dev": "tsx watch src/server.ts",
-    "dev2": "cross-env FASTIFY_AUTOLOAD_TYPESCRIPT=1 vite",
+    "dev": "vite-node -w src/server.ts",
     "build": "tsup src/server.ts --minify",
     "start": "node dist/server.js",
     "test": "npm run db:seed && tap --jobs=1 test/**/*",
@@ -60,7 +59,8 @@
     "nodemailer": "^6.9.16",
     "pg": "^8.13.1",
     "reflect-metadata": "^0.2.2",
-    "uuid": "^11.0.3"
+    "uuid": "^11.0.3",
+    "vite-node": "^2.1.8"
   },
   "devDependencies": {
     "@swc-node/register": "^1.10.9",
