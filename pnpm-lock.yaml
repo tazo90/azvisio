@@ -20,9 +20,6 @@ importers:
 
   apps/api:
     dependencies:
-      '@fastify/autoload':
-        specifier: ^6.0.3
-        version: 6.0.3
       '@fastify/cookie':
         specifier: ^11.0.1
         version: 11.0.1
@@ -167,22 +164,25 @@ importers:
         version: 2.0.0
       tap:
         specifier: ^21.0.1
-        version: 21.0.1(@types/node@22.10.2)(@types/react@18.3.1)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)(typescript@5.7.2)
-      ts-node:
-        specifier: ^10.9.2
-        version: 10.9.2(@types/node@22.10.2)(typescript@5.7.2)
+        version: 21.0.1(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(@types/react@18.3.1)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)(typescript@5.7.2)
       tsc-alias:
         specifier: ^1.8.10
         version: 1.8.10
       tsup:
         specifier: ^8.3.5
-        version: 8.3.5(jiti@1.21.6)(postcss@8.4.49)(tsx@4.19.2)(typescript@5.7.2)(yaml@2.6.1)
+        version: 8.3.5(@swc/core@1.10.1(@swc/helpers@0.5.5))(jiti@1.21.6)(postcss@8.4.49)(tsx@4.19.2)(typescript@5.7.2)(yaml@2.6.1)
       tsx:
         specifier: ^4.19.2
         version: 4.19.2
       typescript:
         specifier: ~5.7.2
         version: 5.7.2
+      vite:
+        specifier: ^6.0.3
+        version: 6.0.3(@types/node@22.10.2)(jiti@1.21.6)(tsx@4.19.2)(yaml@2.6.1)
+      vite-node:
+        specifier: ^2.1.8
+        version: 2.1.8(@types/node@22.10.2)
 
   apps/web:
     dependencies:
@@ -239,7 +239,7 @@ importers:
         version: 2.5.4
       tailwindcss-animate:
         specifier: ^1.0.7
-        version: 1.0.7(tailwindcss@3.4.15(ts-node@10.9.2(@types/node@20.16.5)(typescript@5.6.3)))
+        version: 1.0.7(tailwindcss@3.4.15(ts-node@10.9.2(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@20.16.5)(typescript@5.6.3)))
     devDependencies:
       '@types/node':
         specifier: ^20
@@ -261,7 +261,7 @@ importers:
         version: 8.4.31
       tailwindcss:
         specifier: ^3.4.1
-        version: 3.4.15(ts-node@10.9.2(@types/node@20.16.5)(typescript@5.6.3))
+        version: 3.4.15(ts-node@10.9.2(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@20.16.5)(typescript@5.6.3))
       typescript:
         specifier: ^5
         version: 5.6.3
@@ -288,6 +288,12 @@ packages:
     resolution: {integrity: sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw==}
     engines: {node: '>=12'}
 
+  '@esbuild/aix-ppc64@0.21.5':
+    resolution: {integrity: sha512-1SDgH6ZSPTlggy1yI6+Dbkiz8xzpHJEVAlF/AM1tHPLsf5STom9rwtjE4hKAF20FfXXNTFqEYXyJNWh1GiZedQ==}
+    engines: {node: '>=12'}
+    cpu: [ppc64]
+    os: [aix]
+
   '@esbuild/aix-ppc64@0.23.1':
     resolution: {integrity: sha512-6VhYk1diRqrhBAqpJEdjASR/+WVRtfjpqKuNw11cLiaWpAT/Uu+nokB+UJnevzy/P9C/ty6AOe0dwueMrGh/iQ==}
     engines: {node: '>=18'}
@@ -300,6 +306,12 @@ packages:
     cpu: [ppc64]
     os: [aix]
 
+  '@esbuild/android-arm64@0.21.5':
+    resolution: {integrity: sha512-c0uX9VAUBQ7dTDCjq+wdyGLowMdtR/GoC2U5IYk/7D1H1JYC0qseD7+11iMP2mRLN9RcCMRcjC4YMclCzGwS/A==}
+    engines: {node: '>=12'}
+    cpu: [arm64]
+    os: [android]
+
   '@esbuild/android-arm64@0.23.1':
     resolution: {integrity: sha512-xw50ipykXcLstLeWH7WRdQuysJqejuAGPd30vd1i5zSyKK3WE+ijzHmLKxdiCMtH1pHz78rOg0BKSYOSB/2Khw==}
     engines: {node: '>=18'}
@@ -310,6 +322,12 @@ packages:
     resolution: {integrity: sha512-Vsm497xFM7tTIPYK9bNTYJyF/lsP590Qc1WxJdlB6ljCbdZKU9SY8i7+Iin4kyhV/KV5J2rOKsBQbB77Ab7L/w==}
     engines: {node: '>=18'}
     cpu: [arm64]
+    os: [android]
+
+  '@esbuild/android-arm@0.21.5':
+    resolution: {integrity: sha512-vCPvzSjpPHEi1siZdlvAlsPxXl7WbOVUBBAowWug4rJHb68Ox8KualB+1ocNvT5fjv6wpkX6o/iEpbDrf68zcg==}
+    engines: {node: '>=12'}
+    cpu: [arm]
     os: [android]
 
   '@esbuild/android-arm@0.23.1':
@@ -324,6 +342,12 @@ packages:
     cpu: [arm]
     os: [android]
 
+  '@esbuild/android-x64@0.21.5':
+    resolution: {integrity: sha512-D7aPRUUNHRBwHxzxRvp856rjUHRFW1SdQATKXH2hqA0kAZb1hKmi02OpYRacl0TxIGz/ZmXWlbZgjwWYaCakTA==}
+    engines: {node: '>=12'}
+    cpu: [x64]
+    os: [android]
+
   '@esbuild/android-x64@0.23.1':
     resolution: {integrity: sha512-nlN9B69St9BwUoB+jkyU090bru8L0NA3yFvAd7k8dNsVH8bi9a8cUAUSEcEEgTp2z3dbEDGJGfP6VUnkQnlReg==}
     engines: {node: '>=18'}
@@ -336,6 +360,12 @@ packages:
     cpu: [x64]
     os: [android]
 
+  '@esbuild/darwin-arm64@0.21.5':
+    resolution: {integrity: sha512-DwqXqZyuk5AiWWf3UfLiRDJ5EDd49zg6O9wclZ7kUMv2WRFr4HKjXp/5t8JZ11QbQfUS6/cRCKGwYhtNAY88kQ==}
+    engines: {node: '>=12'}
+    cpu: [arm64]
+    os: [darwin]
+
   '@esbuild/darwin-arm64@0.23.1':
     resolution: {integrity: sha512-YsS2e3Wtgnw7Wq53XXBLcV6JhRsEq8hkfg91ESVadIrzr9wO6jJDMZnCQbHm1Guc5t/CdDiFSSfWP58FNuvT3Q==}
     engines: {node: '>=18'}
@@ -346,6 +376,12 @@ packages:
     resolution: {integrity: sha512-CKyDpRbK1hXwv79soeTJNHb5EiG6ct3efd/FTPdzOWdbZZfGhpbcqIpiD0+vwmpu0wTIL97ZRPZu8vUt46nBSw==}
     engines: {node: '>=18'}
     cpu: [arm64]
+    os: [darwin]
+
+  '@esbuild/darwin-x64@0.21.5':
+    resolution: {integrity: sha512-se/JjF8NlmKVG4kNIuyWMV/22ZaerB+qaSi5MdrXtd6R08kvs2qCN4C09miupktDitvh8jRFflwGFBQcxZRjbw==}
+    engines: {node: '>=12'}
+    cpu: [x64]
     os: [darwin]
 
   '@esbuild/darwin-x64@0.23.1':
@@ -360,6 +396,12 @@ packages:
     cpu: [x64]
     os: [darwin]
 
+  '@esbuild/freebsd-arm64@0.21.5':
+    resolution: {integrity: sha512-5JcRxxRDUJLX8JXp/wcBCy3pENnCgBR9bN6JsY4OmhfUtIHe3ZW0mawA7+RDAcMLrMIZaf03NlQiX9DGyB8h4g==}
+    engines: {node: '>=12'}
+    cpu: [arm64]
+    os: [freebsd]
+
   '@esbuild/freebsd-arm64@0.23.1':
     resolution: {integrity: sha512-h1k6yS8/pN/NHlMl5+v4XPfikhJulk4G+tKGFIOwURBSFzE8bixw1ebjluLOjfwtLqY0kewfjLSrO6tN2MgIhA==}
     engines: {node: '>=18'}
@@ -370,6 +412,12 @@ packages:
     resolution: {integrity: sha512-6Mtdq5nHggwfDNLAHkPlyLBpE5L6hwsuXZX8XNmHno9JuL2+bg2BX5tRkwjyfn6sKbxZTq68suOjgWqCicvPXA==}
     engines: {node: '>=18'}
     cpu: [arm64]
+    os: [freebsd]
+
+  '@esbuild/freebsd-x64@0.21.5':
+    resolution: {integrity: sha512-J95kNBj1zkbMXtHVH29bBriQygMXqoVQOQYA+ISs0/2l3T9/kj42ow2mpqerRBxDJnmkUDCaQT/dfNXWX/ZZCQ==}
+    engines: {node: '>=12'}
+    cpu: [x64]
     os: [freebsd]
 
   '@esbuild/freebsd-x64@0.23.1':
@@ -384,6 +432,12 @@ packages:
     cpu: [x64]
     os: [freebsd]
 
+  '@esbuild/linux-arm64@0.21.5':
+    resolution: {integrity: sha512-ibKvmyYzKsBeX8d8I7MH/TMfWDXBF3db4qM6sy+7re0YXya+K1cem3on9XgdT2EQGMu4hQyZhan7TeQ8XkGp4Q==}
+    engines: {node: '>=12'}
+    cpu: [arm64]
+    os: [linux]
+
   '@esbuild/linux-arm64@0.23.1':
     resolution: {integrity: sha512-/93bf2yxencYDnItMYV/v116zff6UyTjo4EtEQjUBeGiVpMmffDNUyD9UN2zV+V3LRV3/on4xdZ26NKzn6754g==}
     engines: {node: '>=18'}
@@ -394,6 +448,12 @@ packages:
     resolution: {integrity: sha512-TDijPXTOeE3eaMkRYpcy3LarIg13dS9wWHRdwYRnzlwlA370rNdZqbcp0WTyyV/k2zSxfko52+C7jU5F9Tfj1g==}
     engines: {node: '>=18'}
     cpu: [arm64]
+    os: [linux]
+
+  '@esbuild/linux-arm@0.21.5':
+    resolution: {integrity: sha512-bPb5AHZtbeNGjCKVZ9UGqGwo8EUu4cLq68E95A53KlxAPRmUyYv2D6F0uUI65XisGOL1hBP5mTronbgo+0bFcA==}
+    engines: {node: '>=12'}
+    cpu: [arm]
     os: [linux]
 
   '@esbuild/linux-arm@0.23.1':
@@ -408,6 +468,12 @@ packages:
     cpu: [arm]
     os: [linux]
 
+  '@esbuild/linux-ia32@0.21.5':
+    resolution: {integrity: sha512-YvjXDqLRqPDl2dvRODYmmhz4rPeVKYvppfGYKSNGdyZkA01046pLWyRKKI3ax8fbJoK5QbxblURkwK/MWY18Tg==}
+    engines: {node: '>=12'}
+    cpu: [ia32]
+    os: [linux]
+
   '@esbuild/linux-ia32@0.23.1':
     resolution: {integrity: sha512-VTN4EuOHwXEkXzX5nTvVY4s7E/Krz7COC8xkftbbKRYAl96vPiUssGkeMELQMOnLOJ8k3BY1+ZY52tttZnHcXQ==}
     engines: {node: '>=18'}
@@ -418,6 +484,12 @@ packages:
     resolution: {integrity: sha512-K40ip1LAcA0byL05TbCQ4yJ4swvnbzHscRmUilrmP9Am7//0UjPreh4lpYzvThT2Quw66MhjG//20mrufm40mA==}
     engines: {node: '>=18'}
     cpu: [ia32]
+    os: [linux]
+
+  '@esbuild/linux-loong64@0.21.5':
+    resolution: {integrity: sha512-uHf1BmMG8qEvzdrzAqg2SIG/02+4/DHB6a9Kbya0XDvwDEKCoC8ZRWI5JJvNdUjtciBGFQ5PuBlpEOXQj+JQSg==}
+    engines: {node: '>=12'}
+    cpu: [loong64]
     os: [linux]
 
   '@esbuild/linux-loong64@0.23.1':
@@ -432,6 +504,12 @@ packages:
     cpu: [loong64]
     os: [linux]
 
+  '@esbuild/linux-mips64el@0.21.5':
+    resolution: {integrity: sha512-IajOmO+KJK23bj52dFSNCMsz1QP1DqM6cwLUv3W1QwyxkyIWecfafnI555fvSGqEKwjMXVLokcV5ygHW5b3Jbg==}
+    engines: {node: '>=12'}
+    cpu: [mips64el]
+    os: [linux]
+
   '@esbuild/linux-mips64el@0.23.1':
     resolution: {integrity: sha512-nrFzzMQ7W4WRLNUOU5dlWAqa6yVeI0P78WKGUo7lg2HShq/yx+UYkeNSE0SSfSure0SqgnsxPvmAUu/vu0E+3Q==}
     engines: {node: '>=18'}
@@ -442,6 +520,12 @@ packages:
     resolution: {integrity: sha512-hIKvXm0/3w/5+RDtCJeXqMZGkI2s4oMUGj3/jM0QzhgIASWrGO5/RlzAzm5nNh/awHE0A19h/CvHQe6FaBNrRA==}
     engines: {node: '>=18'}
     cpu: [mips64el]
+    os: [linux]
+
+  '@esbuild/linux-ppc64@0.21.5':
+    resolution: {integrity: sha512-1hHV/Z4OEfMwpLO8rp7CvlhBDnjsC3CttJXIhBi+5Aj5r+MBvy4egg7wCbe//hSsT+RvDAG7s81tAvpL2XAE4w==}
+    engines: {node: '>=12'}
+    cpu: [ppc64]
     os: [linux]
 
   '@esbuild/linux-ppc64@0.23.1':
@@ -456,6 +540,12 @@ packages:
     cpu: [ppc64]
     os: [linux]
 
+  '@esbuild/linux-riscv64@0.21.5':
+    resolution: {integrity: sha512-2HdXDMd9GMgTGrPWnJzP2ALSokE/0O5HhTUvWIbD3YdjME8JwvSCnNGBnTThKGEB91OZhzrJ4qIIxk/SBmyDDA==}
+    engines: {node: '>=12'}
+    cpu: [riscv64]
+    os: [linux]
+
   '@esbuild/linux-riscv64@0.23.1':
     resolution: {integrity: sha512-5AV4Pzp80fhHL83JM6LoA6pTQVWgB1HovMBsLQ9OZWLDqVY8MVobBXNSmAJi//Csh6tcY7e7Lny2Hg1tElMjIA==}
     engines: {node: '>=18'}
@@ -466,6 +556,12 @@ packages:
     resolution: {integrity: sha512-bEh7dMn/h3QxeR2KTy1DUszQjUrIHPZKyO6aN1X4BCnhfYhuQqedHaa5MxSQA/06j3GpiIlFGSsy1c7Gf9padw==}
     engines: {node: '>=18'}
     cpu: [riscv64]
+    os: [linux]
+
+  '@esbuild/linux-s390x@0.21.5':
+    resolution: {integrity: sha512-zus5sxzqBJD3eXxwvjN1yQkRepANgxE9lgOW2qLnmr8ikMTphkjgXu1HR01K4FJg8h1kEEDAqDcZQtbrRnB41A==}
+    engines: {node: '>=12'}
+    cpu: [s390x]
     os: [linux]
 
   '@esbuild/linux-s390x@0.23.1':
@@ -480,6 +576,12 @@ packages:
     cpu: [s390x]
     os: [linux]
 
+  '@esbuild/linux-x64@0.21.5':
+    resolution: {integrity: sha512-1rYdTpyv03iycF1+BhzrzQJCdOuAOtaqHTWJZCWvijKD2N5Xu0TtVC8/+1faWqcP9iBCWOmjmhoH94dH82BxPQ==}
+    engines: {node: '>=12'}
+    cpu: [x64]
+    os: [linux]
+
   '@esbuild/linux-x64@0.23.1':
     resolution: {integrity: sha512-EV6+ovTsEXCPAp58g2dD68LxoP/wK5pRvgy0J/HxPGB009omFPv3Yet0HiaqvrIrgPTBuC6wCH1LTOY91EO5hQ==}
     engines: {node: '>=18'}
@@ -491,6 +593,12 @@ packages:
     engines: {node: '>=18'}
     cpu: [x64]
     os: [linux]
+
+  '@esbuild/netbsd-x64@0.21.5':
+    resolution: {integrity: sha512-Woi2MXzXjMULccIwMnLciyZH4nCIMpWQAs049KEeMvOcNADVxo0UBIQPfSmxB3CWKedngg7sWZdLvLczpe0tLg==}
+    engines: {node: '>=12'}
+    cpu: [x64]
+    os: [netbsd]
 
   '@esbuild/netbsd-x64@0.23.1':
     resolution: {integrity: sha512-aevEkCNu7KlPRpYLjwmdcuNz6bDFiE7Z8XC4CPqExjTvrHugh28QzUXVOZtiYghciKUacNktqxdpymplil1beA==}
@@ -516,6 +624,12 @@ packages:
     cpu: [arm64]
     os: [openbsd]
 
+  '@esbuild/openbsd-x64@0.21.5':
+    resolution: {integrity: sha512-HLNNw99xsvx12lFBUwoT8EVCsSvRNDVxNpjZ7bPn947b8gJPzeHWyNVhFsaerc0n3TsbOINvRP2byTZ5LKezow==}
+    engines: {node: '>=12'}
+    cpu: [x64]
+    os: [openbsd]
+
   '@esbuild/openbsd-x64@0.23.1':
     resolution: {integrity: sha512-aY2gMmKmPhxfU+0EdnN+XNtGbjfQgwZj43k8G3fyrDM/UdZww6xrWxmDkuz2eCZchqVeABjV5BpildOrUbBTqA==}
     engines: {node: '>=18'}
@@ -527,6 +641,12 @@ packages:
     engines: {node: '>=18'}
     cpu: [x64]
     os: [openbsd]
+
+  '@esbuild/sunos-x64@0.21.5':
+    resolution: {integrity: sha512-6+gjmFpfy0BHU5Tpptkuh8+uw3mnrvgs+dSPQXQOv3ekbordwnzTVEb4qnIvQcYXq6gzkyTnoZ9dZG+D4garKg==}
+    engines: {node: '>=12'}
+    cpu: [x64]
+    os: [sunos]
 
   '@esbuild/sunos-x64@0.23.1':
     resolution: {integrity: sha512-RBRT2gqEl0IKQABT4XTj78tpk9v7ehp+mazn2HbUeZl1YMdaGAQqhapjGTCe7uw7y0frDi4gS0uHzhvpFuI1sA==}
@@ -540,6 +660,12 @@ packages:
     cpu: [x64]
     os: [sunos]
 
+  '@esbuild/win32-arm64@0.21.5':
+    resolution: {integrity: sha512-Z0gOTd75VvXqyq7nsl93zwahcTROgqvuAcYDUr+vOv8uHhNSKROyU961kgtCD1e95IqPKSQKH7tBTslnS3tA8A==}
+    engines: {node: '>=12'}
+    cpu: [arm64]
+    os: [win32]
+
   '@esbuild/win32-arm64@0.23.1':
     resolution: {integrity: sha512-4O+gPR5rEBe2FpKOVyiJ7wNDPA8nGzDuJ6gN4okSA1gEOYZ67N8JPk58tkWtdtPeLz7lBnY6I5L3jdsr3S+A6A==}
     engines: {node: '>=18'}
@@ -552,6 +678,12 @@ packages:
     cpu: [arm64]
     os: [win32]
 
+  '@esbuild/win32-ia32@0.21.5':
+    resolution: {integrity: sha512-SWXFF1CL2RVNMaVs+BBClwtfZSvDgtL//G/smwAc5oVK/UPu2Gu9tIaRgFmYFFKrmg3SyAjSrElf0TiJ1v8fYA==}
+    engines: {node: '>=12'}
+    cpu: [ia32]
+    os: [win32]
+
   '@esbuild/win32-ia32@0.23.1':
     resolution: {integrity: sha512-BcaL0Vn6QwCwre3Y717nVHZbAa4UBEigzFm6VdsVdT/MbZ38xoj1X9HPkZhbmaBGUD1W8vxAfffbDe8bA6AKnQ==}
     engines: {node: '>=18'}
@@ -562,6 +694,12 @@ packages:
     resolution: {integrity: sha512-vQW36KZolfIudCcTnaTpmLQ24Ha1RjygBo39/aLkM2kmjkWmZGEJ5Gn9l5/7tzXA42QGIoWbICfg6KLLkIw6yw==}
     engines: {node: '>=18'}
     cpu: [ia32]
+    os: [win32]
+
+  '@esbuild/win32-x64@0.21.5':
+    resolution: {integrity: sha512-tQd/1efJuzPC6rCFwEvLtci/xNFcTZknmXs98FYDfGE4wP9ClFV98nyKrzJKVPMhdDnjzLhdUyMX4PsQAPjwIw==}
+    engines: {node: '>=12'}
+    cpu: [x64]
     os: [win32]
 
   '@esbuild/win32-x64@0.23.1':
@@ -627,9 +765,6 @@ packages:
 
   '@fastify/ajv-compiler@4.0.1':
     resolution: {integrity: sha512-DxrBdgsjNLP0YM6W5Hd6/Fmj43S8zMKiFJYgi+Ri3htTGAowPVG/tG1wpnWLMjufEnehRivUCKZ1pLDIoZdTuw==}
-
-  '@fastify/autoload@6.0.3':
-    resolution: {integrity: sha512-/wM2pmI7jP2fGah3YuP14i9vuaijpD4gQYLiyd+eD7gUxpA3B4R6/0QIXQS2eJaYD9aIX4ZFRzPmrZsaetfcWw==}
 
   '@fastify/busboy@3.0.0':
     resolution: {integrity: sha512-83rnH2nCvclWaPQQKvkJ2pdOjG4TZyEVuFDnlOF6KP08lDaaceVyw/W63mDuafQT+MKHCvXIPpE5uYWeM0rT4w==}
@@ -1529,11 +1664,83 @@ packages:
   '@sinclair/typebox@0.34.11':
     resolution: {integrity: sha512-zE9pWGVSG82z+sFO+oUmqmqRVm8Wg5sVhmljYi1fDhLOSphBBy939QmC/qXcKFWqTiRJ6keyG4y75bIoTPRBAw==}
 
+  '@swc/core-darwin-arm64@1.10.1':
+    resolution: {integrity: sha512-NyELPp8EsVZtxH/mEqvzSyWpfPJ1lugpTQcSlMduZLj1EASLO4sC8wt8hmL1aizRlsbjCX+r0PyL+l0xQ64/6Q==}
+    engines: {node: '>=10'}
+    cpu: [arm64]
+    os: [darwin]
+
+  '@swc/core-darwin-x64@1.10.1':
+    resolution: {integrity: sha512-L4BNt1fdQ5ZZhAk5qoDfUnXRabDOXKnXBxMDJ+PWLSxOGBbWE6aJTnu4zbGjJvtot0KM46m2LPAPY8ttknqaZA==}
+    engines: {node: '>=10'}
+    cpu: [x64]
+    os: [darwin]
+
+  '@swc/core-linux-arm-gnueabihf@1.10.1':
+    resolution: {integrity: sha512-Y1u9OqCHgvVp2tYQAJ7hcU9qO5brDMIrA5R31rwWQIAKDkJKtv3IlTHF0hrbWk1wPR0ZdngkQSJZple7G+Grvw==}
+    engines: {node: '>=10'}
+    cpu: [arm]
+    os: [linux]
+
+  '@swc/core-linux-arm64-gnu@1.10.1':
+    resolution: {integrity: sha512-tNQHO/UKdtnqjc7o04iRXng1wTUXPgVd8Y6LI4qIbHVoVPwksZydISjMcilKNLKIwOoUQAkxyJ16SlOAeADzhQ==}
+    engines: {node: '>=10'}
+    cpu: [arm64]
+    os: [linux]
+
+  '@swc/core-linux-arm64-musl@1.10.1':
+    resolution: {integrity: sha512-x0L2Pd9weQ6n8dI1z1Isq00VHFvpBClwQJvrt3NHzmR+1wCT/gcYl1tp9P5xHh3ldM8Cn4UjWCw+7PaUgg8FcQ==}
+    engines: {node: '>=10'}
+    cpu: [arm64]
+    os: [linux]
+
+  '@swc/core-linux-x64-gnu@1.10.1':
+    resolution: {integrity: sha512-yyYEwQcObV3AUsC79rSzN9z6kiWxKAVJ6Ntwq2N9YoZqSPYph+4/Am5fM1xEQYf/kb99csj0FgOelomJSobxQA==}
+    engines: {node: '>=10'}
+    cpu: [x64]
+    os: [linux]
+
+  '@swc/core-linux-x64-musl@1.10.1':
+    resolution: {integrity: sha512-tcaS43Ydd7Fk7sW5ROpaf2Kq1zR+sI5K0RM+0qYLYYurvsJruj3GhBCaiN3gkzd8m/8wkqNqtVklWaQYSDsyqA==}
+    engines: {node: '>=10'}
+    cpu: [x64]
+    os: [linux]
+
+  '@swc/core-win32-arm64-msvc@1.10.1':
+    resolution: {integrity: sha512-D3Qo1voA7AkbOzQ2UGuKNHfYGKL6eejN8VWOoQYtGHHQi1p5KK/Q7V1ku55oxXBsj79Ny5FRMqiRJpVGad7bjQ==}
+    engines: {node: '>=10'}
+    cpu: [arm64]
+    os: [win32]
+
+  '@swc/core-win32-ia32-msvc@1.10.1':
+    resolution: {integrity: sha512-WalYdFoU3454Og+sDKHM1MrjvxUGwA2oralknXkXL8S0I/8RkWZOB++p3pLaGbTvOO++T+6znFbQdR8KRaa7DA==}
+    engines: {node: '>=10'}
+    cpu: [ia32]
+    os: [win32]
+
+  '@swc/core-win32-x64-msvc@1.10.1':
+    resolution: {integrity: sha512-JWobfQDbTnoqaIwPKQ3DVSywihVXlQMbDuwik/dDWlj33A8oEHcjPOGs4OqcA3RHv24i+lfCQpM3Mn4FAMfacA==}
+    engines: {node: '>=10'}
+    cpu: [x64]
+    os: [win32]
+
+  '@swc/core@1.10.1':
+    resolution: {integrity: sha512-rQ4dS6GAdmtzKiCRt3LFVxl37FaY1cgL9kSUTnhQ2xc3fmHOd7jdJK/V4pSZMG1ruGTd0bsi34O2R0Olg9Zo/w==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      '@swc/helpers': '*'
+    peerDependenciesMeta:
+      '@swc/helpers':
+        optional: true
+
   '@swc/counter@0.1.3':
     resolution: {integrity: sha512-e2BR4lsJkkRlKZ/qCHPw9ZaSxc0MVUd7gtbtaB7aMvHeJVYe8sOB8DBZkP2DtISHGSku9sCK6T6cnY0CtXrOCQ==}
 
   '@swc/helpers@0.5.5':
     resolution: {integrity: sha512-KGYxvIOXcceOAbEk4bi/dVLEK9z8sZ0uBB3Il5b1rhfClSpcX0yfRO0KmTkqR2cnQDymwLB+25ZyMzICg/cm/A==}
+
+  '@swc/types@0.1.17':
+    resolution: {integrity: sha512-V5gRru+aD8YVyCOMAjMpWR1Ui577DD5KSJsHP8RAxopAH22jFz6GZd/qxqjO6MJHQhcsjvjOFXyDhyLQUnMveQ==}
 
   '@tapjs/after-each@4.0.0':
     resolution: {integrity: sha512-RrkYMB3SpXKFJAijbgNkOexiClX5aygkCIHKHPIfnfqsPozkwjYbtVQs6d1/tG8ytiJtH5rvybuNJMRRNDcfBQ==}
@@ -2432,6 +2639,9 @@ packages:
     resolution: {integrity: sha512-zoMwbCcH5hwUkKJkT8kDIBZSz9I6mVG//+lDCinLCGov4+r7NIy0ld8o03M0cJxl2spVf6ESYVS6/gpIfq1FFw==}
     engines: {node: '>= 0.4'}
 
+  es-module-lexer@1.5.4:
+    resolution: {integrity: sha512-MVNK56NiMrOwitFB7cqDwq0CQutbw+0BvLshJSse0MUNU+y1FC3bUS/AQg7oUng+/wKrrki7JfmwtVHkVfPLlw==}
+
   es-object-atoms@1.0.0:
     resolution: {integrity: sha512-MZ4iQ6JwHOBQjahnjwaC1ZtIBH+2ohjamzAO3oaHcXYup7qxjF2fixyH+Q71voWHeOkI2q/TnJao/KfXYIZWbw==}
     engines: {node: '>= 0.4'}
@@ -2446,6 +2656,11 @@ packages:
   es-to-primitive@1.2.1:
     resolution: {integrity: sha512-QCOllgZJtaUo9miYBcLChTUaHNjJF3PYs1VidD7AwiEj1kYxKeQTctLAezAOH5ZKRH0g2IgPn6KwB4IT8iRpvA==}
     engines: {node: '>= 0.4'}
+
+  esbuild@0.21.5:
+    resolution: {integrity: sha512-mg3OPMV4hXywwpoDxu3Qda5xCKQi+vCTZq8S9J/EpkhB2HzKXq4SNFZE3+NK93JYxc8VMSep+lOUSC/RVKaBqw==}
+    engines: {node: '>=12'}
+    hasBin: true
 
   esbuild@0.23.1:
     resolution: {integrity: sha512-VVNz/9Sa0bs5SELtn3f7qhJCDPCF5oMEl5cO9/SSinpE9hbPVvxbd572HH5AKiP7WD8INO53GgfDDhRjkylHEg==}
@@ -3821,6 +4036,9 @@ packages:
     resolution: {integrity: sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==}
     engines: {node: '>=8'}
 
+  pathe@1.1.2:
+    resolution: {integrity: sha512-whLdWMYL2TwI08hn8/ZqAbrVemu0LNaNNJZX73O6qaIdCTfXutsLhMkjdENX0qhsQ9uIimo4/aQOmXkoon2nDQ==}
+
   pg-cloudflare@1.1.1:
     resolution: {integrity: sha512-xWPagP/4B6BgFO+EKz3JONXv3YDgvkbVrGw2mTo3D6tVDQRh1e7cqVGvyR3BE+eQgAvx1XhW/iEASj4/jCWl3Q==}
 
@@ -4855,6 +5073,82 @@ packages:
     resolution: {integrity: sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==}
     engines: {node: '>= 0.8'}
 
+  vite-node@2.1.8:
+    resolution: {integrity: sha512-uPAwSr57kYjAUux+8E2j0q0Fxpn8M9VoyfGiRI8Kfktz9NcYMCenwY5RnZxnF1WTu3TGiYipirIzacLL3VVGFg==}
+    engines: {node: ^18.0.0 || >=20.0.0}
+    hasBin: true
+
+  vite@5.4.11:
+    resolution: {integrity: sha512-c7jFQRklXua0mTzneGW9QVyxFjUgwcihC4bXEtujIo2ouWCe1Ajt/amn2PCxYnhYfd5k09JX3SB7OYWFKYqj8Q==}
+    engines: {node: ^18.0.0 || >=20.0.0}
+    hasBin: true
+    peerDependencies:
+      '@types/node': ^18.0.0 || >=20.0.0
+      less: '*'
+      lightningcss: ^1.21.0
+      sass: '*'
+      sass-embedded: '*'
+      stylus: '*'
+      sugarss: '*'
+      terser: ^5.4.0
+    peerDependenciesMeta:
+      '@types/node':
+        optional: true
+      less:
+        optional: true
+      lightningcss:
+        optional: true
+      sass:
+        optional: true
+      sass-embedded:
+        optional: true
+      stylus:
+        optional: true
+      sugarss:
+        optional: true
+      terser:
+        optional: true
+
+  vite@6.0.3:
+    resolution: {integrity: sha512-Cmuo5P0ENTN6HxLSo6IHsjCLn/81Vgrp81oaiFFMRa8gGDj5xEjIcEpf2ZymZtZR8oU0P2JX5WuUp/rlXcHkAw==}
+    engines: {node: ^18.0.0 || ^20.0.0 || >=22.0.0}
+    hasBin: true
+    peerDependencies:
+      '@types/node': ^18.0.0 || ^20.0.0 || >=22.0.0
+      jiti: '>=1.21.0'
+      less: '*'
+      lightningcss: ^1.21.0
+      sass: '*'
+      sass-embedded: '*'
+      stylus: '*'
+      sugarss: '*'
+      terser: ^5.16.0
+      tsx: ^4.8.1
+      yaml: ^2.4.2
+    peerDependenciesMeta:
+      '@types/node':
+        optional: true
+      jiti:
+        optional: true
+      less:
+        optional: true
+      lightningcss:
+        optional: true
+      sass:
+        optional: true
+      sass-embedded:
+        optional: true
+      stylus:
+        optional: true
+      sugarss:
+        optional: true
+      terser:
+        optional: true
+      tsx:
+        optional: true
+      yaml:
+        optional: true
+
   walk-up-path@4.0.0:
     resolution: {integrity: sha512-3hu+tD8YzSLGuFYtPRb48vdhKMi0KQV5sn+uWr8+7dMEq/2G/dtLrdDinkLjqq5TIbIBjYJ4Ax/n3YiaW7QM8A==}
     engines: {node: 20 || >=22}
@@ -4997,10 +5291,16 @@ snapshots:
     dependencies:
       '@jridgewell/trace-mapping': 0.3.9
 
+  '@esbuild/aix-ppc64@0.21.5':
+    optional: true
+
   '@esbuild/aix-ppc64@0.23.1':
     optional: true
 
   '@esbuild/aix-ppc64@0.24.0':
+    optional: true
+
+  '@esbuild/android-arm64@0.21.5':
     optional: true
 
   '@esbuild/android-arm64@0.23.1':
@@ -5009,10 +5309,16 @@ snapshots:
   '@esbuild/android-arm64@0.24.0':
     optional: true
 
+  '@esbuild/android-arm@0.21.5':
+    optional: true
+
   '@esbuild/android-arm@0.23.1':
     optional: true
 
   '@esbuild/android-arm@0.24.0':
+    optional: true
+
+  '@esbuild/android-x64@0.21.5':
     optional: true
 
   '@esbuild/android-x64@0.23.1':
@@ -5021,10 +5327,16 @@ snapshots:
   '@esbuild/android-x64@0.24.0':
     optional: true
 
+  '@esbuild/darwin-arm64@0.21.5':
+    optional: true
+
   '@esbuild/darwin-arm64@0.23.1':
     optional: true
 
   '@esbuild/darwin-arm64@0.24.0':
+    optional: true
+
+  '@esbuild/darwin-x64@0.21.5':
     optional: true
 
   '@esbuild/darwin-x64@0.23.1':
@@ -5033,10 +5345,16 @@ snapshots:
   '@esbuild/darwin-x64@0.24.0':
     optional: true
 
+  '@esbuild/freebsd-arm64@0.21.5':
+    optional: true
+
   '@esbuild/freebsd-arm64@0.23.1':
     optional: true
 
   '@esbuild/freebsd-arm64@0.24.0':
+    optional: true
+
+  '@esbuild/freebsd-x64@0.21.5':
     optional: true
 
   '@esbuild/freebsd-x64@0.23.1':
@@ -5045,10 +5363,16 @@ snapshots:
   '@esbuild/freebsd-x64@0.24.0':
     optional: true
 
+  '@esbuild/linux-arm64@0.21.5':
+    optional: true
+
   '@esbuild/linux-arm64@0.23.1':
     optional: true
 
   '@esbuild/linux-arm64@0.24.0':
+    optional: true
+
+  '@esbuild/linux-arm@0.21.5':
     optional: true
 
   '@esbuild/linux-arm@0.23.1':
@@ -5057,10 +5381,16 @@ snapshots:
   '@esbuild/linux-arm@0.24.0':
     optional: true
 
+  '@esbuild/linux-ia32@0.21.5':
+    optional: true
+
   '@esbuild/linux-ia32@0.23.1':
     optional: true
 
   '@esbuild/linux-ia32@0.24.0':
+    optional: true
+
+  '@esbuild/linux-loong64@0.21.5':
     optional: true
 
   '@esbuild/linux-loong64@0.23.1':
@@ -5069,10 +5399,16 @@ snapshots:
   '@esbuild/linux-loong64@0.24.0':
     optional: true
 
+  '@esbuild/linux-mips64el@0.21.5':
+    optional: true
+
   '@esbuild/linux-mips64el@0.23.1':
     optional: true
 
   '@esbuild/linux-mips64el@0.24.0':
+    optional: true
+
+  '@esbuild/linux-ppc64@0.21.5':
     optional: true
 
   '@esbuild/linux-ppc64@0.23.1':
@@ -5081,10 +5417,16 @@ snapshots:
   '@esbuild/linux-ppc64@0.24.0':
     optional: true
 
+  '@esbuild/linux-riscv64@0.21.5':
+    optional: true
+
   '@esbuild/linux-riscv64@0.23.1':
     optional: true
 
   '@esbuild/linux-riscv64@0.24.0':
+    optional: true
+
+  '@esbuild/linux-s390x@0.21.5':
     optional: true
 
   '@esbuild/linux-s390x@0.23.1':
@@ -5093,10 +5435,16 @@ snapshots:
   '@esbuild/linux-s390x@0.24.0':
     optional: true
 
+  '@esbuild/linux-x64@0.21.5':
+    optional: true
+
   '@esbuild/linux-x64@0.23.1':
     optional: true
 
   '@esbuild/linux-x64@0.24.0':
+    optional: true
+
+  '@esbuild/netbsd-x64@0.21.5':
     optional: true
 
   '@esbuild/netbsd-x64@0.23.1':
@@ -5111,10 +5459,16 @@ snapshots:
   '@esbuild/openbsd-arm64@0.24.0':
     optional: true
 
+  '@esbuild/openbsd-x64@0.21.5':
+    optional: true
+
   '@esbuild/openbsd-x64@0.23.1':
     optional: true
 
   '@esbuild/openbsd-x64@0.24.0':
+    optional: true
+
+  '@esbuild/sunos-x64@0.21.5':
     optional: true
 
   '@esbuild/sunos-x64@0.23.1':
@@ -5123,16 +5477,25 @@ snapshots:
   '@esbuild/sunos-x64@0.24.0':
     optional: true
 
+  '@esbuild/win32-arm64@0.21.5':
+    optional: true
+
   '@esbuild/win32-arm64@0.23.1':
     optional: true
 
   '@esbuild/win32-arm64@0.24.0':
     optional: true
 
+  '@esbuild/win32-ia32@0.21.5':
+    optional: true
+
   '@esbuild/win32-ia32@0.23.1':
     optional: true
 
   '@esbuild/win32-ia32@0.24.0':
+    optional: true
+
+  '@esbuild/win32-x64@0.21.5':
     optional: true
 
   '@esbuild/win32-x64@0.23.1':
@@ -5210,8 +5573,6 @@ snapshots:
       ajv: 8.17.1
       ajv-formats: 3.0.1(ajv@8.17.1)
       fast-uri: 3.0.3
-
-  '@fastify/autoload@6.0.3': {}
 
   '@fastify/busboy@3.0.0': {}
 
@@ -5371,7 +5732,7 @@ snapshots:
       wrap-ansi: 8.1.0
       wrap-ansi-cjs: wrap-ansi@7.0.0
 
-  '@isaacs/ts-node-temp-fork-for-pr-2009@10.9.7(@types/node@22.10.2)(typescript@5.5.4)':
+  '@isaacs/ts-node-temp-fork-for-pr-2009@10.9.7(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(typescript@5.5.4)':
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
       '@tsconfig/node14': 1.0.3
@@ -5386,8 +5747,10 @@ snapshots:
       make-error: 1.3.6
       typescript: 5.5.4
       v8-compile-cache-lib: 3.0.1
+    optionalDependencies:
+      '@swc/core': 1.10.1(@swc/helpers@0.5.5)
 
-  '@isaacs/ts-node-temp-fork-for-pr-2009@10.9.7(@types/node@22.10.2)(typescript@5.7.2)':
+  '@isaacs/ts-node-temp-fork-for-pr-2009@10.9.7(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(typescript@5.7.2)':
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
       '@tsconfig/node14': 1.0.3
@@ -5402,6 +5765,8 @@ snapshots:
       make-error: 1.3.6
       typescript: 5.7.2
       v8-compile-cache-lib: 3.0.1
+    optionalDependencies:
+      '@swc/core': 1.10.1(@swc/helpers@0.5.5)
 
   '@istanbuljs/schema@0.1.3': {}
 
@@ -6175,6 +6540,54 @@ snapshots:
 
   '@sinclair/typebox@0.34.11': {}
 
+  '@swc/core-darwin-arm64@1.10.1':
+    optional: true
+
+  '@swc/core-darwin-x64@1.10.1':
+    optional: true
+
+  '@swc/core-linux-arm-gnueabihf@1.10.1':
+    optional: true
+
+  '@swc/core-linux-arm64-gnu@1.10.1':
+    optional: true
+
+  '@swc/core-linux-arm64-musl@1.10.1':
+    optional: true
+
+  '@swc/core-linux-x64-gnu@1.10.1':
+    optional: true
+
+  '@swc/core-linux-x64-musl@1.10.1':
+    optional: true
+
+  '@swc/core-win32-arm64-msvc@1.10.1':
+    optional: true
+
+  '@swc/core-win32-ia32-msvc@1.10.1':
+    optional: true
+
+  '@swc/core-win32-x64-msvc@1.10.1':
+    optional: true
+
+  '@swc/core@1.10.1(@swc/helpers@0.5.5)':
+    dependencies:
+      '@swc/counter': 0.1.3
+      '@swc/types': 0.1.17
+    optionalDependencies:
+      '@swc/core-darwin-arm64': 1.10.1
+      '@swc/core-darwin-x64': 1.10.1
+      '@swc/core-linux-arm-gnueabihf': 1.10.1
+      '@swc/core-linux-arm64-gnu': 1.10.1
+      '@swc/core-linux-arm64-musl': 1.10.1
+      '@swc/core-linux-x64-gnu': 1.10.1
+      '@swc/core-linux-x64-musl': 1.10.1
+      '@swc/core-win32-arm64-msvc': 1.10.1
+      '@swc/core-win32-ia32-msvc': 1.10.1
+      '@swc/core-win32-x64-msvc': 1.10.1
+      '@swc/helpers': 0.5.5
+    optional: true
+
   '@swc/counter@0.1.3': {}
 
   '@swc/helpers@0.5.5':
@@ -6182,19 +6595,24 @@ snapshots:
       '@swc/counter': 0.1.3
       tslib: 2.7.0
 
-  '@tapjs/after-each@4.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))':
+  '@swc/types@0.1.17':
     dependencies:
-      '@tapjs/core': 4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
+      '@swc/counter': 0.1.3
+    optional: true
+
+  '@tapjs/after-each@4.0.0(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))':
+    dependencies:
+      '@tapjs/core': 4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
       function-loop: 4.0.0
 
-  '@tapjs/after@3.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))':
+  '@tapjs/after@3.0.0(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))':
     dependencies:
-      '@tapjs/core': 4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
+      '@tapjs/core': 4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
       is-actual-promise: 1.0.2
 
-  '@tapjs/asserts@4.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)':
+  '@tapjs/asserts@4.0.0(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@tapjs/core': 4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
+      '@tapjs/core': 4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
       '@tapjs/stack': 4.0.0
       is-actual-promise: 1.0.2
       tcompare: 9.0.0(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
@@ -6203,35 +6621,35 @@ snapshots:
       - react
       - react-dom
 
-  '@tapjs/before-each@4.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))':
+  '@tapjs/before-each@4.0.0(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))':
     dependencies:
-      '@tapjs/core': 4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
+      '@tapjs/core': 4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
       function-loop: 4.0.0
 
-  '@tapjs/before@4.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))':
+  '@tapjs/before@4.0.0(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))':
     dependencies:
-      '@tapjs/core': 4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
+      '@tapjs/core': 4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
       is-actual-promise: 1.0.2
 
-  '@tapjs/chdir@3.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))':
+  '@tapjs/chdir@3.0.0(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))':
     dependencies:
-      '@tapjs/core': 4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
+      '@tapjs/core': 4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
 
-  '@tapjs/config@5.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(@tapjs/test@4.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))':
+  '@tapjs/config@5.0.0(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(@tapjs/test@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))':
     dependencies:
-      '@tapjs/core': 4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
-      '@tapjs/test': 4.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
+      '@tapjs/core': 4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
+      '@tapjs/test': 4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
       chalk: 5.3.0
       jackspeak: 4.0.2
       polite-json: 5.0.0
       tap-yaml: 4.0.0
       walk-up-path: 4.0.0
 
-  '@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)':
+  '@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@tapjs/processinfo': 3.1.8
       '@tapjs/stack': 4.0.0
-      '@tapjs/test': 4.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
+      '@tapjs/test': 4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
       async-hook-domain: 4.0.1
       diff: 5.2.0
       is-actual-promise: 1.0.2
@@ -6252,33 +6670,33 @@ snapshots:
     dependencies:
       minipass: 7.1.2
 
-  '@tapjs/filter@4.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))':
+  '@tapjs/filter@4.0.0(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))':
     dependencies:
-      '@tapjs/core': 4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
+      '@tapjs/core': 4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
 
-  '@tapjs/fixture@4.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))':
+  '@tapjs/fixture@4.0.0(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))':
     dependencies:
-      '@tapjs/core': 4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
+      '@tapjs/core': 4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
       mkdirp: 3.0.1
       rimraf: 6.0.1
 
-  '@tapjs/intercept@4.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))':
+  '@tapjs/intercept@4.0.0(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))':
     dependencies:
-      '@tapjs/after': 3.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
-      '@tapjs/core': 4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
+      '@tapjs/after': 3.0.0(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
+      '@tapjs/core': 4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
       '@tapjs/stack': 4.0.0
 
-  '@tapjs/mock@4.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))':
+  '@tapjs/mock@4.0.0(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))':
     dependencies:
-      '@tapjs/after': 3.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
-      '@tapjs/core': 4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
+      '@tapjs/after': 3.0.0(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
+      '@tapjs/core': 4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
       '@tapjs/stack': 4.0.0
       resolve-import: 2.0.0
       walk-up-path: 4.0.0
 
-  '@tapjs/node-serialize@4.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))':
+  '@tapjs/node-serialize@4.0.0(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))':
     dependencies:
-      '@tapjs/core': 4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
+      '@tapjs/core': 4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
       '@tapjs/error-serdes': 4.0.0
       '@tapjs/stack': 4.0.0
       tap-parser: 18.0.0
@@ -6290,10 +6708,10 @@ snapshots:
       signal-exit: 4.1.0
       uuid: 8.3.2
 
-  '@tapjs/reporter@4.0.1(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(@tapjs/test@4.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(@types/react@18.3.1)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))':
+  '@tapjs/reporter@4.0.1(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(@tapjs/test@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(@types/react@18.3.1)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))':
     dependencies:
-      '@tapjs/config': 5.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(@tapjs/test@4.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
-      '@tapjs/core': 4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
+      '@tapjs/config': 5.0.0(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(@tapjs/test@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
+      '@tapjs/core': 4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
       '@tapjs/stack': 4.0.0
       chalk: 5.3.0
       ink: 5.0.1(@types/react@18.3.1)(react@18.3.1)
@@ -6314,17 +6732,17 @@ snapshots:
       - react-dom
       - utf-8-validate
 
-  '@tapjs/run@4.0.1(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(@types/node@22.10.2)(@types/react@18.3.1)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)':
+  '@tapjs/run@4.0.1(@swc/core@1.10.1(@swc/helpers@0.5.5))(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(@types/node@22.10.2)(@types/react@18.3.1)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@tapjs/after': 3.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
-      '@tapjs/before': 4.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
-      '@tapjs/config': 5.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(@tapjs/test@4.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
-      '@tapjs/core': 4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
+      '@tapjs/after': 3.0.0(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
+      '@tapjs/before': 4.0.0(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
+      '@tapjs/config': 5.0.0(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(@tapjs/test@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
+      '@tapjs/core': 4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
       '@tapjs/processinfo': 3.1.8
-      '@tapjs/reporter': 4.0.1(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(@tapjs/test@4.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(@types/react@18.3.1)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))
-      '@tapjs/spawn': 4.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
-      '@tapjs/stdin': 4.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
-      '@tapjs/test': 4.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
+      '@tapjs/reporter': 4.0.1(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(@tapjs/test@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(@types/react@18.3.1)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))
+      '@tapjs/spawn': 4.0.0(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
+      '@tapjs/stdin': 4.0.0(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
+      '@tapjs/test': 4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
       c8: 10.1.2
       chalk: 5.3.0
       chokidar: 3.6.0
@@ -6358,9 +6776,9 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@tapjs/snapshot@4.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)':
+  '@tapjs/snapshot@4.0.0(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@tapjs/core': 4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
+      '@tapjs/core': 4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
       is-actual-promise: 1.0.2
       tcompare: 9.0.0(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
       trivial-deferred: 2.0.0
@@ -6368,36 +6786,36 @@ snapshots:
       - react
       - react-dom
 
-  '@tapjs/spawn@4.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))':
+  '@tapjs/spawn@4.0.0(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))':
     dependencies:
-      '@tapjs/core': 4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
+      '@tapjs/core': 4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
 
   '@tapjs/stack@4.0.0': {}
 
-  '@tapjs/stdin@4.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))':
+  '@tapjs/stdin@4.0.0(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))':
     dependencies:
-      '@tapjs/core': 4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
+      '@tapjs/core': 4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
 
-  '@tapjs/test@4.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)':
+  '@tapjs/test@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@isaacs/ts-node-temp-fork-for-pr-2009': 10.9.7(@types/node@22.10.2)(typescript@5.5.4)
-      '@tapjs/after': 3.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
-      '@tapjs/after-each': 4.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
-      '@tapjs/asserts': 4.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
-      '@tapjs/before': 4.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
-      '@tapjs/before-each': 4.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
-      '@tapjs/chdir': 3.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
-      '@tapjs/core': 4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
-      '@tapjs/filter': 4.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
-      '@tapjs/fixture': 4.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
-      '@tapjs/intercept': 4.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
-      '@tapjs/mock': 4.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
-      '@tapjs/node-serialize': 4.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
-      '@tapjs/snapshot': 4.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
-      '@tapjs/spawn': 4.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
-      '@tapjs/stdin': 4.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
-      '@tapjs/typescript': 3.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(@types/node@22.10.2)(typescript@5.5.4)
-      '@tapjs/worker': 4.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
+      '@isaacs/ts-node-temp-fork-for-pr-2009': 10.9.7(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(typescript@5.5.4)
+      '@tapjs/after': 3.0.0(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
+      '@tapjs/after-each': 4.0.0(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
+      '@tapjs/asserts': 4.0.0(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
+      '@tapjs/before': 4.0.0(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
+      '@tapjs/before-each': 4.0.0(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
+      '@tapjs/chdir': 3.0.0(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
+      '@tapjs/core': 4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
+      '@tapjs/filter': 4.0.0(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
+      '@tapjs/fixture': 4.0.0(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
+      '@tapjs/intercept': 4.0.0(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
+      '@tapjs/mock': 4.0.0(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
+      '@tapjs/node-serialize': 4.0.0(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
+      '@tapjs/snapshot': 4.0.0(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
+      '@tapjs/spawn': 4.0.0(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
+      '@tapjs/stdin': 4.0.0(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
+      '@tapjs/typescript': 3.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(@types/node@22.10.2)(typescript@5.5.4)
+      '@tapjs/worker': 4.0.0(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
       glob: 11.0.0
       jackspeak: 4.0.2
       mkdirp: 3.0.1
@@ -6416,29 +6834,29 @@ snapshots:
       - react
       - react-dom
 
-  '@tapjs/typescript@3.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(@types/node@22.10.2)(typescript@5.5.4)':
+  '@tapjs/typescript@3.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(@types/node@22.10.2)(typescript@5.5.4)':
     dependencies:
-      '@isaacs/ts-node-temp-fork-for-pr-2009': 10.9.7(@types/node@22.10.2)(typescript@5.5.4)
-      '@tapjs/core': 4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
+      '@isaacs/ts-node-temp-fork-for-pr-2009': 10.9.7(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(typescript@5.5.4)
+      '@tapjs/core': 4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
     transitivePeerDependencies:
       - '@swc/core'
       - '@swc/wasm'
       - '@types/node'
       - typescript
 
-  '@tapjs/typescript@3.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(@types/node@22.10.2)(typescript@5.7.2)':
+  '@tapjs/typescript@3.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(@types/node@22.10.2)(typescript@5.7.2)':
     dependencies:
-      '@isaacs/ts-node-temp-fork-for-pr-2009': 10.9.7(@types/node@22.10.2)(typescript@5.7.2)
-      '@tapjs/core': 4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
+      '@isaacs/ts-node-temp-fork-for-pr-2009': 10.9.7(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(typescript@5.7.2)
+      '@tapjs/core': 4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
     transitivePeerDependencies:
       - '@swc/core'
       - '@swc/wasm'
       - '@types/node'
       - typescript
 
-  '@tapjs/worker@4.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))':
+  '@tapjs/worker@4.0.0(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))':
     dependencies:
-      '@tapjs/core': 4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
+      '@tapjs/core': 4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
 
   '@ts-morph/common@0.25.0':
     dependencies:
@@ -6446,9 +6864,11 @@ snapshots:
       path-browserify: 1.0.1
       tinyglobby: 0.2.10
 
-  '@tsconfig/node10@1.0.11': {}
+  '@tsconfig/node10@1.0.11':
+    optional: true
 
-  '@tsconfig/node12@1.0.11': {}
+  '@tsconfig/node12@1.0.11':
+    optional: true
 
   '@tsconfig/node14@1.0.3': {}
 
@@ -7032,7 +7452,8 @@ snapshots:
 
   cookie@1.0.2: {}
 
-  create-require@1.1.1: {}
+  create-require@1.1.1:
+    optional: true
 
   cron-parser@4.9.0:
     dependencies:
@@ -7291,6 +7712,8 @@ snapshots:
       iterator.prototype: 1.1.2
       safe-array-concat: 1.1.2
 
+  es-module-lexer@1.5.4: {}
+
   es-object-atoms@1.0.0:
     dependencies:
       es-errors: 1.3.0
@@ -7310,6 +7733,32 @@ snapshots:
       is-callable: 1.2.7
       is-date-object: 1.0.5
       is-symbol: 1.0.4
+
+  esbuild@0.21.5:
+    optionalDependencies:
+      '@esbuild/aix-ppc64': 0.21.5
+      '@esbuild/android-arm': 0.21.5
+      '@esbuild/android-arm64': 0.21.5
+      '@esbuild/android-x64': 0.21.5
+      '@esbuild/darwin-arm64': 0.21.5
+      '@esbuild/darwin-x64': 0.21.5
+      '@esbuild/freebsd-arm64': 0.21.5
+      '@esbuild/freebsd-x64': 0.21.5
+      '@esbuild/linux-arm': 0.21.5
+      '@esbuild/linux-arm64': 0.21.5
+      '@esbuild/linux-ia32': 0.21.5
+      '@esbuild/linux-loong64': 0.21.5
+      '@esbuild/linux-mips64el': 0.21.5
+      '@esbuild/linux-ppc64': 0.21.5
+      '@esbuild/linux-riscv64': 0.21.5
+      '@esbuild/linux-s390x': 0.21.5
+      '@esbuild/linux-x64': 0.21.5
+      '@esbuild/netbsd-x64': 0.21.5
+      '@esbuild/openbsd-x64': 0.21.5
+      '@esbuild/sunos-x64': 0.21.5
+      '@esbuild/win32-arm64': 0.21.5
+      '@esbuild/win32-ia32': 0.21.5
+      '@esbuild/win32-x64': 0.21.5
 
   esbuild@0.23.1:
     optionalDependencies:
@@ -8918,6 +9367,8 @@ snapshots:
 
   path-type@4.0.0: {}
 
+  pathe@1.1.2: {}
+
   pg-cloudflare@1.1.1:
     optional: true
 
@@ -9030,13 +9481,13 @@ snapshots:
       camelcase-css: 2.0.1
       postcss: 8.4.49
 
-  postcss-load-config@4.0.2(postcss@8.4.49)(ts-node@10.9.2(@types/node@20.16.5)(typescript@5.6.3)):
+  postcss-load-config@4.0.2(postcss@8.4.49)(ts-node@10.9.2(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@20.16.5)(typescript@5.6.3)):
     dependencies:
       lilconfig: 3.1.2
       yaml: 2.6.1
     optionalDependencies:
       postcss: 8.4.49
-      ts-node: 10.9.2(@types/node@20.16.5)(typescript@5.6.3)
+      ts-node: 10.9.2(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@20.16.5)(typescript@5.6.3)
 
   postcss-load-config@6.0.1(jiti@1.21.6)(postcss@8.4.49)(tsx@4.19.2)(yaml@2.6.1):
     dependencies:
@@ -9631,11 +10082,11 @@ snapshots:
 
   tailwind-merge@2.5.4: {}
 
-  tailwindcss-animate@1.0.7(tailwindcss@3.4.15(ts-node@10.9.2(@types/node@20.16.5)(typescript@5.6.3))):
+  tailwindcss-animate@1.0.7(tailwindcss@3.4.15(ts-node@10.9.2(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@20.16.5)(typescript@5.6.3))):
     dependencies:
-      tailwindcss: 3.4.15(ts-node@10.9.2(@types/node@20.16.5)(typescript@5.6.3))
+      tailwindcss: 3.4.15(ts-node@10.9.2(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@20.16.5)(typescript@5.6.3))
 
-  tailwindcss@3.4.15(ts-node@10.9.2(@types/node@20.16.5)(typescript@5.6.3)):
+  tailwindcss@3.4.15(ts-node@10.9.2(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@20.16.5)(typescript@5.6.3)):
     dependencies:
       '@alloc/quick-lru': 5.2.0
       arg: 5.0.2
@@ -9654,7 +10105,7 @@ snapshots:
       postcss: 8.4.49
       postcss-import: 15.1.0(postcss@8.4.49)
       postcss-js: 4.0.1(postcss@8.4.49)
-      postcss-load-config: 4.0.2(postcss@8.4.49)(ts-node@10.9.2(@types/node@20.16.5)(typescript@5.6.3))
+      postcss-load-config: 4.0.2(postcss@8.4.49)(ts-node@10.9.2(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@20.16.5)(typescript@5.6.3))
       postcss-nested: 6.2.0(postcss@8.4.49)
       postcss-selector-parser: 6.1.2
       resolve: 1.22.8
@@ -9672,27 +10123,27 @@ snapshots:
       yaml: 2.6.1
       yaml-types: 0.4.0(yaml@2.6.1)
 
-  tap@21.0.1(@types/node@22.10.2)(@types/react@18.3.1)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)(typescript@5.7.2):
+  tap@21.0.1(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(@types/react@18.3.1)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)(typescript@5.7.2):
     dependencies:
-      '@tapjs/after': 3.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
-      '@tapjs/after-each': 4.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
-      '@tapjs/asserts': 4.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
-      '@tapjs/before': 4.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
-      '@tapjs/before-each': 4.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
-      '@tapjs/chdir': 3.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
-      '@tapjs/core': 4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
-      '@tapjs/filter': 4.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
-      '@tapjs/fixture': 4.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
-      '@tapjs/intercept': 4.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
-      '@tapjs/mock': 4.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
-      '@tapjs/node-serialize': 4.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
-      '@tapjs/run': 4.0.1(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(@types/node@22.10.2)(@types/react@18.3.1)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
-      '@tapjs/snapshot': 4.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
-      '@tapjs/spawn': 4.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
-      '@tapjs/stdin': 4.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
-      '@tapjs/test': 4.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
-      '@tapjs/typescript': 3.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(@types/node@22.10.2)(typescript@5.7.2)
-      '@tapjs/worker': 4.0.0(@tapjs/core@4.0.0(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
+      '@tapjs/after': 3.0.0(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
+      '@tapjs/after-each': 4.0.0(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
+      '@tapjs/asserts': 4.0.0(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
+      '@tapjs/before': 4.0.0(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
+      '@tapjs/before-each': 4.0.0(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
+      '@tapjs/chdir': 3.0.0(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
+      '@tapjs/core': 4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
+      '@tapjs/filter': 4.0.0(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
+      '@tapjs/fixture': 4.0.0(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
+      '@tapjs/intercept': 4.0.0(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
+      '@tapjs/mock': 4.0.0(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
+      '@tapjs/node-serialize': 4.0.0(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
+      '@tapjs/run': 4.0.1(@swc/core@1.10.1(@swc/helpers@0.5.5))(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(@types/node@22.10.2)(@types/react@18.3.1)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
+      '@tapjs/snapshot': 4.0.0(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
+      '@tapjs/spawn': 4.0.0(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
+      '@tapjs/stdin': 4.0.0(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
+      '@tapjs/test': 4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1)
+      '@tapjs/typescript': 3.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))(@types/node@22.10.2)(typescript@5.7.2)
+      '@tapjs/worker': 4.0.0(@tapjs/core@4.0.0(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@22.10.2)(react-dom@19.0.0-rc-66855b96-20241106(react@18.3.1))(react@18.3.1))
       resolve-import: 2.0.0
     transitivePeerDependencies:
       - '@swc/core'
@@ -9790,7 +10241,7 @@ snapshots:
       '@ts-morph/common': 0.25.0
       code-block-writer: 13.0.3
 
-  ts-node@10.9.2(@types/node@20.16.5)(typescript@5.6.3):
+  ts-node@10.9.2(@swc/core@1.10.1(@swc/helpers@0.5.5))(@types/node@20.16.5)(typescript@5.6.3):
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
       '@tsconfig/node10': 1.0.11
@@ -9807,25 +10258,9 @@ snapshots:
       typescript: 5.6.3
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
+    optionalDependencies:
+      '@swc/core': 1.10.1(@swc/helpers@0.5.5)
     optional: true
-
-  ts-node@10.9.2(@types/node@22.10.2)(typescript@5.7.2):
-    dependencies:
-      '@cspotcode/source-map-support': 0.8.1
-      '@tsconfig/node10': 1.0.11
-      '@tsconfig/node12': 1.0.11
-      '@tsconfig/node14': 1.0.3
-      '@tsconfig/node16': 1.0.4
-      '@types/node': 22.10.2
-      acorn: 8.14.0
-      acorn-walk: 8.3.4
-      arg: 4.1.3
-      create-require: 1.1.1
-      diff: 4.0.2
-      make-error: 1.3.6
-      typescript: 5.7.2
-      v8-compile-cache-lib: 3.0.1
-      yn: 3.1.1
 
   tsc-alias@1.8.10:
     dependencies:
@@ -9865,7 +10300,7 @@ snapshots:
 
   tslib@2.7.0: {}
 
-  tsup@8.3.5(jiti@1.21.6)(postcss@8.4.49)(tsx@4.19.2)(typescript@5.7.2)(yaml@2.6.1):
+  tsup@8.3.5(@swc/core@1.10.1(@swc/helpers@0.5.5))(jiti@1.21.6)(postcss@8.4.49)(tsx@4.19.2)(typescript@5.7.2)(yaml@2.6.1):
     dependencies:
       bundle-require: 5.0.0(esbuild@0.24.0)
       cac: 6.7.14
@@ -9884,6 +10319,7 @@ snapshots:
       tinyglobby: 0.2.10
       tree-kill: 1.2.2
     optionalDependencies:
+      '@swc/core': 1.10.1(@swc/helpers@0.5.5)
       postcss: 8.4.49
       typescript: 5.7.2
     transitivePeerDependencies:
@@ -10060,6 +10496,45 @@ snapshots:
 
   vary@1.1.2: {}
 
+  vite-node@2.1.8(@types/node@22.10.2):
+    dependencies:
+      cac: 6.7.14
+      debug: 4.3.7
+      es-module-lexer: 1.5.4
+      pathe: 1.1.2
+      vite: 5.4.11(@types/node@22.10.2)
+    transitivePeerDependencies:
+      - '@types/node'
+      - less
+      - lightningcss
+      - sass
+      - sass-embedded
+      - stylus
+      - sugarss
+      - supports-color
+      - terser
+
+  vite@5.4.11(@types/node@22.10.2):
+    dependencies:
+      esbuild: 0.21.5
+      postcss: 8.4.49
+      rollup: 4.27.4
+    optionalDependencies:
+      '@types/node': 22.10.2
+      fsevents: 2.3.3
+
+  vite@6.0.3(@types/node@22.10.2)(jiti@1.21.6)(tsx@4.19.2)(yaml@2.6.1):
+    dependencies:
+      esbuild: 0.24.0
+      postcss: 8.4.49
+      rollup: 4.27.4
+    optionalDependencies:
+      '@types/node': 22.10.2
+      fsevents: 2.3.3
+      jiti: 1.21.6
+      tsx: 4.19.2
+      yaml: 2.6.1
+
   walk-up-path@4.0.0: {}
 
   walker@1.0.8:
@@ -10183,7 +10658,8 @@ snapshots:
       y18n: 5.0.8
       yargs-parser: 21.1.1
 
-  yn@3.1.1: {}
+  yn@3.1.1:
+    optional: true
 
   yocto-queue@0.1.0: {}
 

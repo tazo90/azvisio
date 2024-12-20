@@ -3,7 +3,9 @@ import { FastifyInstance } from 'fastify';
 import { createContainer, asClass, asValue, Lifetime, InjectionMode, AwilixContainer } from 'awilix';
 import { glob } from 'glob';
 import { dirname, join, sep } from 'path';
-import { pathToFileURL } from 'url';
+import { fileURLToPath, pathToFileURL } from 'url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 interface IUsecase {
   execute(...args: any[]): Promise<any>;

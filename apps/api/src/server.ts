@@ -22,11 +22,11 @@ function getLoggerOptions() {
   return { level: process.env.LOG_LEVEL ?? 'silent' };
 }
 
-const app = Fastify({
+export const app = Fastify({
   logger: getLoggerOptions(),
   ajv: {
     customOptions: {
-      coerceTypes: 'array', // change type of data to match type keyword
+      coerceTypes: 'array', // Change type of data to match type keyword
       removeAdditional: 'all', // Remove additional body properties
     },
   },
@@ -35,22 +35,48 @@ const app = Fastify({
 async function init() {
   app.register(fp(boostrap));
 
-  closeWithGrace({ delay: parseInt(process.env.FASTIFY_CLOSE_GRACE_DELAY!) ?? 500 }, async ({ err }) => {
-    if (err != null) {
-      app.log.error(err);
-    }
-
-    await app.close();
-  });
+  // Graceful shutdown only in production
+  if (process.env.PROD) {
+    closeWithGrace({ delay: parseInt(process.env.FASTIFY_CLOSE_GRACE_DELAY!) ?? 500 }, async ({ err }) => {
+      if (err != null) {
+        app.log.error(err);
+      }
+      await app.close();
+    });
+  }
 
   await app.ready();
 
+  // Run the server always, not only in production
   try {
-    await app.listen({ port: parseInt(process.env.PORT!) ?? 4000 });
+    const port = parseInt(process.env.PORT!) ?? 4000;
+    await app.listen({
+      port,
+      host: '0.0.0.0',
+    });
+
+    // Handle HMR
+    if (import.meta.hot) {
+      import.meta.hot.on('vite:beforeFullReload', () => {
+        app.close();
+      });
+
+      import.meta.hot.dispose(() => {
+        app.close();
+      });
+    }
+
+    app.log.info(`Server is running on http://localhost:${port}`);
   } catch (err) {
     app.log.error(err);
     process.exit(1);
   }
 }
 
-init();
+// Zawsze uruchamiamy init()
+init().catch((err) => {
+  console.error('Failed to start server:', err);
+  process.exit(1);
+});
+
+export default app;

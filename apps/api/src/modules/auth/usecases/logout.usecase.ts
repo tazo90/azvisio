@@ -1,6 +1,6 @@
 import { Database } from '@/types';
 import { Session } from '@/modules/auth/entities/session.entity';
-import { SessionNotFound } from '@/lib/errors';
+import { NotFoundError } from '@/lib/errors';
 
 export class LogoutUsecase {
   constructor(private readonly db: Database) {}
@@ -18,6 +18,6 @@ export class LogoutUsecase {
       return { success: true };
     }
 
-    throw new SessionNotFound();
+    throw new NotFoundError('Session not found');
   }
 }

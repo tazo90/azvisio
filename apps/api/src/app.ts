@@ -1,26 +1,12 @@
-import path from 'node:path';
-import fastifyAutoload from '@fastify/autoload';
 import { FastifyInstance, FastifyPluginOptions } from 'fastify';
+import { registerPlugins } from './plugins';
+import { registerRoutes } from './routes';
 
 export default async function boostrap(app: FastifyInstance, opts: FastifyPluginOptions) {
   delete opts.skipOverride; // This option only serves testing purpose
 
-  await app.register(fastifyAutoload, {
-    dir: path.join(__dirname, 'plugins/external'),
-    options: { ...opts },
-  });
-
-  app.register(fastifyAutoload, {
-    dir: path.join(__dirname, 'plugins/custom'),
-    options: { ...opts },
-  });
-
-  app.register(fastifyAutoload, {
-    dir: path.join(__dirname, 'routes'),
-    autoHooks: true,
-    cascadeHooks: true,
-    options: { ...opts },
-  });
+  await registerPlugins(app);
+  await registerRoutes(app);
 
   app.setErrorHandler((err, request, reply) => {
     app.log.error(

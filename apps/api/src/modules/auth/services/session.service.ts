@@ -1,6 +1,6 @@
 import { Session } from '../entities/session.entity';
 import { User } from '../../user/user.entity';
-import { sign, verify } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 import { Database, RequestMetadata } from '@/types';
 
 export class SessionService {
@@ -9,8 +9,8 @@ export class SessionService {
   async createSession(user: User, requestMetadata: RequestMetadata): Promise<Session> {
     await this.deactivateOldSessions(user.id);
 
-    const token = sign({ userId: user.id }, process.env.JWT_SECRET!, { expiresIn: '15m' });
-    const refreshToken = sign({ userId: user.id }, process.env.REFRESH_TOKEN_SECRET!, { expiresIn: '7d' });
+    const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET!, { expiresIn: '15m' });
+    const refreshToken = jwt.sign({ userId: user.id }, process.env.REFRESH_TOKEN_SECRET!, { expiresIn: '7d' });
 
     const session = this.db.create(Session, {
       user,
@@ -84,7 +84,7 @@ export class SessionService {
 
     if (!session) return null;
 
-    const newToken = sign({ userId: session.user.id }, process.env.JWT_SECRET!, { expiresIn: '15m' });
+    const newToken = jwt.sign({ userId: session.user.id }, process.env.JWT_SECRET!, { expiresIn: '15m' });
 
     session.token = newToken;
     session.lastActivity = new Date();

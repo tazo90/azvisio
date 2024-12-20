@@ -1,7 +1,10 @@
 import fastifyStatic, { FastifyStaticOptions } from '@fastify/static';
 import { FastifyInstance } from 'fastify';
 import fs from 'fs';
-import path from 'path';
+import path, { dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export const autoConfig = (app: FastifyInstance): FastifyStaticOptions => {
   const dirPath = path.join(__dirname, '../../..', app.config.UPLOAD_DIRNAME);
