@@ -18,7 +18,6 @@
     "lint:fix": "npm run lint -- --fix"
   },
   "dependencies": {
-    "@fastify/autoload": "^6.0.3",
     "@fastify/cookie": "^11.0.1",
     "@fastify/cors": "^10.0.1",
     "@fastify/env": "^5.0.1",
@@ -59,12 +58,9 @@
     "nodemailer": "^6.9.16",
     "pg": "^8.13.1",
     "reflect-metadata": "^0.2.2",
-    "uuid": "^11.0.3",
-    "vite-node": "^2.1.8"
+    "uuid": "^11.0.3"
   },
   "devDependencies": {
-    "@swc-node/register": "^1.10.9",
-    "@swc/core": "^1.10.1",
     "@types/bcrypt": "^5.0.2",
     "@types/jsonwebtoken": "^9.0.7",
     "@types/node": "^22.10.2",
@@ -72,13 +68,12 @@
     "eslint": "^9.17.0",
     "fastify-tsconfig": "^2.0.0",
     "tap": "^21.0.1",
-    "ts-node": "^10.9.2",
     "tsc-alias": "^1.8.10",
     "tsup": "^8.3.5",
     "tsx": "^4.19.2",
     "typescript": "~5.7.2",
     "vite": "^6.0.3",
-    "vite-plugin-node": "^4.0.0"
+    "vite-node": "^2.1.8"
   },
   "mikro-orm": {
     "useTsNode": true,
