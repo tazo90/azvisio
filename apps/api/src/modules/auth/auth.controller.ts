@@ -46,9 +46,9 @@ const AuthController = async (app: FastifyInstance) => {
 
   // Password Reset Request
   app.post('/password/request', { schema: AuthSchema.PasswordResetRequestSchema }, async (request) => {
-    const passwordResetRequestUsecase = app.usecase('passwordResetRequest').execute(request.body.refreshToken);
+    const passwordResetRequestUsecase = app.usecase('passwordResetRequest');
 
-    return await passwordResetRequestUsecase.execute(request.body.refreshToken);
+    return await passwordResetRequestUsecase.execute(request.body.email);
   });
 
   // Password Reset

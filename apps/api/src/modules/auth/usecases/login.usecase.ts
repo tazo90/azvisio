@@ -1,7 +1,7 @@
 import { Database, RequestMetadata } from '@/types';
 import { SessionService } from '../services/session.service';
 import { LoginDto } from '../schemas/auth.schema';
-import { User } from '@/modules/user/user.entity';
+import { User, UserStatusEnum } from '@/modules/user/user.entity';
 import { compare } from 'bcrypt';
 import { AuthError, NotFoundError, ValidationError } from '@/lib/errors';
 
@@ -19,7 +19,7 @@ export class LoginUsecase {
     }
 
     // Check if email is confirmed
-    if (!user.isEmailConfirmed) {
+    if (user.status === UserStatusEnum.NOT_CONFIRMED) {
       throw new ValidationError('Please confirm your email first');
     }
 

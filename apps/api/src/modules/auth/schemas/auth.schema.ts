@@ -42,10 +42,10 @@ export const PasswordResetSchema = {
   body: t.Object({
     token: t.String(),
     password: t.String({ minLength: 6 }),
-    confirmPassword: t.String(),
   }),
 };
 
 export type LoginDto = Static<typeof LoginSchema.body>;
 export type RegisterDto = Static<typeof RegisterSchema.body>;
 export type RegisterConfirmDto = Static<typeof RegisterConfirmSchema.body>;
+export type PasswordResetDto = Static<typeof PasswordResetSchema.body>;

@@ -5,7 +5,7 @@
 @host = {{hostname}}:{{port}}/{{version}}/{{module}}
 @contentType = application/json
 
-@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJlMmY3YzZhMC05NmM3LTRmNWItYjVmMi1kYTY4NTljOTBjNzYiLCJpYXQiOjE3MzM5NTgzMTgsImV4cCI6MTczMzk1OTIxOH0.26PrbPaz3SznfLHxmrG7SixeWb53aThRCxwhc4liOcQ
+@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwYTY1ZDQxNy03MDY1LTRjODktOTlkOC02YTY5ODM5MTFiNDMiLCJpYXQiOjE3MzQ3MzE3NjIsImV4cCI6MTczNDczMjY2Mn0.qLRNEyj1Vmnv1ghYLtX_wVsKLPVD6oXOdmMN4NGww78
 @email = adam13nas@gmail.com
 @password = Pchela90
 
@@ -33,7 +33,7 @@ POST http://{{host}}/register/confirm
 Content-Type: {{contentType}}
 
 {
-  "token": "349ace41-0415-4c1b-b2ea-279f4db7b107"
+  "token": "48ade80b-b97c-4c39-8aca-738963c20968"
 }
 
 ### 4. Refresh token
@@ -41,7 +41,7 @@ POST http://{{host}}/refresh
 Content-Type: {{contentType}}
 
 {
-  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJlMmY3YzZhMC05NmM3LTRmNWItYjVmMi1kYTY4NTljOTBjNzYiLCJpYXQiOjE3MzM5NTk4NTMsImV4cCI6MTczNDU2NDY1M30.Pm560amxvSgIDNCaVco21fkj6fduo6E_tpqQ6waO6Og"
+  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwYTY1ZDQxNy03MDY1LTRjODktOTlkOC02YTY5ODM5MTFiNDMiLCJpYXQiOjE3MzQ3MzE2OTIsImV4cCI6MTczNTMzNjQ5Mn0.gkIiZgO8LuOzoENFJjdeMyyV-3clEK8F3pM4GiACwn4"
 }
 
 ### 5. Logout
@@ -50,7 +50,7 @@ Content-Type: {{contentType}}
 Authorization: Bearer {{authToken}}
 
 {
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJlMmY3YzZhMC05NmM3LTRmNWItYjVmMi1kYTY4NTljOTBjNzYiLCJpYXQiOjE3MzM5NTgzMTgsImV4cCI6MTczMzk1OTIxOH0.26PrbPaz3SznfLHxmrG7SixeWb53aThRCxwhc4liOcQ"
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwYTY1ZDQxNy03MDY1LTRjODktOTlkOC02YTY5ODM5MTFiNDMiLCJpYXQiOjE3MzQ3MzE3NjIsImV4cCI6MTczNDczMjY2Mn0.qLRNEyj1Vmnv1ghYLtX_wVsKLPVD6oXOdmMN4NGww78"
 }
 
 
@@ -68,5 +68,5 @@ Content-Type: {{contentType}}
 
 {
   "password": "{{password}}",
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkYW0xM25hc0BnbWFpbC5jb20iLCJzY29wZSI6InBhc3N3b3JkLXJlc2V0IiwiaGFzaCI6IjMyNzRhZWFkIiwiaWF0IjoxNzEyODc0ODkzLCJleHAiOjE3MTI5NjEyOTMsImlzcyI6Im1hcHNjYWwifQ.gIMmBAglkJkc3_QEKVtZl27Cf2_5RyTfUoF_t1EhOB0"
+  "token": "70b36eab-5861-4a3b-a6b2-27c5c6dfac22"
 }

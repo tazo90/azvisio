@@ -16,7 +16,7 @@ export class PasswordRequestUsecase {
       const expiresAt = new Date(Date.now() + 3600000); // 1 hour
 
       user.passwordResetToken = token;
-      user.passwordResetExpiresAt = expiresAt;
+      user.passwordResetExpires = expiresAt;
       await this.db.flush();
 
       await this.mailService.queueMail({
