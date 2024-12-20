@@ -76,16 +76,6 @@
           "length": 6,
           "mappedType": "datetime"
         },
-        "is_email_confirmed": {
-          "name": "is_email_confirmed",
-          "type": "boolean",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "default": "false",
-          "mappedType": "boolean"
-        },
         "email_confirmation_token": {
           "name": "email_confirmation_token",
           "type": "varchar(255)",
@@ -113,9 +103,9 @@
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "default": "'draft'",
+          "default": "'not_confirmed'",
           "enumItems": [
-            "draft",
+            "not_confirmed",
             "invited",
             "active",
             "disabled",

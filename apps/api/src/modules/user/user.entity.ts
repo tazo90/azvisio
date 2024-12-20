@@ -1,10 +1,10 @@
 import { Entity, Property, Collection, OneToMany, ManyToMany, Enum } from '@mikro-orm/core';
-import { BaseEntity } from '../shared/entities/base.entity';
+import { BaseEntity } from '../shared/entities/base.entity.js';
 // import { Workspace } from './workspace.entity';
 // import { ApiKey } from './api-key.entity';
 
 export enum UserStatusEnum {
-  DRAFT = 'draft',
+  NOT_CONFIRMED = 'not_confirmed',
   INVITED = 'invited',
   ACTIVE = 'active',
   DISABLED = 'disabled',
@@ -25,9 +25,6 @@ export class User extends BaseEntity {
   @Property({ nullable: true })
   passwordResetExpires?: Date;
 
-  @Property({ default: false })
-  isEmailConfirmed: boolean = false;
-
   @Property({ nullable: true })
   emailConfirmationToken?: string;
 
@@ -35,7 +32,7 @@ export class User extends BaseEntity {
   refreshToken?: string;
 
   @Enum(() => UserStatusEnum)
-  status: UserStatusEnum = UserStatusEnum.DRAFT;
+  status: UserStatusEnum = UserStatusEnum.NOT_CONFIRMED;
 
   @Property({ columnType: 'timestamptz', nullable: true })
   last_access?: Date | null = null;

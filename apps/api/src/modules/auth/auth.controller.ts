@@ -22,10 +22,10 @@ const AuthController = async (app: FastifyInstance) => {
   });
 
   // Register Confirm
-  app.get('/register/confirm/:token', { schema: AuthSchema.RegisterConfirmSchema }, async (request) => {
+  app.post('/register/confirm', { schema: AuthSchema.RegisterConfirmSchema }, async (request) => {
     const registerConfirmUsecase = app.usecase('registerConfirm');
 
-    return await registerConfirmUsecase.execute(request.params as AuthSchema.RegisterConfirmDto);
+    return await registerConfirmUsecase.execute(request.body as AuthSchema.RegisterConfirmDto);
   });
 
   // Logout

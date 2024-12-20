@@ -10,10 +10,11 @@
     "start": "node dist/server.js",
     "test": "npm run db:seed && tap --jobs=1 test/**/*",
     "standalone": "npm run build && node --env-file=.env dist/server.js",
-    "db:migrate": "npx mikro-orm migration:create",
-    "db:migrate:initial": "npx mikro-orm migration:create --initial",
-    "db:migrate:up": "npx mikro-orm migration:up",
-    "db:migrate:down": "npx mikro-orm migration:down",
+    "db:debug": "npx mikro-orm-esm debug",
+    "db:migrate": "npx mikro-orm-esm migration:create",
+    "db:migrate:initial": "npx mikro-orm-esm migration:create --initial",
+    "db:migrate:up": "npx mikro-orm-esm migration:up",
+    "db:migrate:down": "npx mikro-orm-esm migration:down",
     "lint": "eslint --ignore-pattern=dist",
     "lint:fix": "npm run lint -- --fix"
   },
@@ -68,6 +69,7 @@
     "eslint": "^9.17.0",
     "fastify-tsconfig": "^2.0.0",
     "tap": "^21.0.1",
+    "ts-node": "^10.9.2",
     "tsc-alias": "^1.8.10",
     "tsup": "^8.3.5",
     "tsx": "^4.19.2",
@@ -77,6 +79,7 @@
   },
   "mikro-orm": {
     "useTsNode": true,
+    "tsConfigPath": "./tsconfig.json",
     "configPaths": [
       "./src/config/mikro-orm.config.ts",
       "./dist/config/mikro-orm.config.js"

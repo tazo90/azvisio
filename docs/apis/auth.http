@@ -33,7 +33,7 @@ POST http://{{host}}/register/confirm
 Content-Type: {{contentType}}
 
 {
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkYW0xM25hc0BnbWFpbC5jb20iLCJzY29wZSI6InNpZ251cCIsImlhdCI6MTcxMjg3MDU4OSwiZXhwIjoxNzEzNDc1Mzg5LCJpc3MiOiJtYXBzY2FsIn0.XURylLNG-ABQgU8nTcHvVms_plmlrBcbQ0lGc-U6o5U"
+  "token": "349ace41-0415-4c1b-b2ea-279f4db7b107"
 }
 
 ### 4. Refresh token

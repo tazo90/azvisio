@@ -1,6 +1,7 @@
 import { Database } from '@/types';
 import { RegisterConfirmDto } from '../schemas/auth.schema';
-import { User } from '@/modules/user/user.entity';
+import { User, UserStatusEnum } from '@/modules/user/user.entity';
+import { ValidationError } from '@/lib/errors';
 
 export class RegisterConfirmUsecase {
   constructor(private readonly db: Database) {}
@@ -12,14 +13,14 @@ export class RegisterConfirmUsecase {
     });
 
     if (!user) {
-      throw new Error('Invalid confirmation token');
+      throw new ValidationError('Invalid confirmation token');
     }
 
-    if (user.isEmailConfirmed) {
-      throw new Error('Email already confirmed');
+    if (user.status !== UserStatusEnum.NOT_CONFIRMED) {
+      throw new ValidationError('Email already confirmed');
     }
 
-    user.isEmailConfirmed = true;
+    user.status = UserStatusEnum.ACTIVE;
     user.emailConfirmationToken = null;
     await this.db.flush();
 
