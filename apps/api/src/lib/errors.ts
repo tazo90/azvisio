@@ -1,5 +1,7 @@
 import createError from '@fastify/error';
 
-export const SessionNotFound = createError('Not found', 'Session not found', 404);
+export const ValidationError = createError('BAD_REQUEST', '%s', 400);
 
-export const AuthError = createError('AuthError', 'Authentication failed', 401);
+export const NotFoundError = createError('NOT_FOUND', '%s', 404);
+
+export const AuthError = createError('AUTH_ERROR', '%s', 401);

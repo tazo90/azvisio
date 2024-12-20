@@ -55,6 +55,7 @@ async function init() {
       host: '0.0.0.0', // lub 'localhost' jeśli chcesz tylko lokalnie
     });
 
+    // Handle HMR
     if (import.meta.hot) {
       import.meta.hot.on('vite:beforeFullReload', () => {
         app.close();
