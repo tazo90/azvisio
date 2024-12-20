@@ -1,6 +1,7 @@
 import { Collection, Entity, ManyToOne, Property } from '@mikro-orm/core';
 import { BaseEntity } from '../shared/entities/base.entity.js';
 import { User } from '../user/user.entity.js';
+import { Team } from '../team/entities/team.entity.js';
 
 @Entity()
 export class Workspace extends BaseEntity {
