@@ -1,7 +1,6 @@
 import { defineConfig } from 'vite';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
-// import tsconfigPaths from 'vite-tsconfig-paths';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -9,13 +8,13 @@ export default defineConfig({
   server: {
     port: 4000,
     hmr: {
-      port: 4001, // osobny port dla HMR
+      port: 4001,
     },
   },
-  // optimizeDeps: {
-  //   // Wyłączamy skanowanie node_modules dla szybszego startu
-  //   exclude: ['fastify', '@fastify/autoload'],
-  // },
+  optimizeDeps: {
+    // exclude node_modules from scanning for faster start
+    exclude: ['fastify'],
+  },
   resolve: {
     alias: [
       { find: '@/', replacement: resolve(__dirname, 'src/') },

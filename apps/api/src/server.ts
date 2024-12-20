@@ -26,7 +26,7 @@ export const app = Fastify({
   logger: getLoggerOptions(),
   ajv: {
     customOptions: {
-      coerceTypes: 'array', // change type of data to match type keyword
+      coerceTypes: 'array', // Change type of data to match type keyword
       removeAdditional: 'all', // Remove additional body properties
     },
   },
@@ -35,7 +35,7 @@ export const app = Fastify({
 async function init() {
   app.register(fp(boostrap));
 
-  // Graceful shutdown tylko w produkcji
+  // Graceful shutdown only in production
   if (process.env.PROD) {
     closeWithGrace({ delay: parseInt(process.env.FASTIFY_CLOSE_GRACE_DELAY!) ?? 500 }, async ({ err }) => {
       if (err != null) {
@@ -47,12 +47,12 @@ async function init() {
 
   await app.ready();
 
-  // Uruchamiamy serwer zawsze, nie tylko w produkcji
+  // Run the server always, not only in production
   try {
     const port = parseInt(process.env.PORT!) ?? 4000;
     await app.listen({
       port,
-      host: '0.0.0.0', // lub 'localhost' jeśli chcesz tylko lokalnie
+      host: '0.0.0.0',
     });
 
     // Handle HMR
