@@ -1,9 +1,7 @@
-import { Entity, Property, Collection, OneToMany, ManyToMany, Enum, ManyToOne } from '@mikro-orm/core';
+import { Entity, Property, Collection, OneToMany, Enum, ManyToOne } from '@mikro-orm/core';
 import { BaseEntity } from '../../shared/entities/base.entity.js';
-import { Workspace } from '../../workspace/workspace.entity.js';
-import { TeamMember } from '../../team/entities/team-member.entity.js';
-// import { Workspace } from './workspace.entity';
-// import { ApiKey } from './api-key.entity';
+import type { Workspace } from '../../workspace/workspace.entity.js';
+import type { TeamMember } from '../../team/entities/team-member.entity.js';
 
 export enum UserStatusEnum {
   NOT_CONFIRMED = 'not_confirmed',
@@ -39,16 +37,12 @@ export class User extends BaseEntity {
   @Property({ columnType: 'timestamptz', nullable: true })
   last_access?: Date | null = null;
 
-  @ManyToOne(() => Workspace, { nullable: true })
+  @ManyToOne('Workspace', { nullable: true })
   currentWorkspace?: Workspace;
 
-  @OneToMany(() => Workspace, (workspace) => workspace.owner)
+  @OneToMany('Workspace', 'owner')
   workspaces = new Collection<Workspace>(this);
 
-  @OneToMany(() => TeamMember, (teamMember) => teamMember.user)
+  @OneToMany('TeamMember', 'user')
   teamMembers = new Collection<TeamMember>(this);
-
-  hasAccessToWorkspace(workspaceId: string): boolean {
-    return this.workspaces.some((workspace) => workspace.id === workspaceId);
-  }
 }
