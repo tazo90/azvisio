@@ -1,7 +1,7 @@
 import { Database, RequestMetadata } from '@/types';
 import { SessionService } from '../services/session.service';
 import { LoginDto } from '../schemas/auth.schema';
-import { User, UserStatusEnum } from '@/modules/user/user.entity';
+import { User, UserStatusEnum } from '@/modules/user/entities/user.entity';
 import { compare } from 'bcrypt';
 import { AuthError, NotFoundError, ValidationError } from '@/lib/errors';
 

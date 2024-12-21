@@ -1,6 +1,6 @@
 import { Database } from '@/types';
 import { RegisterDto } from '../schemas/auth.schema';
-import { User } from '@/modules/user/user.entity';
+import { User } from '@/modules/user/entities/user.entity';
 import { v4 as uuidv4 } from 'uuid';
 import { hash } from 'bcrypt';
 import { MailService } from '@/modules/mail/mail.service';

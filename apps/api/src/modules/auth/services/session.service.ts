@@ -1,5 +1,5 @@
 import { Session } from '../entities/session.entity';
-import { User } from '../../user/user.entity';
+import { User } from '../../user/entities/user.entity';
 import jwt from 'jsonwebtoken';
 import { Database, RequestMetadata } from '@/types';
 

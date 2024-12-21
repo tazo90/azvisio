@@ -1,5 +1,7 @@
-import { Entity, Property, Collection, OneToMany, ManyToMany, Enum } from '@mikro-orm/core';
-import { BaseEntity } from '../shared/entities/base.entity.js';
+import { Entity, Property, Collection, OneToMany, ManyToMany, Enum, ManyToOne } from '@mikro-orm/core';
+import { BaseEntity } from '../../shared/entities/base.entity.js';
+import { Workspace } from '../../workspace/workspace.entity.js';
+import { TeamMember } from '../../team/entities/team-member.entity.js';
 // import { Workspace } from './workspace.entity';
 // import { ApiKey } from './api-key.entity';
 
@@ -37,15 +39,16 @@ export class User extends BaseEntity {
   @Property({ columnType: 'timestamptz', nullable: true })
   last_access?: Date | null = null;
 
-  // @OneToMany(() => Workspace, (workspace) => workspace.owner)
-  // workspaces = new Collection<Workspace>(this);
+  @ManyToOne(() => Workspace, { nullable: true })
+  currentWorkspace?: Workspace;
 
-  // @ManyToMany(() => Workspace, (workspace) => workspace.members)
-  // memberWorkspaces = new Collection<Workspace>(this);
+  @OneToMany(() => Workspace, (workspace) => workspace.owner)
+  workspaces = new Collection<Workspace>(this);
 
-  // @Property({ nullable: true })
-  // currentWorkspaceId?: string;
+  @OneToMany(() => TeamMember, (teamMember) => teamMember.user)
+  teamMembers = new Collection<TeamMember>(this);
 
-  // @OneToMany(() => ApiKey, (apiKey) => apiKey.user)
-  // apiKeys = new Collection<ApiKey>(this);
+  hasAccessToWorkspace(workspaceId: string): boolean {
+    return this.workspaces.some((workspace) => workspace.id === workspaceId);
+  }
 }

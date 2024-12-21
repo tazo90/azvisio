@@ -1,5 +1,5 @@
 import { MailService } from '@/modules/mail/mail.service';
-import { User } from '@/modules/user/user.entity';
+import { User } from '@/modules/user/entities/user.entity';
 import { Database } from '@/types';
 
 export class PasswordRequestUsecase {

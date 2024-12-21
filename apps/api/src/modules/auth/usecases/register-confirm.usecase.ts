@@ -1,6 +1,6 @@
 import { Database } from '@/types';
 import { RegisterConfirmDto } from '../schemas/auth.schema';
-import { User, UserStatusEnum } from '@/modules/user/user.entity';
+import { User, UserStatusEnum } from '@/modules/user/entities/user.entity';
 import { ValidationError } from '@/lib/errors';
 
 export class RegisterConfirmUsecase {

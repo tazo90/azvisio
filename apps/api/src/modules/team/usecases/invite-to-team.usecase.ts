@@ -3,7 +3,7 @@ import { InviteToTeamDto } from '../schemas/team.schema';
 import { TeamInvitationService } from '../services/team-invitation.service';
 import { TeamService } from '../services/team.service';
 import { NotFoundError } from '@/lib/errors';
-import { User } from '../../user/user.entity.js';
+import { User } from '../../user/entities/user.entity.js';
 
 export class InviteToTeamUseCase {
   constructor(

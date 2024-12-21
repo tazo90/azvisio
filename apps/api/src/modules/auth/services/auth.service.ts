@@ -1,4 +1,4 @@
-import { User } from '@/modules/user/user.entity';
+import { User } from '@/modules/user/entities/user.entity';
 import { Database } from '@/types';
 import { hash, compare } from 'bcrypt';
 // import { sign, verify } from 'jsonwebtoken';

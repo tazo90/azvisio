@@ -1,7 +1,7 @@
 import fp from 'fastify-plugin';
 import { FastifyInstance, FastifyPluginAsync } from 'fastify';
 import jwt from 'jsonwebtoken';
-import { User } from '@/modules/user/user.entity';
+import { User } from '@/modules/user/entities/user.entity';
 import { AuthError } from '@/lib/errors';
 
 declare module 'fastify' {

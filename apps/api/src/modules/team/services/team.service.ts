@@ -5,7 +5,7 @@ import { Workspace } from '../../workspace/workspace.entity.js';
 import { NotFoundError } from '@/lib/errors';
 import { Team } from '../entities/team.entity.js';
 import { TeamMember, TeamRoleEnum } from '../entities/team-member.entity.js';
-import { User } from '../../user/user.entity.js';
+import { User } from '../../user/entities/user.entity.js';
 
 export class TeamService {
   constructor(private readonly db: Database) {}

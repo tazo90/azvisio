@@ -1,7 +1,7 @@
 import { Entity, Enum, ManyToOne } from '@mikro-orm/core';
 import { BaseEntity } from '../../shared/entities/base.entity.js';
 import { Team } from './team.entity.js';
-import { User } from '../../user/user.entity.js';
+import { User } from '../../user/entities/user.entity.js';
 
 export enum TeamRoleEnum {
   MEMBER = 'member',
