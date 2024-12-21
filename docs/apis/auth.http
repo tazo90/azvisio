@@ -33,7 +33,7 @@ POST http://{{host}}/register/confirm
 Content-Type: {{contentType}}
 
 {
-  "token": "48ade80b-b97c-4c39-8aca-738963c20968"
+  "token": "1c1cf4d7-d81d-4cac-99d9-71e3c767d968"
 }
 
 ### 4. Refresh token

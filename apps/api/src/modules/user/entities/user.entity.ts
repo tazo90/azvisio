@@ -44,5 +44,5 @@ export class User extends BaseEntity {
   workspaces = new Collection<Workspace>(this);
 
   @OneToMany('TeamMember', 'user')
-  teamMembers = new Collection<TeamMember>(this);
+  teams = new Collection<TeamMember>(this);
 }

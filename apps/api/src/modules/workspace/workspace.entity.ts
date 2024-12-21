@@ -19,4 +19,14 @@ export class Workspace extends BaseEntity {
 
   @OneToMany('Team', 'workspace')
   teams = new Collection<Team>(this);
+
+  toJSON() {
+    return {
+      id: this.id,
+      name: this.name,
+      description: this.description,
+      isDefault: this.isDefault,
+      teams: this.teams,
+    };
+  }
 }

@@ -18,19 +18,19 @@ export default fp(
       try {
         const authHeader = request.headers.authorization;
         if (!authHeader?.startsWith('Bearer ')) {
-          throw new AuthError();
+          throw new AuthError('Auth header is missing or invalid');
         }
 
         const token = authHeader.substring(7);
         const decoded = jwt.verify(token, process.env.JWT_SECRET!) as { userId: string };
 
-        const user = await app.db.findOne(User, decoded.userId);
+        const user = await app.db.findOne(User, decoded.userId, { fields: ['id', 'email'] });
         if (!user) {
-          throw new AuthError();
+          throw new AuthError('User not found');
         }
         request.user = user;
       } catch (err) {
-        throw new AuthError();
+        throw new AuthError(err.message);
       }
     });
 

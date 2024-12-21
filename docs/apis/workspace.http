@@ -1,18 +1,18 @@
 @hostname = localhost
-@port = 3000
-@version = v1
+@port = 4000
+@version = api
 @module = workspaces
 @host = {{hostname}}:{{port}}/{{version}}/{{module}}
 @contentType = application/json
-@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiZW1haWwiOiJhZGFtMTNuYXNAZ21haWwuY29tIiwid29ya3NwYWNlX2lkIjpudWxsLCJzY29wZSI6ImxvZ2luIiwiaWF0IjoxNzE3OTY4MjQyLCJleHAiOjE3MjA1NjAyNDIsImlzcyI6Im1hcHNjYWwifQ.SWWb9uaVdXShcHaJhbSUiJyIUg6LrcLQYSuLbv3PEW0
+@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJhMDg3Njk3ZC0zN2RhLTRiZmItOWJlZS03ZTU1YTcwMmIxZmMiLCJpYXQiOjE3MzQ4MjM4NjYsImV4cCI6MTczNDgyNDc2Nn0.e-XPhbEwsPpD0Vrpzf4PtQxlgDSOfY8grAWKAFvWL5s
 
-### 1. Get user's workspaces
+### 1. Get all user workspaces
 
 GET http://{{host}}
 Content-Type: {{contentType}}
 Authorization: Bearer {{authToken}}
 
-### 2. Get user's workspace
+### 2. Get user workspace
 
 GET http://{{host}}/workspace-1
 Content-Type: {{contentType}}
@@ -26,9 +26,8 @@ Content-Type: {{contentType}}
 Authorization: Bearer {{authToken}}
 
 {
-  "name": "workspace 6",
-  "plan": "free",
-  "billing_cycle_day": 1
+  "name": "workspace 22",
+  "description": "10"
 }
 
 
