@@ -23,6 +23,11 @@ const WorkspaceController = async (app: FastifyInstance) => {
       serializer
     );
   });
+
+  // Delete workspace
+  app.delete('/:id', async (request) => {
+    return await app.db.delete(Workspace, request.params.id);
+  });
 };
 
 export default WorkspaceController;

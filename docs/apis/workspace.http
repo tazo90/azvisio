@@ -4,7 +4,7 @@
 @module = workspaces
 @host = {{hostname}}:{{port}}/{{version}}/{{module}}
 @contentType = application/json
-@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJhMDg3Njk3ZC0zN2RhLTRiZmItOWJlZS03ZTU1YTcwMmIxZmMiLCJpYXQiOjE3MzQ4MjM4NjYsImV4cCI6MTczNDgyNDc2Nn0.e-XPhbEwsPpD0Vrpzf4PtQxlgDSOfY8grAWKAFvWL5s
+@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ZTE1ZWNlZC1hYzg3LTQwM2ItYjAwNi00MDM4NjRjOGUyMjEiLCJpYXQiOjE3MzQ5MDgzMTgsImV4cCI6MTczNDkwOTIxOH0.gW5Q5IQHNRukp_0dxa3-Ab_6wBB80vy4QAVQ3SFPhWY
 
 ### 1. Get all user workspaces
 
@@ -12,14 +12,8 @@ GET http://{{host}}
 Content-Type: {{contentType}}
 Authorization: Bearer {{authToken}}
 
-### 2. Get user workspace
 
-GET http://{{host}}/workspace-1
-Content-Type: {{contentType}}
-Authorization: Bearer {{authToken}}
-
-
-### 3. Create workspace
+### 2. Create workspace
 
 POST http://{{host}}
 Content-Type: {{contentType}}
@@ -31,27 +25,14 @@ Authorization: Bearer {{authToken}}
 }
 
 
-### 4. Update workspace
+### 3. Delete workspace
 
-PATCH http://{{host}}/workspace-11
-Content-Type: {{contentType}}
+DELETE http://{{host}}/132d8644-320c-41e3-924c-5b9a1ef2f01a
 Authorization: Bearer {{authToken}}
 
-{
-  "name": "workspace 15",
-  "plan": "free",
-  "billing_cycle_day": 10
-}
+### 6. Set current workspace
 
-### 5. Delete workspace
-
-DELETE http://{{host}}/workspace-15
-Content-Type: {{contentType}}
-Authorization: Bearer {{authToken}}
-
-### 6. Set workspace
-
-PUT http://{{host}}/set-user-workspace
+PUT http://{{host}}/set-current-workspace
 Content-Type: {{contentType}}
 Authorization: Bearer {{authToken}}
 

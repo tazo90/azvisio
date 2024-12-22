@@ -5,8 +5,8 @@ import { Workspace } from './workspace.entity';
 export class WorkspaceService {
   constructor(private readonly db: Database) {}
 
-  async createUserDefaultWorkspace(user: User) {
-    await this.db.create(Workspace, {
+  async createDefaultWorkspace(user: User) {
+    await this.db.createFast(Workspace, {
       name: user.email.split('@')[0],
       isDefault: true,
       owner: user,

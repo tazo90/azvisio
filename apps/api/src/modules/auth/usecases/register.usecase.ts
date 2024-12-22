@@ -4,11 +4,13 @@ import { User } from '@/modules/user/entities/user.entity';
 import { v4 as uuidv4 } from 'uuid';
 import { hash } from 'bcrypt';
 import { MailService } from '@/modules/mail/mail.service';
+import { WorkspaceService } from '@/modules/workspace/workspace.service';
 
 export class RegisterUsecase {
   constructor(
     private readonly db: Database,
-    private readonly mailService: MailService
+    private readonly mailService: MailService,
+    private readonly workspaceService: WorkspaceService
   ) {}
 
   async execute(dto: RegisterDto) {
@@ -31,6 +33,9 @@ export class RegisterUsecase {
     });
 
     await this.db.persistAndFlush(user);
+
+    // Add user to default workspace
+    await this.workspaceService.createDefaultWorkspace(user);
 
     // Send confirmation email
     // await this.mailService.queueMail({

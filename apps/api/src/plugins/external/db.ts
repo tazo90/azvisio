@@ -23,6 +23,16 @@ function createDb(em: any) {
 
       return obj;
     },
+    delete: async (entityName: any, id: number | string) => {
+      try {
+        const obj = db.getReference(entityName, id);
+
+        await db.removeAndFlush(obj);
+      } catch {
+        return { success: false };
+      }
+      return { success: true };
+    },
   });
 
   return db;
