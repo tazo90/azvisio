@@ -4,7 +4,7 @@
 @module = workspaces
 @host = {{hostname}}:{{port}}/{{version}}/{{module}}
 @contentType = application/json
-@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ZTE1ZWNlZC1hYzg3LTQwM2ItYjAwNi00MDM4NjRjOGUyMjEiLCJpYXQiOjE3MzQ5MDgzMTgsImV4cCI6MTczNDkwOTIxOH0.gW5Q5IQHNRukp_0dxa3-Ab_6wBB80vy4QAVQ3SFPhWY
+@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ZTE1ZWNlZC1hYzg3LTQwM2ItYjAwNi00MDM4NjRjOGUyMjEiLCJpYXQiOjE3MzUwNzk4MDcsImV4cCI6MTczNTA5MDYwN30.7V1MtDO7Y-du5-HPe_fcQJrknwy06E08mxBwdBsoGR4
 
 ### 1. Get all user workspaces
 
@@ -20,7 +20,7 @@ Content-Type: {{contentType}}
 Authorization: Bearer {{authToken}}
 
 {
-  "name": "workspace 22",
+  "name": "workspace 2",
   "description": "10"
 }
 
@@ -29,13 +29,3 @@ Authorization: Bearer {{authToken}}
 
 DELETE http://{{host}}/132d8644-320c-41e3-924c-5b9a1ef2f01a
 Authorization: Bearer {{authToken}}
-
-### 6. Set current workspace
-
-PUT http://{{host}}/set-current-workspace
-Content-Type: {{contentType}}
-Authorization: Bearer {{authToken}}
-
-{
-  "workspace_id": 39
-}

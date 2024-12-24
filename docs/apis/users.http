@@ -1,10 +1,10 @@
 @hostname = localhost
-@port = 3000
-@version = v1
+@port = 4000
+@version = api
 @module = users
 @host = {{hostname}}:{{port}}/{{version}}/{{module}}
 @contentType = application/json
-@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiZW1haWwiOiJhZGFtMTNuYXNAZ21haWwuY29tIiwid29ya3NwYWNlX2lkIjpudWxsLCJzY29wZSI6ImxvZ2luIiwiaWF0IjoxNzE3NzEwNTI4LCJleHAiOjE3MjAzMDI1MjgsImlzcyI6Im1hcHNjYWwifQ.hpT4OPyVL3Zd8nh7MWVLjLtXCr5meJ5lWw_BxjQ1NzE
+@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ZTE1ZWNlZC1hYzg3LTQwM2ItYjAwNi00MDM4NjRjOGUyMjEiLCJpYXQiOjE3MzUwODE2MzMsImV4cCI6MTczNTA5MjQzM30.pkOX0oRQjj69Xjin8keyOCVUVBqXxqwTBvAmz2hB9gM
 
 ### 1. Me
 
@@ -12,43 +12,19 @@ GET http://{{host}}/me
 Content-Type: {{contentType}}
 Authorization: Bearer {{authToken}}
 
+### 2. Update user
+
+PATCH http://{{host}}/me
+Content-Type: {{contentType}}
+Authorization: Bearer {{authToken}}
+
+{
+  "workspaceId": "d28b48e7-e6c3-4a8c-87a2-1621a2357814"
+}
+
 ### 2. Users (find all)
 
 GET http://{{host}}/?page=1&limit=20&fields=username&fields=full_name&fields=email&sort=email:asc&fields=id
-Content-Type: {{contentType}}
-Authorization: Bearer {{authToken}}
-
-### 3. Users (find by id)
-
-GET http://{{host}}/14
-Content-Type: {{contentType}}
-Authorization: Bearer {{authToken}}
-
-### 4. Create user
-
-POST http://{{host}}
-Content-Type: {{contentType}}
-Authorization: Bearer {{authToken}}
-
-{
-  "email": "tazo90x@gmail.com",
-  "password": "abc"
-}
-
-### 5. Update user
-
-PUT http://{{host}}/2
-Content-Type: {{contentType}}
-Authorization: Bearer {{authToken}}
-
-{
-  "username": "tazo90x@",
-  "workspace_id": 34
-}
-
-### 6. Delete user
-
-DELETE http://{{host}}/5
 Content-Type: {{contentType}}
 Authorization: Bearer {{authToken}}
 
