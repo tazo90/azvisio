@@ -7,21 +7,9 @@ export class SetActiveWorkspaceUsecase {
   constructor(private readonly db: Database) {}
 
   async execute(userId: string, workspaceId: string) {
-    const user = await this.db.findOne(
-      User,
-      { id: userId },
-      {
-        populate: ['teamMembers.team.workspace'],
-      }
-    );
-
+    const user = await this.db.findOne(User, { id: userId });
     if (!user) {
       throw new NotFoundError('User not found');
-    }
-
-    // Check if user has access to workspace
-    if (!user.hasAccessToWorkspace(workspaceId)) {
-      throw new ForbiddenError('No access to this workspace');
     }
 
     const workspace = await this.db.findOne(Workspace, { id: workspaceId });
@@ -29,7 +17,18 @@ export class SetActiveWorkspaceUsecase {
       throw new NotFoundError('Workspace not found');
     }
 
-    user.currentWorkspace = workspace;
+    // Check if user is owner of workspace
+    const hasAccess = await this.db.findOne(Workspace, {
+      id: workspaceId,
+      $or: [{ owner: user }, { teams: { members: { user } } }],
+    });
+
+    if (!hasAccess) {
+      throw new ForbiddenError('No access to this workspace');
+    }
+
+    // Set active workspace
+    user.activeWorkspace = workspace;
     await this.db.flush();
 
     return user;

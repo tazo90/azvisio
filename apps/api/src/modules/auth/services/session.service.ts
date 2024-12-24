@@ -9,7 +9,7 @@ export class SessionService {
   async createSession(user: User, requestMetadata: RequestMetadata): Promise<Session> {
     await this.deactivateOldSessions(user.id);
 
-    const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET!, { expiresIn: '15m' });
+    const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET!, { expiresIn: '3h' });
     const refreshToken = jwt.sign({ userId: user.id }, process.env.REFRESH_TOKEN_SECRET!, { expiresIn: '7d' });
 
     const session = this.db.create(Session, {

@@ -38,7 +38,7 @@ export class User extends BaseEntity {
   last_access?: Date | null = null;
 
   @ManyToOne('Workspace', { nullable: true })
-  currentWorkspace?: Workspace;
+  activeWorkspace?: Workspace;
 
   @OneToMany('Workspace', 'owner')
   workspaces = new Collection<Workspace>(this);

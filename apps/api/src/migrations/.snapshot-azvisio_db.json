@@ -123,8 +123,8 @@
           "length": 6,
           "mappedType": "datetime"
         },
-        "current_workspace_id": {
-          "name": "current_workspace_id",
+        "active_workspace_id": {
+          "name": "active_workspace_id",
           "type": "varchar(255)",
           "unsigned": false,
           "autoincrement": false,
@@ -160,10 +160,10 @@
       ],
       "checks": [],
       "foreignKeys": {
-        "user_current_workspace_id_foreign": {
-          "constraintName": "user_current_workspace_id_foreign",
+        "user_active_workspace_id_foreign": {
+          "constraintName": "user_active_workspace_id_foreign",
           "columnNames": [
-            "current_workspace_id"
+            "active_workspace_id"
           ],
           "localTableName": "public.user",
           "referencedColumnNames": [

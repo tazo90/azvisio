@@ -1,6 +1,6 @@
 import { WorkspaceService } from '@/modules/workspace/workspace.service';
 import { Database } from '@/types';
-import { CreateUserDto } from '../schemas/user.schema';
+import { CreateUserRequest } from '../schemas/user.schema';
 import { User } from '../entities/user.entity';
 
 export class UserService {
