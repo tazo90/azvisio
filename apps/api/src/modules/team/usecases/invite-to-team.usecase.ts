@@ -1,5 +1,5 @@
 import { Database } from '@/types';
-import { InviteToTeamDto } from '../schemas/team.schema';
+import { InviteToTeamRequest } from '../schemas/team.schema';
 import { TeamInvitationService } from '../services/team-invitation.service';
 import { TeamService } from '../services/team.service';
 import { NotFoundError } from '@/lib/errors';
@@ -13,7 +13,7 @@ export class InviteToTeamUseCase {
     // private readonly userService: UserService,
   ) {}
 
-  async execute(inviterId: string, data: InviteToTeamDto): Promise<void> {
+  async execute(inviterId: string, data: InviteToTeamRequest): Promise<void> {
     const inviter = await this.db.findOne(User, { id: inviterId });
     if (!inviter) {
       throw new NotFoundError('Inviter not found');

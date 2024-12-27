@@ -4,7 +4,7 @@
 @module = users
 @host = {{hostname}}:{{port}}/{{version}}/{{module}}
 @contentType = application/json
-@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ZTE1ZWNlZC1hYzg3LTQwM2ItYjAwNi00MDM4NjRjOGUyMjEiLCJpYXQiOjE3MzUwODE2MzMsImV4cCI6MTczNTA5MjQzM30.pkOX0oRQjj69Xjin8keyOCVUVBqXxqwTBvAmz2hB9gM
+@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ZTE1ZWNlZC1hYzg3LTQwM2ItYjAwNi00MDM4NjRjOGUyMjEiLCJpYXQiOjE3MzUzMzUxNTcsImV4cCI6MTczNTM0NTk1N30.kfeBQtg7XlW9f53rA-DZm0LCJxBI-W7VFMkqzAi3Gh8
 
 ### 1. Me
 

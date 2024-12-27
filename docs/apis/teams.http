@@ -1,27 +1,28 @@
 @hostname = localhost
 @port = 4000
 @version = api
-@module = workspaces
+@module = teams
 @host = {{hostname}}:{{port}}/{{version}}/{{module}}
 @contentType = application/json
 @authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ZTE1ZWNlZC1hYzg3LTQwM2ItYjAwNi00MDM4NjRjOGUyMjEiLCJpYXQiOjE3MzUzMzUxNTcsImV4cCI6MTczNTM0NTk1N30.kfeBQtg7XlW9f53rA-DZm0LCJxBI-W7VFMkqzAi3Gh8
 
-### 1. Get all user workspaces
+### 1. Get all teams
 
 GET http://{{host}}
 Content-Type: {{contentType}}
 Authorization: Bearer {{authToken}}
 
 
-### 2. Create workspace
+### 2. Create team
 
 POST http://{{host}}
 Content-Type: {{contentType}}
 Authorization: Bearer {{authToken}}
 
 {
-  "name": "workspace 2",
-  "description": "10"
+  "name": "Team 1",
+  "description": "Team 1 description",
+  "workspaceId": "d28b48e7-e6c3-4a8c-87a2-1621a2357814"
 }
 
 
