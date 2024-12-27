@@ -3,6 +3,12 @@ import { BaseEntity } from '../../shared/entities/base.entity.js';
 import type { Team } from './team.entity.js';
 import { TeamRoleEnum } from './team-member.entity.js';
 
+export enum TeamInvitationStatusEnum {
+  PENDING = 'pending',
+  EXPIRED = 'expired',
+  ACCEPTED = 'accepted',
+}
+
 @Entity()
 export class TeamInvitation extends BaseEntity {
   @ManyToOne('Team', { deleteRule: 'cascade' })
@@ -19,4 +25,7 @@ export class TeamInvitation extends BaseEntity {
 
   @Property()
   expiresAt!: Date;
+
+  @Enum(() => TeamInvitationStatusEnum)
+  status: TeamInvitationStatusEnum = TeamInvitationStatusEnum.PENDING;
 }

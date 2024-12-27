@@ -30,3 +30,21 @@ Authorization: Bearer {{authToken}}
 
 DELETE http://{{host}}/0508d8b5-6233-461e-a1a7-e3e786e8ab7a
 Authorization: Bearer {{authToken}}
+
+
+### 4. Invite to team
+POST http://{{host}}/invite
+Content-Type: {{contentType}}
+Authorization: Bearer {{authToken}}
+
+{
+  "email": "tazo90@gmail.com",
+  "role": "member",
+  "teamId": "39bf6f32-2ab9-4f01-95dc-0513828dddbc"
+}
+
+### 5. Accept invitation
+POST http://{{host}}/invite/accept
+
+### 6. Resend invitation
+POST http://{{host}}/invite/0508d8b5-6233-461e-a1a7-e3e786e8ab7a/resend
