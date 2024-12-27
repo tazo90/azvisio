@@ -10,7 +10,7 @@ export enum TeamRoleEnum {
 
 @Entity()
 export class TeamMember extends BaseEntity {
-  @ManyToOne('Team')
+  @ManyToOne('Team', { deleteRule: 'cascade ' })
   team!: Team;
 
   @ManyToOne('User')

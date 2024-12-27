@@ -3,7 +3,6 @@ import { FastifyInstance } from 'fastify';
 import { MikroORM } from '@mikro-orm/postgresql';
 import mikroOrmConfig from '@/config/mikro-orm.config';
 import { Database } from '@/types';
-import { EntityManager } from '@mikro-orm/core';
 
 declare module 'fastify' {
   export interface FastifyInstance {

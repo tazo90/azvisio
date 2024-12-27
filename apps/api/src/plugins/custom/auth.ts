@@ -24,7 +24,7 @@ export default fp(
         const token = authHeader.substring(7);
         const decoded = jwt.verify(token, process.env.JWT_SECRET!) as { userId: string };
 
-        const user = await app.db.findOne(User, decoded.userId, { fields: ['id', 'email'] });
+        const user = await app.db.findOne(User, decoded.userId, { fields: ['id', 'email', 'activeWorkspace'] });
         if (!user) {
           throw new AuthError('User not found');
         }

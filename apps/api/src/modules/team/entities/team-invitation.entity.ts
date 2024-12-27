@@ -5,7 +5,7 @@ import { TeamRoleEnum } from './team-member.entity.js';
 
 @Entity()
 export class TeamInvitation extends BaseEntity {
-  @ManyToOne('Team')
+  @ManyToOne('Team', { deleteRule: 'cascade' })
   team!: Team;
 
   @Property()

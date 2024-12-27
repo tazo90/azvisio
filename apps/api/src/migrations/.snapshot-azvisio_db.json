@@ -491,6 +491,17 @@
       "schema": "public",
       "indexes": [
         {
+          "keyName": "team_name_workspace_id_unique",
+          "columnNames": [
+            "name",
+            "workspace_id"
+          ],
+          "composite": true,
+          "constraint": true,
+          "primary": false,
+          "unique": true
+        },
+        {
           "keyName": "team_pkey",
           "columnNames": [
             "id"
@@ -513,6 +524,7 @@
             "id"
           ],
           "referencedTableName": "public.workspace",
+          "deleteRule": "set null",
           "updateRule": "cascade"
         }
       },
@@ -611,6 +623,7 @@
             "id"
           ],
           "referencedTableName": "public.team",
+          "deleteRule": "cascade ",
           "updateRule": "cascade"
         },
         "team_member_user_id_foreign": {
@@ -741,6 +754,7 @@
             "id"
           ],
           "referencedTableName": "public.team",
+          "deleteRule": "cascade",
           "updateRule": "cascade"
         }
       },

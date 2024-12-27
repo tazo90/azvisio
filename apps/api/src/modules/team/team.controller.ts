@@ -13,7 +13,16 @@ const TeamController = async (app: FastifyInstance) => {
         workspace: request.user.activeWorkspace,
       },
       {
-        populate: ['invitations', 'members'],
+        fields: [
+          'id',
+          'name',
+          'description',
+          'members.id',
+          'members.user.email',
+          'members.role',
+          'invitations.id',
+          'invitations.email',
+        ],
       }
     );
 
@@ -27,6 +36,15 @@ const TeamController = async (app: FastifyInstance) => {
     const createTeamUsecase = app.usecase('createTeam');
 
     return await createTeamUsecase.execute(userId, request.body);
+  });
+
+  // Delete team
+  app.delete('/:id', async (request) => {
+    const result = await app.db.nativeDelete(Team, { id: request.params.id });
+
+    return {
+      success: !!result,
+    };
   });
 
   // Invite to team

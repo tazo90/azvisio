@@ -20,13 +20,13 @@ Content-Type: {{contentType}}
 Authorization: Bearer {{authToken}}
 
 {
-  "name": "Team 1",
-  "description": "Team 1 description",
+  "name": "Team 2",
+  "description": "Team 2 description",
   "workspaceId": "d28b48e7-e6c3-4a8c-87a2-1621a2357814"
 }
 
 
-### 3. Delete workspace
+### 3. Delete Team
 
-DELETE http://{{host}}/132d8644-320c-41e3-924c-5b9a1ef2f01a
+DELETE http://{{host}}/0508d8b5-6233-461e-a1a7-e3e786e8ab7a
 Authorization: Bearer {{authToken}}
