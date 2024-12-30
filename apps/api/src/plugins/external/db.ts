@@ -22,6 +22,15 @@ function createDb(em: any) {
 
       return obj;
     },
+    createOrFind: async (entityName: any, where: any, data: any) => {
+      const obj = await db.findOne(entityName, where);
+
+      if (obj) {
+        return obj;
+      }
+
+      return db.createFast(entityName, data);
+    },
     delete: async (entityName: any, id: number | string) => {
       try {
         const obj = db.getReference(entityName, id);
@@ -31,6 +40,9 @@ function createDb(em: any) {
         return { success: false };
       }
       return { success: true };
+    },
+    save: async (entity: any) => {
+      await db.persistAndFlush(entity);
     },
   });
 

@@ -46,13 +46,13 @@ export class InviteToTeamUseCase {
       throw new ValidationError('Invitation already exists');
     }
 
-    const token = crypto.randomUUID()
+    const token = crypto.randomUUID();
 
     const invitation = await this.db.createFast(TeamInvitation, {
       team,
       email: data.email,
       role: data.role,
-      token,,
+      token,
       expiresAt: new Date(Date.now() + 7 * 24 * 60 * 1000),
     });
 

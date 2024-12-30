@@ -4,7 +4,7 @@
 @module = teams
 @host = {{hostname}}:{{port}}/{{version}}/{{module}}
 @contentType = application/json
-@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ZTE1ZWNlZC1hYzg3LTQwM2ItYjAwNi00MDM4NjRjOGUyMjEiLCJpYXQiOjE3MzUzMzUxNTcsImV4cCI6MTczNTM0NTk1N30.kfeBQtg7XlW9f53rA-DZm0LCJxBI-W7VFMkqzAi3Gh8
+@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ZTE1ZWNlZC1hYzg3LTQwM2ItYjAwNi00MDM4NjRjOGUyMjEiLCJpYXQiOjE3MzU2MDAwMjksImV4cCI6MTczNTYxMDgyOX0.bIZYk184ficXQkQj_aIT4pDLvpx2AIYuyqL0VeDQIk4
 
 ### 1. Get all teams
 
@@ -38,7 +38,7 @@ Content-Type: {{contentType}}
 Authorization: Bearer {{authToken}}
 
 {
-  "email": "tazo90@gmail.com",
+  "email": "winnikaneta@gmail.com",
   "role": "member",
   "teamId": "39bf6f32-2ab9-4f01-95dc-0513828dddbc"
 }
