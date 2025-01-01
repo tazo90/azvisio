@@ -3,8 +3,29 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { f, form, row } from '@/lib/forms/form-builder';
+import { DynamicForm } from '@/components/dynamic-form';
+
+const employeeForm = form(
+  'Employee Details',
+  row(f.text('FirstName', '1/2'), f.text('LastName', '1/2')),
+  row(f.select('Department', '1/3'), f.select('Position', '1/3'), f.select('Location', '1/3'))
+);
 
 export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRef<'div'>) {
+  const handleSubmit = async (data: any) => {
+    console.log('Form submitted:', data);
+    // Handle form submission
+  };
+
+  const defaultValues = {
+    firstName: 'John',
+    lastName: 'Doe',
+    department: '1',
+    position: '2',
+    location: '3',
+  };
+
   return (
     <div className={cn('flex flex-col gap-6', className)} {...props}>
       <Card>
@@ -13,7 +34,8 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
           <CardDescription>Login with your Apple or Google account</CardDescription>
         </CardHeader>
         <CardContent>
-          <form>
+          <DynamicForm schema={employeeForm} onSubmit={handleSubmit} data={defaultValues} />
+          {/* <form>
             <div className="grid gap-6">
               <div className="flex flex-col gap-4">
                 <Button variant="outline" className="w-full">
@@ -63,7 +85,7 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
                 </a>
               </div>
             </div>
-          </form>
+          </form> */}
         </CardContent>
       </Card>
       <div className="text-balance text-center text-xs text-muted-foreground [&_a]:underline [&_a]:underline-offset-4 [&_a]:hover:text-primary  ">
