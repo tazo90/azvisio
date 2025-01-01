@@ -26,7 +26,7 @@ import { cn } from '@/lib/utils';
 import { PlusCircleIcon } from 'lucide-react';
 import React from 'react';
 
-export default function Page() {
+export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const isPageSidebar = true;
   const [isOpen, setIsOpen] = React.useState(false);
 
@@ -76,12 +76,7 @@ export default function Page() {
                   </SheetHeader>
                 </SheetContent>
               </Sheet>
-              <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-                <div className="aspect-video rounded-xl bg-muted/50" />
-                <div className="aspect-video rounded-xl bg-muted/50" />
-                <div className="aspect-video rounded-xl bg-muted/50" />
-              </div>
-              <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min" />
+              {children}
             </div>
           </div>
         </div>
