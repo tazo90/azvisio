@@ -83,27 +83,18 @@ class FieldBuilder {
   getConfig() {
     return {
       name: this.name,
-      width: this._width,
+      width: this._width || 'full',
       label: this._label || this.name,
       placeholder: this._placeholder,
       description: this._description,
       tooltip: this._tooltip,
-      required: this._required,
+      required: this._required || false,
       type: this._isNumber ? 'number' : this._isEmail ? 'email' : 'text',
     };
   }
 }
 
-export const row = (...fields: FieldBuilder[]): Row => ({
-  fields,
-});
-
-// Form Builder
-export const f = {
-  text: (name: string) => new FieldBuilder(name),
-};
-
-export const form = (title: string, ...rows: Row[]) => {
+const createForm = (title: string = '', ...rows: Row[]) => {
   const allFields = rows.flatMap((r) => r.fields);
 
   const schema = z.object(Object.fromEntries(allFields.map((field) => [field.name, field.getSchema()])));
@@ -121,4 +112,16 @@ export const form = (title: string, ...rows: Row[]) => {
       return this;
     },
   };
+};
+
+const row = (...fields: FieldBuilder[]): Row => ({
+  fields,
+});
+
+// Form Builder
+export const f = {
+  text: (name: string) => new FieldBuilder(name),
+  // core methods
+  create: createForm,
+  row,
 };

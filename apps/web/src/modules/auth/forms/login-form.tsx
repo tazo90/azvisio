@@ -3,8 +3,8 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { f, form, row } from '@/lib/forms/form-builder';
-import { DynamicForm } from '@/components/dynamic-form';
+import { f } from '@/lib/forms/form-builder';
+import { Form } from '@/components/form';
 // import { form } from '@/lib/forms/form-builder';
 
 // const employeeForm = form(
@@ -29,11 +29,16 @@ import { DynamicForm } from '@/components/dynamic-form';
 //   )
 // ).description('Enter your personal details');
 
-const employeeForm = form(
-  'Employee Details',
-  row(f.text('first_name').width('1/2'), f.text('last_name').width('1/2')),
-  row(f.text('age').width('1/2')),
-  row(f.text('email').width('1/2'), f.text('phone').width('1/2'))
+// const employeeForm = f.create(
+//   'Employee Details',
+//   f.row(f.text('first_name').width('1/2'), f.text('last_name').width('1/2')),
+//   f.row(f.text('age').width('1/2')),
+//   f.row(f.text('email').width('1/2'), f.text('phone').width('1/2'))
+// );
+const loginForm = f.create(
+  'Login Form',
+  f.row(f.text('email').label('Email').placeholder('m@example.com')),
+  f.row(f.text('password').label('Password'))
 );
 
 export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRef<'div'>) {
@@ -54,11 +59,9 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
           <CardDescription>Login with your Apple or Google account</CardDescription>
         </CardHeader>
         <CardContent>
-          {/* <DynamicForm schema={employeeForm} onSubmit={handleSubmit} data={defaultValues} /> */}
+          <Form form={loginForm} onSubmit={handleSubmit} defaultValues={defaultValues} />
 
-          <DynamicForm form={employeeForm} onSubmit={console.log} defaultValues={defaultValues} />
-
-          {/* <form>
+          <form>
             <div className="grid gap-6">
               <div className="flex flex-col gap-4">
                 <Button variant="outline" className="w-full">
@@ -108,7 +111,7 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
                 </a>
               </div>
             </div>
-          </form> */}
+          </form>
         </CardContent>
       </Card>
       <div className="text-balance text-center text-xs text-muted-foreground [&_a]:underline [&_a]:underline-offset-4 [&_a]:hover:text-primary  ">

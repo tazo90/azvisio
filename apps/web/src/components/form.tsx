@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from './ui/form';
+import { Form as BaseForm, FormControl, FormField, FormItem, FormLabel, FormMessage } from './ui/form';
 import clsx from 'clsx';
 import { Input } from './ui/input';
 import { Select } from './ui/select';
@@ -7,13 +7,13 @@ import { Button } from './ui/button';
 import { Tooltip, TooltipContent, TooltipTrigger } from './ui/tooltip';
 import { HelpCircle } from 'lucide-react';
 
-interface DynamicFormProps {
+interface FormProps {
   form: any; //ReturnType<typeof form>;
   onSubmit: (data: any) => void;
   defaultValues?: Record<string, any>;
 }
 
-export const DynamicForm = ({ form, onSubmit, defaultValues = {} }: DynamicFormProps) => {
+export const Form = ({ form, onSubmit, defaultValues = {} }: FormProps) => {
   const methods = useForm({
     // resolver: zodResolver(form.schema),
     defaultValues,
@@ -62,10 +62,10 @@ export const DynamicForm = ({ form, onSubmit, defaultValues = {} }: DynamicFormP
   };
 
   return (
-    <Form {...methods}>
+    <BaseForm {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)} className="space-y-6">
         <div>
-          <h1 className="text-2xl font-bold">{form.title}</h1>
+          <h1 className="text-xl font-bold">{form.title}</h1>
           {form.description && <p className="text-gray-600">{form.description}</p>}
         </div>
 
@@ -80,6 +80,6 @@ export const DynamicForm = ({ form, onSubmit, defaultValues = {} }: DynamicFormP
 
         <Button type="submit">Submit</Button>
       </form>
-    </Form>
+    </BaseForm>
   );
 };
