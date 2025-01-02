@@ -1,25 +1,18 @@
 import { cn } from '@/lib/utils';
 import { f } from '@/lib/forms/form-builder';
 import { Form } from '@/components/form';
+import { FormProps } from '@/types';
 
-const registerForm = f
-  .fields(
-    f.row(f.text('email').label('Email').placeholder('m@example.com')),
-    f.row(f.text('password').label('Password'))
-  )
-  .title('Create a AzVisio account')
-  .description('Sign up with your email address')
-  .submit('Register');
+const passwordResetRequestForm = f
+  .fields(f.row(f.text('email').label('Email').placeholder('m@example.com')))
+  .title('Reset password')
+  .description("Provide your account's email address, and we will send you instructions to reset your password.")
+  .submit('Send reset instructions');
 
-export function RegisterForm({ className, ...props }: React.ComponentPropsWithoutRef<'div'>) {
-  const handleSubmit = async (data: any) => {
-    console.log('Form submitted:', data);
-    // Handle form submission
-  };
-
+export function PasswordResetRequestForm({ className, onSubmit, ...props }: FormProps) {
   return (
     <div className={cn('flex flex-col gap-6', className)} {...props}>
-      <Form form={registerForm} onSubmit={handleSubmit} />
+      <Form form={passwordResetRequestForm} onSubmit={onSubmit} />
     </div>
   );
 }
