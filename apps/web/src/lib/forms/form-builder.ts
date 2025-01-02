@@ -2,7 +2,6 @@ import { z } from 'zod';
 
 // Types
 type Width = 'full' | '1/2' | '1/3' | '1/4';
-type Layout = 'row' | 'column' | 'grid';
 interface FormConfig {
   rows: Row[];
   _title?: string;
@@ -174,6 +173,6 @@ const row = (...fields: FieldBuilder[]): Row => ({
 export const f = {
   text: (name: string) => new FieldBuilder(name),
   // core methods
-  form,
+  fields: form,
   row,
 };

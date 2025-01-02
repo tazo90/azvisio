@@ -2,14 +2,13 @@ import { useForm } from 'react-hook-form';
 import { Form as BaseForm, FormControl, FormField, FormItem, FormLabel, FormMessage } from './ui/form';
 import clsx from 'clsx';
 import { Input } from './ui/input';
-import { Select } from './ui/select';
 import { Button } from './ui/button';
-import { Tooltip, TooltipContent, TooltipTrigger } from './ui/tooltip';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './ui/tooltip';
 import { HelpCircle } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 
 interface FormProps {
-  form: any; //ReturnType<typeof form>;
+  form: ReturnType<typeof form>;
   onSubmit: (data: any) => void;
   defaultValues?: Record<string, any>;
 }
@@ -41,14 +40,16 @@ export const Form = ({ form, onSubmit, defaultValues = {} }: FormProps) => {
               <FormLabel>{config.label}</FormLabel>
               {config.beforeContent}
               {config.required && <span className="text-red-500">*</span>}
-              {/* {config.tooltip && (
-                <Tooltip>
-                  <TooltipTrigger>
-                    <HelpCircle className="h-4 w-4 text-gray-500" />
-                  </TooltipTrigger>
-                  <TooltipContent>{config.tooltip}</TooltipContent>
-                </Tooltip>
-              )} */}
+              {config.tooltip && (
+                <TooltipProvider delayDuration={100}>
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <HelpCircle className="h-4 w-4 text-gray-500" />
+                    </TooltipTrigger>
+                    <TooltipContent>{config.tooltip}</TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              )}
             </div>
 
             {config.description && <p className="text-sm text-gray-500">{config.description}</p>}
@@ -65,8 +66,6 @@ export const Form = ({ form, onSubmit, defaultValues = {} }: FormProps) => {
       />
     );
   };
-
-  console.log('FORM', form);
 
   return (
     <>
