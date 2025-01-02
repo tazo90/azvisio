@@ -13,7 +13,7 @@ interface FormConfig {
 
 interface SubmitConfig {
   label: string;
-  variant?: 'default' | 'secondary' | 'outline' | 'link';
+  variant?: 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link';
   className?: string;
 }
 

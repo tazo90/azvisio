@@ -51,7 +51,7 @@ const data = {
   navMain: [
     {
       title: 'Dashboard',
-      url: '#',
+      url: '/dashboard',
       icon: Gauge,
       isActive: true,
     },
@@ -182,7 +182,7 @@ const data = {
       items: [
         {
           title: 'General',
-          url: '#',
+          url: '/settings/general',
         },
         {
           title: 'Team',

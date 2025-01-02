@@ -4,34 +4,6 @@ import { f } from '@/lib/forms/form-builder';
 import { Form } from '@/components/form';
 import { FormProps } from '@/types';
 
-// const employeeForm = form(
-//   'Employee Details',
-//   row(f.text('FirstName', '1/2'), f.text('LastName', '1/2')),
-//   row(f.select('Department', '1/3'), f.select('Position', '1/3'), f.select('Location', '1/3'))
-// );
-
-// const employeeForm = form(
-//   'Employee Details',
-//   row(
-//     f
-//       .text('first_name')
-//       .width('1/2')
-//       .label('First Name')
-//       .placeholder('Enter First Name')
-//       .required()
-//       .description('text')
-//       .tooltip('Help text')
-//       // .number()
-//       .min(3)
-//   )
-// ).description('Enter your personal details');
-
-// const employeeForm = f.create(
-//   'Employee Details',
-//   f.row(f.text('first_name').width('1/2'), f.text('last_name').width('1/2')),
-//   f.row(f.text('age').width('1/2')),
-//   f.row(f.text('email').width('1/2'), f.text('phone').width('1/2'))
-// );
 const loginForm = f
   .fields(
     f.row(f.text('email').label('Email').placeholder('m@example.com')),
@@ -86,13 +58,8 @@ const loginForm = f
   .submit('Login');
 
 export function LoginForm({ className, onSubmit = (data: any) => {}, ...props }: FormProps) {
-  // const defaultValues = {
-  //   first_name: 'John',
-  // };
-
   return (
     <div className={cn('flex flex-col gap-6', className)} {...props}>
-      {/* <Form form={loginForm} onSubmit={onSubmit} defaultValues={defaultValues} /> */}
       <Form form={loginForm} onSubmit={onSubmit} />
       <div className="text-balance text-center text-xs text-muted-foreground [&_a]:underline [&_a]:underline-offset-4 [&_a]:hover:text-primary  ">
         By clicking continue, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.

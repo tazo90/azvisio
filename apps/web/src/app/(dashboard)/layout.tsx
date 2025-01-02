@@ -1,7 +1,6 @@
 'use client';
 
 import { AppSidebar } from '@/components/app-sidebar';
-import { PageSidebar } from '@/components/page-sidebar';
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -36,7 +35,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
       <SidebarInset>
         <div className="flex w-auto">
-          <PageSidebar />
+          {/* <PageSidebar /> */}
 
           <div className={cn('flex flex-col w-full', isPageSidebar && 'border-l')}>
             <header className="flex h-10 shrink-0 items-center gap-2 border-b w-full transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-10">
