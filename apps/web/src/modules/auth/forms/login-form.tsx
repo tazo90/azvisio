@@ -38,7 +38,6 @@ const loginForm = f
       f
         .text('password')
         .label('Password')
-        .tooltip('hello')
         .before(
           <a href="#" className="ml-auto text-sm underline-offset-4 hover:underline">
             Forgot your password?
