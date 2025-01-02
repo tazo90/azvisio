@@ -8,8 +8,10 @@ export default function AuthRegisterPage() {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
-  async function onSubmit(data) {
+  async function onSignUp(data) {
     setIsLoading(true);
+
+    console.log('SIGN UP', data);
 
     // const result = await signIn('credentials', {
     //   ...data,
@@ -26,5 +28,5 @@ export default function AuthRegisterPage() {
     // setIsLoading(false);
   }
 
-  return <RegisterPage isLoading={isLoading} onSubmit={onSubmit} />;
+  return <RegisterPage isLoading={isLoading} onSignUp={onSignUp} />;
 }

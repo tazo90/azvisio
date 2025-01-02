@@ -9,8 +9,10 @@ export default function AuthLoginPage() {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
-  async function onSubmit(data) {
+  async function onSignIn(data: any) {
     setIsLoading(true);
+
+    console.log('LOGIN !!', data);
 
     // const result = await signIn('credentials', {
     //   ...data,
@@ -27,5 +29,5 @@ export default function AuthLoginPage() {
     // setIsLoading(false);
   }
 
-  return <LoginPage isLoading={isLoading} onSubmit={onSubmit} />;
+  return <LoginPage isLoading={isLoading} onSignIn={onSignIn} />;
 }

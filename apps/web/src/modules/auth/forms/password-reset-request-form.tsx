@@ -1,7 +1,6 @@
 import { cn } from '@/lib/utils';
 import { f } from '@/lib/forms/form-builder';
 import { Form } from '@/components/form';
-import { FormProps } from '@/types';
 
 const registerForm = f
   .fields(
@@ -12,10 +11,15 @@ const registerForm = f
   .description('Sign up with your email address')
   .submit('Register');
 
-export function RegisterForm({ className, onSubmit, ...props }: FormProps) {
+export function RegisterForm({ className, ...props }: React.ComponentPropsWithoutRef<'div'>) {
+  const handleSubmit = async (data: any) => {
+    console.log('Form submitted:', data);
+    // Handle form submission
+  };
+
   return (
     <div className={cn('flex flex-col gap-6', className)} {...props}>
-      <Form form={registerForm} onSubmit={onSubmit} />
+      <Form form={registerForm} onSubmit={handleSubmit} />
     </div>
   );
 }

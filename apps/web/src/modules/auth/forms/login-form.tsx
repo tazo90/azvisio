@@ -2,6 +2,7 @@ import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { f } from '@/lib/forms/form-builder';
 import { Form } from '@/components/form';
+import { FormProps } from '@/types';
 
 // const employeeForm = form(
 //   'Employee Details',
@@ -84,19 +85,15 @@ const loginForm = f
   )
   .submit('Login');
 
-export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRef<'div'>) {
-  const handleSubmit = async (data: any) => {
-    console.log('Form submitted:', data);
-    // Handle form submission
-  };
-
-  const defaultValues = {
-    first_name: 'John',
-  };
+export function LoginForm({ className, onSubmit = (data: any) => {}, ...props }: FormProps) {
+  // const defaultValues = {
+  //   first_name: 'John',
+  // };
 
   return (
     <div className={cn('flex flex-col gap-6', className)} {...props}>
-      <Form form={loginForm} onSubmit={handleSubmit} defaultValues={defaultValues} />
+      {/* <Form form={loginForm} onSubmit={onSubmit} defaultValues={defaultValues} /> */}
+      <Form form={loginForm} onSubmit={onSubmit} />
       <div className="text-balance text-center text-xs text-muted-foreground [&_a]:underline [&_a]:underline-offset-4 [&_a]:hover:text-primary  ">
         By clicking continue, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
       </div>
