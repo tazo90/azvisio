@@ -4,68 +4,82 @@ import clsx from 'clsx';
 import { Input } from './ui/input';
 import { Select } from './ui/select';
 import { Button } from './ui/button';
+import { Tooltip, TooltipContent, TooltipTrigger } from './ui/tooltip';
+import { HelpCircle } from 'lucide-react';
 
-export function DynamicForm({ schema, onSubmit, data = {} }) {
-  const form = useForm({ defaultValues: data });
+interface DynamicFormProps {
+  form: any; //ReturnType<typeof form>;
+  onSubmit: (data: any) => void;
+  defaultValues?: Record<string, any>;
+}
 
-  // Pobieranie opcji dla wszystkich selectów
-  const selectFields = schema.rows.flat().filter((field) => field.type === 'select');
+export const DynamicForm = ({ form, onSubmit, defaultValues = {} }: DynamicFormProps) => {
+  const methods = useForm({
+    // resolver: zodResolver(form.schema),
+    defaultValues,
+  });
 
-  // const selectQueries = selectFields.map((field) =>
-  //   useQuery({
-  //     queryKey: field.options.queryKey,
-  //     queryFn: field.options.queryFn,
-  //     select: field.options.transform,
-  //   })
-  // );
+  const renderField = (field) => {
+    const config = field.getConfig();
 
-  // Czekamy na załadowanie wszystkich opcji
-  // const isLoading = selectQueries.some((query) => query.isLoading);
+    return (
+      <FormField
+        key={config.name}
+        control={methods.control}
+        name={config.name}
+        render={({ field: formField }) => (
+          <FormItem
+            className={clsx({
+              'col-span-12': config.width === 'full',
+              'col-span-6': config.width === '1/2',
+              'col-span-4': config.width === '1/3',
+              'col-span-3': config.width === '1/4',
+            })}
+          >
+            <div className="flex items-center gap-2">
+              <FormLabel>{config.label}</FormLabel>
+              {config.required && <span className="text-red-500">*</span>}
+              {/* {config.tooltip && (
+                <Tooltip>
+                  <TooltipTrigger>
+                    <HelpCircle className="h-4 w-4 text-gray-500" />
+                  </TooltipTrigger>
+                  <TooltipContent>{config.tooltip}</TooltipContent>
+                </Tooltip>
+              )} */}
+            </div>
 
-  // if (isLoading) {
-  //   return <div>Loading form options...</div>;
-  // }
+            {config.description && <p className="text-sm text-gray-500">{config.description}</p>}
 
-  // Mapowanie zapytań do pól
-  // const fieldOptionsMap = Object.fromEntries(
-  //   selectFields.map((field, index) => [field.name, selectQueries[index].data])
-  // );
+            <FormControl>
+              <Input {...formField} type={config.type} placeholder={config.placeholder} />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+    );
+  };
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-        {schema.rows.map((row, rowIndex) => (
-          <div key={rowIndex} className="grid grid-cols-12 gap-4">
-            {row.map((field, fieldIndex) => (
-              <FormField
-                key={fieldIndex}
-                control={form.control}
-                name={field.name}
-                className={clsx({
-                  'col-span-12': field.width === 'full',
-                  'col-span-6': field.width === '1/2',
-                  'col-span-4': field.width === '1/3',
-                  'col-span-3': field.width === '1/4',
-                })}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>{field.label}</FormLabel>
-                    <FormControl>
-                      {field.type === 'select' ? (
-                        <Select {...field} /> //options={fieldOptionsMap[field.name]} />
-                      ) : (
-                        <Input {...field} type={field.type} />
-                      )}
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            ))}
-          </div>
-        ))}
+    <Form {...methods}>
+      <form onSubmit={methods.handleSubmit(onSubmit)} className="space-y-6">
+        <div>
+          <h1 className="text-2xl font-bold">{form.title}</h1>
+          {form.description && <p className="text-gray-600">{form.description}</p>}
+        </div>
+
+        {/* <div className="grid grid-cols-12 gap-4">{form.fields.map(renderField)}</div> */}
+        <div className="space-y-4">
+          {form.rows.map((row, index) => (
+            <div key={index} className="grid grid-cols-12 gap-4">
+              {row.fields.map(renderField)}
+            </div>
+          ))}
+        </div>
+
         <Button type="submit">Submit</Button>
       </form>
     </Form>
   );
-}
+};

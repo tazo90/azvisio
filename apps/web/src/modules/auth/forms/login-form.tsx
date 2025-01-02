@@ -5,11 +5,35 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { f, form, row } from '@/lib/forms/form-builder';
 import { DynamicForm } from '@/components/dynamic-form';
+// import { form } from '@/lib/forms/form-builder';
+
+// const employeeForm = form(
+//   'Employee Details',
+//   row(f.text('FirstName', '1/2'), f.text('LastName', '1/2')),
+//   row(f.select('Department', '1/3'), f.select('Position', '1/3'), f.select('Location', '1/3'))
+// );
+
+// const employeeForm = form(
+//   'Employee Details',
+//   row(
+//     f
+//       .text('first_name')
+//       .width('1/2')
+//       .label('First Name')
+//       .placeholder('Enter First Name')
+//       .required()
+//       .description('text')
+//       .tooltip('Help text')
+//       // .number()
+//       .min(3)
+//   )
+// ).description('Enter your personal details');
 
 const employeeForm = form(
   'Employee Details',
-  row(f.text('FirstName', '1/2'), f.text('LastName', '1/2')),
-  row(f.select('Department', '1/3'), f.select('Position', '1/3'), f.select('Location', '1/3'))
+  row(f.text('first_name').width('1/2'), f.text('last_name').width('1/2')),
+  row(f.text('age').width('1/2')),
+  row(f.text('email').width('1/2'), f.text('phone').width('1/2'))
 );
 
 export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRef<'div'>) {
@@ -19,11 +43,7 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
   };
 
   const defaultValues = {
-    firstName: 'John',
-    lastName: 'Doe',
-    department: '1',
-    position: '2',
-    location: '3',
+    first_name: 'John',
   };
 
   return (
@@ -34,7 +54,10 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
           <CardDescription>Login with your Apple or Google account</CardDescription>
         </CardHeader>
         <CardContent>
-          <DynamicForm schema={employeeForm} onSubmit={handleSubmit} data={defaultValues} />
+          {/* <DynamicForm schema={employeeForm} onSubmit={handleSubmit} data={defaultValues} /> */}
+
+          <DynamicForm form={employeeForm} onSubmit={console.log} defaultValues={defaultValues} />
+
           {/* <form>
             <div className="grid gap-6">
               <div className="flex flex-col gap-4">
