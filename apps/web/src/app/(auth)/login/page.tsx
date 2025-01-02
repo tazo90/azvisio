@@ -3,9 +3,9 @@
 import { useState } from 'react';
 // import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import { LoginPage } from '@/modules/auth/pages/login';
+import { LoginForm } from '@/modules/auth/forms/login-form';
 
-export default function AuthLoginPage() {
+export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
@@ -29,5 +29,5 @@ export default function AuthLoginPage() {
     // setIsLoading(false);
   }
 
-  return <LoginPage isLoading={isLoading} onSignIn={onSignIn} />;
+  return <LoginForm isLoading={isLoading} onSubmit={onSignIn} />;
 }

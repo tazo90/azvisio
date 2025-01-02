@@ -1,11 +1,11 @@
 'use client';
 
-import { PasswordResetRequestPage } from '@/modules/auth/pages/password-reset-request';
+import { PasswordResetRequestForm } from '@/modules/auth/forms/password-reset-request-form';
 
-export default function AuthPasswordResetRequestPage() {
+export default function PasswordResetRequestPage() {
   async function onSendResetRequest(data) {
     console.log('Password reset', data);
   }
 
-  return <PasswordResetRequestPage isLoading={false} onSendResetRequest={onSendResetRequest} />;
+  return <PasswordResetRequestForm isLoading={false} onSubmit={onSendResetRequest} />;
 }

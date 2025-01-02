@@ -1,11 +1,11 @@
 'use client';
 
-import { RegisterPage } from '@/modules/auth/pages/register';
+import { RegisterForm } from '@/modules/auth/forms/register-form';
 
-export default function AuthRegisterPage() {
+export default function RegisterPage() {
   async function onSignUp(data) {
     console.log('SIGN UP', data);
   }
 
-  return <RegisterPage isLoading={false} onSignUp={onSignUp} />;
+  return <RegisterForm isLoading={false} onSubmit={onSignUp} />;
 }
