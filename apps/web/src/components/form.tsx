@@ -6,6 +6,7 @@ import { Select } from './ui/select';
 import { Button } from './ui/button';
 import { Tooltip, TooltipContent, TooltipTrigger } from './ui/tooltip';
 import { HelpCircle } from 'lucide-react';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 
 interface FormProps {
   form: any; //ReturnType<typeof form>;
@@ -38,6 +39,7 @@ export const Form = ({ form, onSubmit, defaultValues = {} }: FormProps) => {
           >
             <div className="flex items-center gap-2">
               <FormLabel>{config.label}</FormLabel>
+              {config.beforeContent}
               {config.required && <span className="text-red-500">*</span>}
               {/* {config.tooltip && (
                 <Tooltip>
@@ -54,6 +56,9 @@ export const Form = ({ form, onSubmit, defaultValues = {} }: FormProps) => {
             <FormControl>
               <Input {...formField} type={config.type} placeholder={config.placeholder} />
             </FormControl>
+
+            {config.afterContent}
+
             <FormMessage />
           </FormItem>
         )}
@@ -61,25 +66,34 @@ export const Form = ({ form, onSubmit, defaultValues = {} }: FormProps) => {
     );
   };
 
+  console.log('FORM', form);
+
   return (
-    <BaseForm {...methods}>
-      <form onSubmit={methods.handleSubmit(onSubmit)} className="space-y-6">
-        <div>
-          <h1 className="text-xl font-bold">{form.title}</h1>
-          {form.description && <p className="text-gray-600">{form.description}</p>}
-        </div>
-
-        {/* <div className="grid grid-cols-12 gap-4">{form.fields.map(renderField)}</div> */}
-        <div className="space-y-4">
-          {form.rows.map((row, index) => (
-            <div key={index} className="grid grid-cols-12 gap-4">
-              {row.fields.map(renderField)}
-            </div>
-          ))}
-        </div>
-
-        <Button type="submit">Submit</Button>
-      </form>
-    </BaseForm>
+    <>
+      <Card>
+        <CardHeader className="text-center">
+          <CardTitle className="text-xl">{form._title}</CardTitle>
+          <CardDescription>{form._description}</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <BaseForm {...methods}>
+            <form onSubmit={methods.handleSubmit(onSubmit)} className="space-y-6">
+              <div className="grid gap-6">
+                {form._header && form._header}
+                {form.rows.map((row, index) => (
+                  <div key={index} className="grid grid-cols-12 gap-4">
+                    {row.fields.map(renderField)}
+                  </div>
+                ))}
+              </div>
+              <Button type="submit" variant={form._submit.variant} className={form._submit.className}>
+                {form._submit.label}
+              </Button>
+              {form._footer && <div className="mt-4">{form._footer}</div>}
+            </form>
+          </BaseForm>
+        </CardContent>
+      </Card>
+    </>
   );
 };
