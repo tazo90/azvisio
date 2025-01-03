@@ -5,9 +5,9 @@ import { FormProps } from '@/types';
 
 const settingsGeneralForm = f
   .fields(f.row(f.text('full_name').label('Full name')))
-  .title('General settings')
+  .title('General settings', 'left')
   .description('Update your general account settings')
-  .submit('Save', 'default', 'w-1/3');
+  .submit('Save', 'default', 'w-1/4');
 
 export function SettingsGeneralForm({ className, onSubmit, ...props }: FormProps) {
   return (

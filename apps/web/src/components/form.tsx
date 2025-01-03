@@ -6,6 +6,7 @@ import { Button } from './ui/button';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './ui/tooltip';
 import { HelpCircle } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
+import { cn } from '@/lib/utils';
 
 interface FormProps {
   form: ReturnType<typeof form>;
@@ -70,11 +71,17 @@ export const Form = ({ form, onSubmit, defaultValues = {} }: FormProps) => {
   return (
     <>
       <Card>
-        <CardHeader className="text-center">
-          <CardTitle className="text-xl">{form._title}</CardTitle>
+        <CardHeader
+          className={cn(
+            form._title.align === 'center' && 'text-center',
+            form._title.align === 'left' && 'text-left',
+            form._title.align === 'right' && 'text-right'
+          )}
+        >
+          <CardTitle className="text-xl">{form._title.text}</CardTitle>
           <CardDescription>{form._description}</CardDescription>
         </CardHeader>
-        <CardContent>
+        <CardContent className={clsx(form._width)}>
           <BaseForm {...methods}>
             <form onSubmit={methods.handleSubmit(onSubmit)} className="space-y-6">
               <div className="grid gap-6">

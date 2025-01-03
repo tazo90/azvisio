@@ -2,13 +2,18 @@ import { z } from 'zod';
 
 // Types
 type Width = 'full' | '1/2' | '1/3' | '1/4';
+type Align = 'center' | 'left' | 'right';
 interface FormConfig {
   rows: Row[];
-  _title?: string;
+  _title?: {
+    text: string;
+    align: Align;
+  };
   _description?: string;
   _submit: SubmitConfig;
   _header?: React.ReactNode | null;
   _footer?: React.ReactNode | null;
+  _width?: string;
 }
 
 interface SubmitConfig {
@@ -123,7 +128,10 @@ const form = (...rows: Row[]) => {
 
   const config: FormConfig = {
     rows,
-    _title: '',
+    _title: {
+      text: '',
+      align: 'center',
+    },
     _description: '',
     _submit: {
       label: 'Submit',
@@ -132,17 +140,18 @@ const form = (...rows: Row[]) => {
     } as SubmitConfig,
     _header: null,
     _footer: null,
+    _width: 'w-2/3',
   };
 
   return {
     ...config,
     schema,
-    title(d: string) {
-      this._title = d;
+    title(text: string, align: Align = 'center') {
+      this._title = { text, align };
       return this;
     },
-    description(d: string) {
-      this._description = d;
+    description(text: string) {
+      this._description = text;
       return this;
     },
     header(content: React.ReactNode) {
@@ -160,6 +169,10 @@ const form = (...rows: Row[]) => {
         ...(variant && { variant }),
         ...(className && { className }),
       };
+      return this;
+    },
+    width(w: Width) {
+      this._width = w;
       return this;
     },
   };

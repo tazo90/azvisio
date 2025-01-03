@@ -5,11 +5,11 @@ import { FormProps } from '@/types';
 
 const settingsDeleteAccountForm = f
   .fields()
-  .title('Delete account')
+  .title('Delete account', 'left')
   .description(
     'If you want to permanently delete this workspace and all of its data, including but not limited to users, issues, and comments, you can do so below.'
   )
-  .submit('Delete', 'destructive', 'w-1/3');
+  .submit('Delete', 'destructive', 'w-1/4');
 
 export function SettingsDeleteAccountForm({ className, onSubmit, ...props }: FormProps) {
   return (
