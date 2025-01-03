@@ -7,6 +7,17 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './ui/t
 import { HelpCircle } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { cn } from '@/lib/utils';
+import { useState } from 'react';
+import {
+  AlertDialog,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogCancel,
+  AlertDialogAction,
+} from './ui/alert-dialog';
 
 interface FormProps {
   form: ReturnType<typeof form>;
@@ -15,10 +26,22 @@ interface FormProps {
 }
 
 export const Form = ({ form, onSubmit, defaultValues = {} }: FormProps) => {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
   const methods = useForm({
     // resolver: zodResolver(form.schema),
     defaultValues,
   });
+
+  const handleSubmit = (e: React.FormEvent, data: any) => {
+    e.preventDefault();
+
+    if (form._confirmDialog) {
+      setIsDialogOpen(true);
+    } else {
+      onSubmit(data);
+    }
+  };
 
   const renderField = (field) => {
     const config = field.getConfig();
@@ -83,7 +106,7 @@ export const Form = ({ form, onSubmit, defaultValues = {} }: FormProps) => {
         </CardHeader>
         <CardContent className={clsx(form._width)}>
           <BaseForm {...methods}>
-            <form onSubmit={methods.handleSubmit(onSubmit)} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid gap-6">
                 {form._header && form._header}
                 {form.rows.map((row, index) => (
@@ -100,6 +123,29 @@ export const Form = ({ form, onSubmit, defaultValues = {} }: FormProps) => {
           </BaseForm>
         </CardContent>
       </Card>
+
+      {form._confirmDialog && (
+        <AlertDialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>{form._confirmDialog.title}</AlertDialogTitle>
+              <AlertDialogDescription>{form._confirmDialog.description}</AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>{form._confirmDialog.cancelLabel || 'Cancel'}</AlertDialogCancel>
+              <AlertDialogAction
+                onClick={() => {
+                  setIsDialogOpen(false);
+                  onSubmit({});
+                }}
+                variant="destructive"
+              >
+                {form._confirmDialog.confirmLabel}
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+      )}
     </>
   );
 };

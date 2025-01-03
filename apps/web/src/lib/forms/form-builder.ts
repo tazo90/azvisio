@@ -14,6 +14,12 @@ interface FormConfig {
   _header?: React.ReactNode | null;
   _footer?: React.ReactNode | null;
   _width?: string;
+  _confirmDialog?: {
+    title: string;
+    description: string;
+    confirmLabel: string;
+    cancelLabel?: string;
+  };
 }
 
 interface SubmitConfig {
@@ -173,6 +179,10 @@ const form = (...rows: Row[]) => {
     },
     width(w: Width) {
       this._width = w;
+      return this;
+    },
+    confirmDialog(config: FormConfig['_confirmDialog']) {
+      this._confirmDialog = config;
       return this;
     },
   };

@@ -9,7 +9,14 @@ const settingsDeleteAccountForm = f
   .description(
     'If you want to permanently delete this workspace and all of its data, including but not limited to users, issues, and comments, you can do so below.'
   )
-  .submit('Delete', 'destructive', 'w-1/4');
+  .submit('Delete', 'destructive', 'w-1/4')
+  .confirmDialog({
+    title: 'Are you absolutely sure?',
+    description:
+      'This action cannot be undone. This will permanently delete your account and remove your data from our servers.',
+    confirmLabel: 'Yes, delete account',
+    cancelLabel: 'Cancel',
+  });
 
 export function SettingsDeleteAccountForm({ className, onSubmit, ...props }: FormProps) {
   return (
