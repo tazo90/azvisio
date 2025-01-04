@@ -8,16 +8,7 @@ import { HelpCircle } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
-import {
-  AlertDialog,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogCancel,
-  AlertDialogAction,
-} from './ui/alert-dialog';
+import { Sheet, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 
 interface FormProps {
   form: ReturnType<typeof form>;
@@ -124,28 +115,30 @@ export const Form = ({ form, onSubmit, defaultValues = {} }: FormProps) => {
         </CardContent>
       </Card>
 
-      {form._confirmDialog && (
-        <AlertDialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-          <AlertDialogContent>
-            <AlertDialogHeader>
-              <AlertDialogTitle>{form._confirmDialog.title}</AlertDialogTitle>
-              <AlertDialogDescription>{form._confirmDialog.description}</AlertDialogDescription>
-            </AlertDialogHeader>
-            <AlertDialogFooter>
-              <AlertDialogCancel>{form._confirmDialog.cancelLabel || 'Cancel'}</AlertDialogCancel>
-              <AlertDialogAction
+      <Sheet open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <SheetContent>
+          <SheetHeader>
+            <SheetTitle>{form._confirmDialog?.title}</SheetTitle>
+            <SheetDescription>{form._confirmDialog?.description}</SheetDescription>
+          </SheetHeader>
+          <div className="mt-8">
+            <SheetFooter>
+              <Button variant="ghost" onClick={() => setIsDialogOpen(false)}>
+                {form._confirmDialog?.cancelLabel || 'Cancel'}
+              </Button>
+              <Button
+                variant="destructive"
                 onClick={() => {
                   setIsDialogOpen(false);
                   onSubmit({});
                 }}
-                variant="destructive"
               >
-                {form._confirmDialog.confirmLabel}
-              </AlertDialogAction>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialog>
-      )}
+                {form._confirmDialog?.confirmLabel}
+              </Button>
+            </SheetFooter>
+          </div>
+        </SheetContent>
+      </Sheet>
     </>
   );
 };
