@@ -1,9 +1,11 @@
 import { z } from 'zod';
+import { sheet } from './sheet-builder';
 
 // Types
 type Width = 'full' | '1/2' | '1/3' | '1/4';
 type Align = 'center' | 'left' | 'right';
-interface FormConfig {
+
+export interface FormConfig {
   rows: Row[];
   _title?: {
     text: string;
@@ -20,6 +22,15 @@ interface FormConfig {
     confirmLabel: string;
     cancelLabel?: string;
   };
+  _action?: {
+    form: FormConfig;
+  };
+}
+
+interface ActionConfig {
+  form: FormConfig;
+  // type?: 'sheet' | 'modal' | 'popover';
+  // width?: string;
 }
 
 interface SubmitConfig {
@@ -185,6 +196,10 @@ const form = (...rows: Row[]) => {
       this._confirmDialog = config;
       return this;
     },
+    action(config: ActionConfig) {
+      this._action = config;
+      return this;
+    },
   };
 };
 
@@ -198,4 +213,6 @@ export const f = {
   // core methods
   fields: form,
   row,
+  //
+  sheet,
 };

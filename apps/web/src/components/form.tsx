@@ -8,7 +8,8 @@ import { HelpCircle } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
-import { Sheet, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle } from '@/components/ui/sheet';
+import { Sheet, SheetContent } from '@/components/ui/sheet';
+import { SheetLayout } from '@/lib/forms/sheet';
 
 interface FormProps {
   form: ReturnType<typeof form>;
@@ -27,7 +28,7 @@ export const Form = ({ form, onSubmit, defaultValues = {} }: FormProps) => {
   const handleSubmit = (e: React.FormEvent, data: any) => {
     e.preventDefault();
 
-    if (form._confirmDialog) {
+    if (form._action) {
       setIsDialogOpen(true);
     } else {
       onSubmit(data);
@@ -82,17 +83,19 @@ export const Form = ({ form, onSubmit, defaultValues = {} }: FormProps) => {
     );
   };
 
+  console.log('FORM', form);
+
   return (
     <>
       <Card>
         <CardHeader
           className={cn(
-            form._title.align === 'center' && 'text-center',
-            form._title.align === 'left' && 'text-left',
-            form._title.align === 'right' && 'text-right'
+            form._title?.align === 'center' && 'text-center',
+            form._title?.align === 'left' && 'text-left',
+            form._title?.align === 'right' && 'text-right'
           )}
         >
-          <CardTitle className="text-xl">{form._title.text}</CardTitle>
+          <CardTitle className="text-xl">{form._title?.text}</CardTitle>
           <CardDescription>{form._description}</CardDescription>
         </CardHeader>
         <CardContent className={clsx(form._width)}>
@@ -115,30 +118,24 @@ export const Form = ({ form, onSubmit, defaultValues = {} }: FormProps) => {
         </CardContent>
       </Card>
 
-      <Sheet open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+      {/* <Sheet open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <SheetContent>
-          <SheetHeader>
-            <SheetTitle>{form._confirmDialog?.title}</SheetTitle>
-            <SheetDescription>{form._confirmDialog?.description}</SheetDescription>
-          </SheetHeader>
-          <div className="mt-8">
-            <SheetFooter>
-              <Button variant="ghost" onClick={() => setIsDialogOpen(false)}>
-                {form._confirmDialog?.cancelLabel || 'Cancel'}
-              </Button>
-              <Button
-                variant="destructive"
-                onClick={() => {
-                  setIsDialogOpen(false);
-                  onSubmit({});
-                }}
-              >
-                {form._confirmDialog?.confirmLabel}
-              </Button>
-            </SheetFooter>
-          </div>
+          <Form form={form._action?.form} onSubmit={() => console.log('ok')} />
         </SheetContent>
-      </Sheet>
+      </Sheet> */}
+      {form._action?.sheet && (
+        <Sheet open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+          <SheetContent>
+            <SheetLayout
+              config={form._action?.sheet}
+              onSubmit={(data) => {
+                setIsDialogOpen(false);
+                onSubmit(data);
+              }}
+            />
+          </SheetContent>
+        </Sheet>
+      )}
     </>
   );
 };
