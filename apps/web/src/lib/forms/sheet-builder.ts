@@ -10,9 +10,14 @@ interface SheetConfig {
     cancelLabel?: string;
     // variant?: ButtonVariant;
   };
+  _width?: string;
 }
 
-export const sheet = () => {
+interface SheetOpts {
+  width: 'sm' | 'md' | 'lg' | 'xl' | '3xl' | 'full' | 'string';
+}
+
+export const sheet = (opts?: SheetOpts) => {
   const config: SheetConfig = {
     _title: '',
     _description: '',
@@ -22,6 +27,7 @@ export const sheet = () => {
       cancelLabel: 'Cancel',
       // variant: 'default',
     },
+    _width: opts?.width || 'sm',
   };
 
   return {
