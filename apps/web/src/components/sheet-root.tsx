@@ -11,11 +11,12 @@ export function SheetRoot() {
 
   return (
     <Sheet
+      modal={false}
       open={activeSheet.isOpen}
+      // onOpenChange={(open) => !open && closeSheet(activeSheet.id)}
       onOpenChange={undefined} // wyłączamy automatyczne zamykanie
     >
       {/* <SheetContent className={cn("h-full p-0", getWidthClass(activeSheet.config.width))}> */}
-      {/* <SheetOverlay onClick={(e) => e.stopPropagation()} /> */}
       <SheetContent className={cn('h-full p-0')}>
         <SheetLayout
           config={activeSheet.config}
