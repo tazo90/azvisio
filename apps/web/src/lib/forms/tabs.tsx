@@ -9,7 +9,7 @@ interface TabsLayoutProps {
   onSubmit: (data: any) => void;
 }
 
-export const TabsLayout = ({ config, onSubmit }: TabsLayoutProps) => {
+export const TabsLayout = ({ config, onSubmit, asSheet }: TabsLayoutProps) => {
   const [mounted, setMounted] = React.useState(false);
 
   React.useEffect(() => {
@@ -32,11 +32,11 @@ export const TabsLayout = ({ config, onSubmit }: TabsLayoutProps) => {
       </TabsList>
 
       {config._tabs.map((tab) => (
-        <TabsContent key={tab.label} value={tab.label}>
+        <TabsContent className="py-3" key={tab.label} value={tab.label}>
           {React.isValidElement(tab.content) ? (
             tab.content
           ) : (
-            <Form form={tab.content as FormConfig} onSubmit={onSubmit} />
+            <Form asSheet form={tab.content as FormConfig} onSubmit={onSubmit} />
           )}
         </TabsContent>
       ))}
