@@ -23,7 +23,7 @@ const demoForm = f
   .description('Demo form desc');
 
 const userSettingsSheet = f
-  .sheet()
+  .sheet({ width: 'md' })
   .title('User Settings')
   .description('Manage your account settings')
   .content(
