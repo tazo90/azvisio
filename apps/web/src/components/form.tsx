@@ -10,6 +10,7 @@ import { cn } from '@/lib/utils';
 import { useState } from 'react';
 import { Sheet, SheetContent } from '@/components/ui/sheet';
 import { SheetLayout } from '@/lib/forms/sheet';
+import { getSheetWidth } from '@/lib/get-sheet-width';
 
 interface FormProps {
   form: ReturnType<typeof form>;
@@ -131,24 +132,7 @@ export const Form = ({ form, asSheet = false, onSubmit, defaultValues = {} }: Fo
 
       {form._action?.sheet && (
         <Sheet open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-          <SheetContent
-            className={cn(
-              'h-full p-0',
-              {
-                'sm:max-w-sm': form._action?.sheet._width === 'sm',
-                'sm:max-w-md': form._action?.sheet._width === 'md',
-                'sm:max-w-lg': form._action?.sheet._width === 'lg',
-                'sm:max-w-xl': form._action?.sheet._width === 'xl',
-                'sm:max-w-3xl': form._action?.sheet._width === '3xl',
-                'sm:max-w-full': form._action?.sheet._width === 'full',
-              },
-              // Handle custom width
-              typeof form._action?.sheet._width === 'string' &&
-                !['sm', 'md', 'lg', 'xl', '3xl', 'full'].includes(form._action?.sheet._width)
-                ? form._action?.sheet._width
-                : ''
-            )}
-          >
+          <SheetContent className={cn('h-full p-0', getSheetWidth(form._action?.sheet._width))}>
             <SheetLayout
               config={form._action?.sheet}
               onClose={() => setIsDialogOpen(false)}

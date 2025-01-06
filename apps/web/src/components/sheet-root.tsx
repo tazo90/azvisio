@@ -2,6 +2,7 @@ import { useSheetStore } from '@/stores/use-sheet-store';
 import { Sheet, SheetContent, SheetOverlay } from './ui/sheet';
 import { SheetLayout } from '@/lib/forms/sheet';
 import { cn } from '@/lib/utils';
+import { getSheetWidth } from '@/lib/get-sheet-width';
 
 export function SheetRoot() {
   const activeSheet = useSheetStore((state) => state.getActiveSheet());
@@ -16,8 +17,7 @@ export function SheetRoot() {
       // onOpenChange={(open) => !open && closeSheet(activeSheet.id)}
       onOpenChange={undefined} // wyłączamy automatyczne zamykanie
     >
-      {/* <SheetContent className={cn("h-full p-0", getWidthClass(activeSheet.config.width))}> */}
-      <SheetContent className={cn('h-full p-0')}>
+      <SheetContent className={cn('h-full p-0', getSheetWidth(activeSheet.config._width))}>
         <SheetLayout
           config={activeSheet.config}
           onSubmit={(data) => {

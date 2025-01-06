@@ -29,7 +29,7 @@ const testSheet = f
   });
 
 const userSheet = f
-  .sheet({ width: 'md' })
+  .sheet({ width: 'full' })
   .title('User profile')
   .description('Manage user profile')
   .content(demoForm2)
