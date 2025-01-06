@@ -1,6 +1,7 @@
 'use client';
 
 import { AppSidebar } from '@/components/app-sidebar';
+import { SheetRoot } from '@/components/sheet-root';
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -56,7 +57,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               </div>
             </header>
             <div className="relative flex flex-1 flex-col gap-4 p-4">
-              <Sheet open={isOpen} onOpenChange={setIsOpen}>
+              {/* <Sheet open={isOpen} onOpenChange={setIsOpen}>
                 <SheetTrigger asChild>
                   <Button className="flex h-8" onClick={() => setIsOpen(true)}>
                     <PlusCircleIcon className="mr-2 h-4 w-4" />
@@ -74,8 +75,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                     </SheetDescription>
                   </SheetHeader>
                 </SheetContent>
-              </Sheet>
+              </Sheet> */}
               {children}
+              <SheetRoot />
             </div>
           </div>
         </div>

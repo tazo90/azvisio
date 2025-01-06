@@ -1,7 +1,7 @@
 import { FormConfig } from './form-builder';
 import { TabsConfig } from './tabs-builder';
 
-interface SheetConfig {
+export interface SheetConfig {
   _title: string;
   _description?: string;
   _content: React.ReactNode | FormConfig | TabsConfig;
