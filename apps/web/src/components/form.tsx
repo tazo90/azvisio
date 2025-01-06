@@ -128,6 +128,7 @@ export const Form = ({ form, onSubmit, defaultValues = {} }: FormProps) => {
           <SheetContent>
             <SheetLayout
               config={form._action?.sheet}
+              onClose={() => setIsDialogOpen(false)}
               onSubmit={(data) => {
                 setIsDialogOpen(false);
                 onSubmit(data);

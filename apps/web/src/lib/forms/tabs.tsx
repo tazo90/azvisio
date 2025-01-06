@@ -23,7 +23,7 @@ export const TabsLayout = ({ config, onSubmit }: TabsLayoutProps) => {
 
   return (
     <Tabs defaultValue={config._tabs[0]?.label} className="w-full">
-      <TabsList className="grid w-full grid-cols-2 ">
+      <TabsList>
         {config._tabs.map((tab) => (
           <TabsTrigger key={tab.label} value={tab.label}>
             {tab.label}
