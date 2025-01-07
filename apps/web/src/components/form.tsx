@@ -10,7 +10,7 @@ import { cn } from '@/lib/utils';
 import { useState } from 'react';
 import { Sheet, SheetContent } from '@/components/ui/sheet';
 import { SheetLayout } from '@/lib/forms/sheet';
-import { getSheetWidth } from '@/lib/get-sheet-width';
+import { getSheetWidth } from '@/lib/forms/get-sheet-width';
 
 interface FormProps {
   form: ReturnType<typeof form>;

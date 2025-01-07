@@ -26,7 +26,7 @@ export const useSheetStore = create<SheetStore>((set, get) => ({
         ...state.sheets,
         [id]: { id, config, isOpen: true },
       },
-      // Dodaj nowy sheet na stos
+      // Add sheet on top
       stack: [...state.stack, id],
     }));
   },
@@ -37,7 +37,7 @@ export const useSheetStore = create<SheetStore>((set, get) => ({
         ...state.sheets,
         [id]: { ...state.sheets[id], isOpen: false },
       },
-      // Usuń sheet ze stosu
+      // Remove sheet from stack
       stack: state.stack.filter((sheetId) => sheetId !== id),
     }));
   },
