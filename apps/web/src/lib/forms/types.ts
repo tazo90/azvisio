@@ -1,47 +1,5 @@
 import { BaseField } from './fields';
 
-export type FieldType = 'text' | 'select' | 'button' | 'checkbox' | 'date' | 'radio' | 'switch';
-
-export interface BaseFieldConfig {
-  name: string;
-  type: FieldType;
-  width?: Width;
-  label?: string;
-  placeholder?: string;
-  description?: string;
-  tooltip?: string;
-  required?: boolean;
-}
-
-export interface SelectOption {
-  label: string;
-  value: string;
-}
-
-export interface SelectFieldConfig extends BaseFieldConfig {
-  type: 'select';
-  options: SelectOption[];
-  defaultValue?: string;
-}
-
-export interface RadioOption {
-  label: string;
-  value: string;
-}
-
-export interface RadioFieldConfig extends BaseFieldConfig {
-  type: 'radio';
-  options: RadioOption[];
-  defaultValue?: string;
-  layout?: 'horizontal' | 'vertical';
-}
-
-export interface SwitchFieldConfig extends BaseFieldConfig {
-  type: 'switch';
-  defaultChecked?: boolean;
-  description?: string;
-}
-
 export type Width = 'full' | '1/2' | '1/3' | '1/4';
 export type Align = 'center' | 'left' | 'right';
 
@@ -81,9 +39,4 @@ export interface SubmitConfig {
 
 export interface Row {
   fields: BaseField[];
-}
-
-export interface CheckboxFieldConfig extends BaseFieldConfig {
-  type: 'checkbox';
-  defaultChecked?: boolean;
 }

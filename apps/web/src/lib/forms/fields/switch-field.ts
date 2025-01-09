@@ -1,6 +1,11 @@
 import { z } from 'zod';
-import { SwitchFieldConfig } from '../types';
-import { BaseField } from './base-field';
+import { BaseField, BaseFieldConfig } from './base-field';
+
+export interface SwitchFieldConfig extends BaseFieldConfig {
+  type: 'switch';
+  defaultChecked?: boolean;
+  description?: string;
+}
 
 export class SwitchField extends BaseField {
   private _defaultChecked: boolean = false;

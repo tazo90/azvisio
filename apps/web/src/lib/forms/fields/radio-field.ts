@@ -1,6 +1,17 @@
 import { z } from 'zod';
-import { RadioFieldConfig, RadioOption } from '../types';
-import { BaseField } from './base-field';
+import { BaseField, BaseFieldConfig } from './base-field';
+
+export interface RadioOption {
+  label: string;
+  value: string;
+}
+
+export interface RadioFieldConfig extends BaseFieldConfig {
+  type: 'radio';
+  options: RadioOption[];
+  defaultValue?: string;
+  layout?: 'horizontal' | 'vertical';
+}
 
 export class RadioField extends BaseField {
   private _options: RadioOption[] = [];

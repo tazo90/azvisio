@@ -1,6 +1,16 @@
 import { z } from 'zod';
-import { SelectFieldConfig, SelectOption } from '../types';
-import { BaseField } from './base-field';
+import { BaseField, BaseFieldConfig } from './base-field';
+
+export interface SelectOption {
+  label: string;
+  value: string;
+}
+
+export interface SelectFieldConfig extends BaseFieldConfig {
+  type: 'select';
+  options: SelectOption[];
+  defaultValue?: string;
+}
 
 export class SelectField extends BaseField {
   private _options: SelectOption[] = [];

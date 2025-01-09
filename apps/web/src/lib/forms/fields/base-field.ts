@@ -2,6 +2,18 @@ import { z } from 'zod';
 import { BaseFieldConfig, Width } from '../types';
 import React from 'react';
 
+export type FieldType = 'text' | 'select' | 'button' | 'checkbox' | 'date' | 'radio' | 'switch';
+export interface BaseFieldConfig {
+  name: string;
+  type: FieldType;
+  width?: Width;
+  label?: string;
+  placeholder?: string;
+  description?: string;
+  tooltip?: string;
+  required?: boolean;
+}
+
 export abstract class BaseField {
   protected config: BaseFieldConfig = {
     name: '',

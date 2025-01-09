@@ -1,6 +1,10 @@
 import { z } from 'zod';
-import { BaseField } from './base-field';
-import { CheckboxFieldConfig } from '../types';
+import { BaseField, BaseFieldConfig } from './base-field';
+
+export interface CheckboxFieldConfig extends BaseFieldConfig {
+  type: 'checkbox';
+  defaultChecked?: boolean;
+}
 
 export class CheckboxField extends BaseField {
   private _defaultChecked: boolean = false;
