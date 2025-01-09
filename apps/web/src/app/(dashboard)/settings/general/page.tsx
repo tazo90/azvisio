@@ -8,7 +8,11 @@ import { useSheetStore } from '@/stores/use-sheet-store';
 
 const demoForm = f
   .fields(
-    f.text('abc').label('Abc').required(),
+    f
+      .text('abc')
+      .label('Abc')
+      .description('This is the name that will be displayed on your profile and in emails.')
+      .required(),
     f.text('cdf').label('CDE'),
     f
       .select('country', [
