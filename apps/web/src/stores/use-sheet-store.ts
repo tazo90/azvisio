@@ -9,7 +9,7 @@ interface Sheet {
 
 interface SheetStore {
   sheets: Record<string, Sheet>;
-  stack: string[]; // stos ID sheetów w kolejności otwierania
+  stack: string[]; // stack of sheet IDS in to opening order
   openSheet: (id: string, config: SheetConfig) => void;
   closeSheet: (id: string) => void;
   getActiveSheet: () => Sheet | null;

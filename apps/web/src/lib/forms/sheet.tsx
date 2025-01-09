@@ -34,7 +34,7 @@ export const SheetLayout = ({ config, onSubmit, onClose }: SheetLayoutProps) => 
           <Button variant={config._footer.variant || 'sheet'} size="sheet" onClick={() => onSubmit({})}>
             {config._footer.submitLabel || 'Save'}
           </Button>
-          <Button variant="sheet" size="sheet">
+          <Button variant="sheet" size="sheet" onClick={onClose}>
             {config._footer.cancelLabel || 'Cancel'}
           </Button>
         </SheetFooter>

@@ -26,6 +26,7 @@ export function SheetRoot() {
             activeSheet.config.onSubmit?.(data);
             closeSheet(activeSheet.id);
           }}
+          onClose={() => closeSheet(activeSheet.id)}
         />
       </SheetContent>
     </Sheet>

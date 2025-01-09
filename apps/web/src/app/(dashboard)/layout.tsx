@@ -12,7 +12,6 @@ import React from 'react';
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const isPageSidebar = true;
-  const [isOpen, setIsOpen] = React.useState(false);
 
   return (
     <SidebarProvider>
