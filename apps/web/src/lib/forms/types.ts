@@ -36,6 +36,12 @@ export interface RadioFieldConfig extends BaseFieldConfig {
   layout?: 'horizontal' | 'vertical';
 }
 
+export interface SwitchFieldConfig extends BaseFieldConfig {
+  type: 'switch';
+  defaultChecked?: boolean;
+  description?: string;
+}
+
 export type Width = 'full' | '1/2' | '1/3' | '1/4';
 export type Align = 'center' | 'left' | 'right';
 

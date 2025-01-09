@@ -1,5 +1,5 @@
 import { Input } from '@/components/ui/input';
-import { BaseFieldComponent } from './base-field';
+import { BaseFieldComponent } from './base';
 
 export function TextFieldComponent(props) {
   return (

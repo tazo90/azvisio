@@ -1,6 +1,6 @@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { SelectField } from '../../fields';
-import { BaseFieldComponent } from './base-field';
+import { BaseFieldComponent } from './base';
 
 interface SelectFieldComponentProps {
   field: ReturnType<SelectField['getConfig']>;

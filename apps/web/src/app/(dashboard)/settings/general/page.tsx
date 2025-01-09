@@ -30,7 +30,17 @@ const demoForm = f
       .label('Gender')
       .required()
       .defaultValue('male')
-      .layout('vertical')
+      .layout('vertical'),
+    f
+      .switch('notifications')
+      .label('Enable notifications')
+      .description('Get notified when someone messages you')
+      .defaultChecked(true),
+    f
+      .switch('marketing')
+      .label('Marketing emails')
+      .description('Receive emails about new products')
+      .defaultChecked(false)
   )
 
   .title('Demo form', 'left')
