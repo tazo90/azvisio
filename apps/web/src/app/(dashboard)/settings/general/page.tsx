@@ -40,7 +40,24 @@ const demoForm = f
       .switch('marketing')
       .label('Marketing emails')
       .description('Receive emails about new products')
-      .defaultChecked(false)
+      .defaultChecked(false),
+    f
+      .date('birthDate')
+      .label('Date of birth')
+      .required()
+      .min(new Date('1900-01-01'))
+      .max(new Date())
+      .placeholder('Select your birth date'),
+
+    f
+      .date('appointmentDate')
+      .label('Appointment date')
+      .min(new Date())
+      .disabledDates([
+        new Date('2024-01-01'), // holidays
+        new Date('2024-12-25'),
+      ])
+      .defaultValue(new Date())
   )
 
   .title('Demo form', 'left')

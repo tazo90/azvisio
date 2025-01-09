@@ -8,7 +8,7 @@ import { useState } from 'react';
 import { Sheet, SheetContent } from '@/components/ui/sheet';
 import { SheetLayout } from '@/lib/forms/sheet';
 import { getSheetWidth } from '@/lib/forms/get-sheet-width';
-import { SwitchFieldComponent, TextFieldComponent } from '@/lib/forms/components/fields';
+import { DateFieldComponent, SwitchFieldComponent, TextFieldComponent } from '@/lib/forms/components/fields';
 import { SelectFieldComponent } from '@/lib/forms/components/fields/select';
 import { CheckboxFieldComponent } from '@/lib/forms/components/fields/checkbox';
 import { RadioFieldComponent } from '@/lib/forms/components/fields/radio';
@@ -17,7 +17,7 @@ const fieldComponents = {
   text: TextFieldComponent,
   select: SelectFieldComponent,
   checkbox: CheckboxFieldComponent,
-  // date: DateFieldComponent,
+  date: DateFieldComponent,
   radio: RadioFieldComponent,
   switch: SwitchFieldComponent,
 };
