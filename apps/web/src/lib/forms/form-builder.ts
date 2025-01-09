@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { sheet } from './sheet-builder';
-import { ActionConfig, Align, FormConfig, Row, SelectOption, SubmitConfig, Width } from './types';
-import { BaseField, CheckboxField, SelectField, TextField } from './fields';
+import { ActionConfig, Align, FormConfig, RadioOption, Row, SelectOption, SubmitConfig, Width } from './types';
+import { BaseField, CheckboxField, RadioField, SelectField, TextField } from './fields';
 
 const form = (...items: (BaseField | Row)[]) => {
   const rows = items.map((item) => {
@@ -88,6 +88,7 @@ export const f = {
   text: (name: string) => new TextField(name),
   select: (name: string, options: SelectOption[]) => new SelectField(name, options),
   checkbox: (name: string) => new CheckboxField(name),
+  radio: (name: string, options: RadioOption[]) => new RadioField(name, options),
 
   // methods
   fields: form,

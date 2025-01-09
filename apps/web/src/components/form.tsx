@@ -1,10 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { Form as BaseForm, FormControl, FormField, FormItem, FormLabel, FormMessage } from './ui/form';
 import clsx from 'clsx';
-import { Input } from './ui/input';
 import { Button } from './ui/button';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './ui/tooltip';
-import { HelpCircle } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
@@ -14,13 +11,14 @@ import { getSheetWidth } from '@/lib/forms/get-sheet-width';
 import { TextFieldComponent } from '@/lib/forms/components/fields';
 import { SelectFieldComponent } from '@/lib/forms/components/fields/select-field';
 import { CheckboxFieldComponent } from '@/lib/forms/components/fields/checkbox-field';
+import { RadioFieldComponent } from '@/lib/forms/components/fields/radio-field';
 
 const fieldComponents = {
   text: TextFieldComponent,
   select: SelectFieldComponent,
   checkbox: CheckboxFieldComponent,
   // date: DateFieldComponent,
-  // radio: RadioFieldComponent,
+  radio: RadioFieldComponent,
   // switch: SwitchFieldComponent
 };
 

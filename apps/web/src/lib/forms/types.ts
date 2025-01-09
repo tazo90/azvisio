@@ -24,6 +24,18 @@ export interface SelectFieldConfig extends BaseFieldConfig {
   defaultValue?: string;
 }
 
+export interface RadioOption {
+  label: string;
+  value: string;
+}
+
+export interface RadioFieldConfig extends BaseFieldConfig {
+  type: 'radio';
+  options: RadioOption[];
+  defaultValue?: string;
+  layout?: 'horizontal' | 'vertical';
+}
+
 export type Width = 'full' | '1/2' | '1/3' | '1/4';
 export type Align = 'center' | 'left' | 'right';
 

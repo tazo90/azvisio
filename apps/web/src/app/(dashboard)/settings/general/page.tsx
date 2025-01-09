@@ -20,7 +20,17 @@ const demoForm = f
       .required()
       .defaultValue('us'),
     f.checkbox('terms').label('I accept the terms and conditions').required().defaultChecked(false),
-    f.checkbox('newsletter').label('Subscribe to newsletter').defaultChecked(true)
+    f.checkbox('newsletter').label('Subscribe to newsletter').defaultChecked(true),
+    f
+      .radio('gender', [
+        { label: 'Male', value: 'male' },
+        { label: 'Female', value: 'female' },
+        { label: 'Other', value: 'other' },
+      ])
+      .label('Gender')
+      .required()
+      .defaultValue('male')
+      .layout('vertical')
   )
 
   .title('Demo form', 'left')
