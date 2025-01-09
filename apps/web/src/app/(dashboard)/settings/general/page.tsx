@@ -18,8 +18,11 @@ const demoForm = f
       ])
       .label('Country')
       .required()
-      .defaultValue('us')
+      .defaultValue('us'),
+    f.checkbox('terms').label('I accept the terms and conditions').required().defaultChecked(false),
+    f.checkbox('newsletter').label('Subscribe to newsletter').defaultChecked(true)
   )
+
   .title('Demo form', 'left')
   .description('Demo form desc');
 

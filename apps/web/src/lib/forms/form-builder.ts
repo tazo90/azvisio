@@ -1,101 +1,7 @@
 import { z } from 'zod';
 import { sheet } from './sheet-builder';
 import { ActionConfig, Align, FormConfig, Row, SelectOption, SubmitConfig, Width } from './types';
-import { BaseField, SelectField, TextField } from './fields';
-
-// export class FieldBuilder {
-//   private _width: Width = 'full';
-//   private _label = '';
-//   private _placeholder = '';
-//   private _description = '';
-//   private _tooltip = '';
-//   private _required = false;
-//   private _isNumber = false;
-//   private _isEmail = false;
-//   private _min?: number;
-//   private _max?: number;
-//   private _beforeContent?: React.ReactNode;
-//   private _afterContent?: React.ReactNode;
-
-//   constructor(public name: string) {}
-
-//   before(content: React.ReactNode) {
-//     this._beforeContent = content;
-//     return this;
-//   }
-
-//   after(content: React.ReactNode) {
-//     this._afterContent = content;
-//     return this;
-//   }
-
-//   width(w: Width) {
-//     this._width = w;
-//     return this;
-//   }
-//   label(l: string) {
-//     this._label = l;
-//     return this;
-//   }
-//   placeholder(p: string) {
-//     this._placeholder = p;
-//     return this;
-//   }
-//   description(d: string) {
-//     this._description = d;
-//     return this;
-//   }
-//   tooltip(t: string) {
-//     this._tooltip = t;
-//     return this;
-//   }
-//   required() {
-//     this._required = true;
-//     return this;
-//   }
-//   number() {
-//     this._isNumber = true;
-//     return this;
-//   }
-//   email() {
-//     this._isEmail = true;
-//     return this;
-//   }
-//   min(m: number) {
-//     this._min = m;
-//     return this;
-//   }
-//   max(m: number) {
-//     this._max = m;
-//     return this;
-//   }
-
-//   getSchema() {
-//     let schema = this._isNumber ? z.number() : z.string();
-
-//     if (this._required) schema = schema.min(1, 'Required');
-//     if (this._isEmail) schema = z.string().email();
-//     if (this._min) schema = schema.min(this._min);
-//     if (this._max) schema = schema.max(this._max);
-
-//     return schema;
-//   }
-
-//   getConfig() {
-//     return {
-//       name: this.name,
-//       width: this._width || 'full',
-//       label: this._label || this.name,
-//       placeholder: this._placeholder,
-//       description: this._description,
-//       tooltip: this._tooltip,
-//       required: this._required || false,
-//       type: this._isNumber ? 'number' : this._isEmail ? 'email' : 'text',
-//       beforeContent: this._beforeContent,
-//       afterContent: this._afterContent,
-//     };
-//   }
-// }
+import { BaseField, CheckboxField, SelectField, TextField } from './fields';
 
 const form = (...items: (BaseField | Row)[]) => {
   const rows = items.map((item) => {
@@ -179,9 +85,9 @@ const row = (...fields: BaseField[]): Row => ({
 // Form Builder
 export const f = {
   // fields
-  // text: (name: string) => new FieldBuilder(name),
   text: (name: string) => new TextField(name),
   select: (name: string, options: SelectOption[]) => new SelectField(name, options),
+  checkbox: (name: string) => new CheckboxField(name),
 
   // methods
   fields: form,

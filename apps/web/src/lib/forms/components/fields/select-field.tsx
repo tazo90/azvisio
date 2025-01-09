@@ -1,5 +1,6 @@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { SelectField } from '../../fields';
+import { BaseFieldComponent } from './base-field';
 
 interface SelectFieldComponentProps {
   field: ReturnType<SelectField['getConfig']>;
@@ -7,25 +8,23 @@ interface SelectFieldComponentProps {
   value: string;
 }
 
-export function SelectFieldComponent({
-  defaultValue,
-  placeholder,
-  onChange,
-  options,
-  value,
-}: SelectFieldComponentProps) {
+export function SelectFieldComponent(props: SelectFieldComponentProps) {
+  const { defaultValue, placeholder, onChange, options, value } = props;
   return (
-    <Select onValueChange={onChange} value={value} defaultValue={defaultValue}>
-      <SelectTrigger>
-        <SelectValue placeholder={placeholder} />
-      </SelectTrigger>
-      <SelectContent>
-        {options.map((option) => (
-          <SelectItem key={option.value} value={option.value}>
-            {option.label}
-          </SelectItem>
-        ))}
-      </SelectContent>
-    </Select>
+    <>
+      <BaseFieldComponent {...props} />
+      <Select onValueChange={onChange} value={value} defaultValue={defaultValue}>
+        <SelectTrigger>
+          <SelectValue placeholder={placeholder} />
+        </SelectTrigger>
+        <SelectContent>
+          {options.map((option) => (
+            <SelectItem key={option.value} value={option.value}>
+              {option.label}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+    </>
   );
 }

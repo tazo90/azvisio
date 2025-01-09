@@ -64,3 +64,8 @@ export interface SubmitConfig {
 export interface Row {
   fields: BaseField[];
 }
+
+export interface CheckboxFieldConfig extends BaseFieldConfig {
+  type: 'checkbox';
+  defaultChecked?: boolean;
+}
