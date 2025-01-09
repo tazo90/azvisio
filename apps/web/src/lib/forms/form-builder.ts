@@ -138,7 +138,17 @@ class FieldBuilder {
   }
 }
 
-const form = (...rows: Row[]) => {
+const form = (...items: (Row | FieldBuilder)[]) => {
+  const rows = items.map((item) => {
+    if ('fields' in item) {
+      return item;
+    }
+
+    return {
+      fields: [item],
+    };
+  });
+
   const allFields = rows.flatMap((r) => r.fields);
 
   const schema = z.object(Object.fromEntries(allFields.map((field) => [field.name, field.getSchema()])));
