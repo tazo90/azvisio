@@ -16,7 +16,16 @@ const deleteConfirmationForm = f
 const demoForm = f
   .fields(
     f.row(f.text('first_name').label('First name').required()),
-    f.row(f.text('last_name').label('Last name').required())
+    f.row(f.text('last_name').label('Last name').required()),
+    f
+      .select('country', [
+        { label: 'United States', value: 'us' },
+        { label: 'United Kingdom', value: 'uk' },
+        { label: 'Poland', value: 'pl' },
+      ])
+      .label('Country')
+      .required()
+      .defaultValue('pl')
   )
   // .submit('Delete Account', 'destructive')
   .title('Demo form', 'left')

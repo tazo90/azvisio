@@ -11,6 +11,17 @@ import { useState } from 'react';
 import { Sheet, SheetContent } from '@/components/ui/sheet';
 import { SheetLayout } from '@/lib/forms/sheet';
 import { getSheetWidth } from '@/lib/forms/get-sheet-width';
+import { TextFieldComponent } from '@/lib/forms/components/fields';
+import { SelectFieldComponent } from '@/lib/forms/components/fields/select-field';
+
+const fieldComponents = {
+  text: TextFieldComponent,
+  select: SelectFieldComponent,
+  // checkbox: CheckboxFieldComponent,
+  // date: DateFieldComponent,
+  // radio: RadioFieldComponent,
+  // switch: SwitchFieldComponent
+};
 
 interface FormProps {
   form: ReturnType<typeof form>;
@@ -36,8 +47,56 @@ export const Form = ({ form, asSheet = false, onSubmit, defaultValues = {} }: Fo
     }
   };
 
+  // const renderField = (field) => {
+  //   const config = field.getConfig();
+
+  //   return (
+  //     <FormField
+  //       key={config.name}
+  //       control={methods.control}
+  //       name={config.name}
+  //       render={({ field: formField }) => (
+  //         <FormItem
+  //           className={clsx({
+  //             'col-span-12': config.width === 'full',
+  //             'col-span-6': config.width === '1/2',
+  //             'col-span-4': config.width === '1/3',
+  //             'col-span-3': config.width === '1/4',
+  //           })}
+  //         >
+  //           <div className="flex items-center gap-2">
+  //             <FormLabel>{config.label}</FormLabel>
+  //             {config.beforeContent}
+  //             {config.required && <span className="text-red-500">*</span>}
+  //             {config.tooltip && (
+  //               <TooltipProvider delayDuration={100}>
+  //                 <Tooltip>
+  //                   <TooltipTrigger>
+  //                     <HelpCircle className="h-4 w-4 text-gray-500" />
+  //                   </TooltipTrigger>
+  //                   <TooltipContent>{config.tooltip}</TooltipContent>
+  //                 </Tooltip>
+  //               </TooltipProvider>
+  //             )}
+  //           </div>
+
+  //           {config.description && <p className="text-sm text-gray-500">{config.description}</p>}
+
+  //           <FormControl>
+  //             <Input {...formField} type={config.type} placeholder={config.placeholder} />
+  //           </FormControl>
+
+  //           {config.afterContent}
+
+  //           <FormMessage />
+  //         </FormItem>
+  //       )}
+  //     />
+  //   );
+  // };
   const renderField = (field) => {
     const config = field.getConfig();
+    const FieldComponent = fieldComponents[config.type];
 
     return (
       <FormField
@@ -53,6 +112,7 @@ export const Form = ({ form, asSheet = false, onSubmit, defaultValues = {} }: Fo
               'col-span-3': config.width === '1/4',
             })}
           >
+            {/* Label */}
             <div className="flex items-center gap-2">
               <FormLabel>{config.label}</FormLabel>
               {config.beforeContent}
@@ -68,11 +128,9 @@ export const Form = ({ form, asSheet = false, onSubmit, defaultValues = {} }: Fo
                 </TooltipProvider>
               )}
             </div>
-
             {config.description && <p className="text-sm text-gray-500">{config.description}</p>}
-
             <FormControl>
-              <Input {...formField} type={config.type} placeholder={config.placeholder} />
+              <FieldComponent {...formField} {...config} />
             </FormControl>
 
             {config.afterContent}
@@ -107,8 +165,6 @@ export const Form = ({ form, asSheet = false, onSubmit, defaultValues = {} }: Fo
       </BaseForm>
     );
   };
-
-  console.log('FORM', asSheet);
 
   return (
     <>

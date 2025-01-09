@@ -8,14 +8,23 @@ import { useSheetStore } from '@/stores/use-sheet-store';
 
 const demoForm = f
   .fields(
-    f.row(f.text('first_name').label('First name').required()),
-    f.row(f.text('last_name').label('Last name').required())
+    f.text('abc').label('Abc').required(),
+    f.text('cdf').label('CDE'),
+    f
+      .select('country', [
+        { label: 'United States', value: 'us' },
+        { label: 'United Kingdom', value: 'uk' },
+        { label: 'Poland', value: 'pl' },
+      ])
+      .label('Country')
+      .required()
+      .defaultValue('us')
   )
   .title('Demo form', 'left')
   .description('Demo form desc');
 
 const demoForm2 = f
-  .fields(f.row(f.text('first_name').label('First name').required()))
+  .fields(f.row(f.text('first_name').label('First name').required(), f.text('last_name').label('Last name')))
   .title('Demo form', 'left')
   .description('Demo form desc');
 

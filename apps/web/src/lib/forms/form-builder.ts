@@ -1,144 +1,103 @@
 import { z } from 'zod';
 import { sheet } from './sheet-builder';
+import { ActionConfig, Align, FormConfig, Row, SelectOption, SubmitConfig, Width } from './types';
+import { BaseField, SelectField, TextField } from './fields';
 
-// Types
-type Width = 'full' | '1/2' | '1/3' | '1/4';
-type Align = 'center' | 'left' | 'right';
+// export class FieldBuilder {
+//   private _width: Width = 'full';
+//   private _label = '';
+//   private _placeholder = '';
+//   private _description = '';
+//   private _tooltip = '';
+//   private _required = false;
+//   private _isNumber = false;
+//   private _isEmail = false;
+//   private _min?: number;
+//   private _max?: number;
+//   private _beforeContent?: React.ReactNode;
+//   private _afterContent?: React.ReactNode;
 
-export interface FormConfig {
-  rows: Row[];
-  _title?: {
-    text: string;
-    align: Align;
-  };
-  _description?: string;
-  _submit: SubmitConfig;
-  _header?: React.ReactNode | null;
-  _footer?: React.ReactNode | null;
-  _width?: string;
-  _confirmDialog?: {
-    title: string;
-    description: string;
-    confirmLabel: string;
-    cancelLabel?: string;
-  };
-  _action?: {
-    form: FormConfig;
-  };
-}
+//   constructor(public name: string) {}
 
-interface ActionConfig {
-  form: FormConfig;
-  // type?: 'sheet' | 'modal' | 'popover';
-  // width?: string;
-}
+//   before(content: React.ReactNode) {
+//     this._beforeContent = content;
+//     return this;
+//   }
 
-interface SubmitConfig {
-  label: string;
-  variant?: 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link';
-  className?: string;
-}
+//   after(content: React.ReactNode) {
+//     this._afterContent = content;
+//     return this;
+//   }
 
-interface Row {
-  fields: FieldBuilder[];
-}
+//   width(w: Width) {
+//     this._width = w;
+//     return this;
+//   }
+//   label(l: string) {
+//     this._label = l;
+//     return this;
+//   }
+//   placeholder(p: string) {
+//     this._placeholder = p;
+//     return this;
+//   }
+//   description(d: string) {
+//     this._description = d;
+//     return this;
+//   }
+//   tooltip(t: string) {
+//     this._tooltip = t;
+//     return this;
+//   }
+//   required() {
+//     this._required = true;
+//     return this;
+//   }
+//   number() {
+//     this._isNumber = true;
+//     return this;
+//   }
+//   email() {
+//     this._isEmail = true;
+//     return this;
+//   }
+//   min(m: number) {
+//     this._min = m;
+//     return this;
+//   }
+//   max(m: number) {
+//     this._max = m;
+//     return this;
+//   }
 
-// Field Builder
-class FieldBuilder {
-  private _width: Width = 'full';
-  private _label = '';
-  private _placeholder = '';
-  private _description = '';
-  private _tooltip = '';
-  private _required = false;
-  private _isNumber = false;
-  private _isEmail = false;
-  private _min?: number;
-  private _max?: number;
-  private _beforeContent?: React.ReactNode;
-  private _afterContent?: React.ReactNode;
+//   getSchema() {
+//     let schema = this._isNumber ? z.number() : z.string();
 
-  constructor(public name: string) {}
+//     if (this._required) schema = schema.min(1, 'Required');
+//     if (this._isEmail) schema = z.string().email();
+//     if (this._min) schema = schema.min(this._min);
+//     if (this._max) schema = schema.max(this._max);
 
-  before(content: React.ReactNode) {
-    this._beforeContent = content;
-    return this;
-  }
+//     return schema;
+//   }
 
-  after(content: React.ReactNode) {
-    this._afterContent = content;
-    return this;
-  }
+//   getConfig() {
+//     return {
+//       name: this.name,
+//       width: this._width || 'full',
+//       label: this._label || this.name,
+//       placeholder: this._placeholder,
+//       description: this._description,
+//       tooltip: this._tooltip,
+//       required: this._required || false,
+//       type: this._isNumber ? 'number' : this._isEmail ? 'email' : 'text',
+//       beforeContent: this._beforeContent,
+//       afterContent: this._afterContent,
+//     };
+//   }
+// }
 
-  width(w: Width) {
-    this._width = w;
-    return this;
-  }
-  label(l: string) {
-    this._label = l;
-    return this;
-  }
-  placeholder(p: string) {
-    this._placeholder = p;
-    return this;
-  }
-  description(d: string) {
-    this._description = d;
-    return this;
-  }
-  tooltip(t: string) {
-    this._tooltip = t;
-    return this;
-  }
-  required() {
-    this._required = true;
-    return this;
-  }
-  number() {
-    this._isNumber = true;
-    return this;
-  }
-  email() {
-    this._isEmail = true;
-    return this;
-  }
-  min(m: number) {
-    this._min = m;
-    return this;
-  }
-  max(m: number) {
-    this._max = m;
-    return this;
-  }
-
-  getSchema() {
-    let schema = this._isNumber ? z.number() : z.string();
-
-    if (this._required) schema = schema.min(1, 'Required');
-    if (this._isEmail) schema = z.string().email();
-    if (this._min) schema = schema.min(this._min);
-    if (this._max) schema = schema.max(this._max);
-
-    return schema;
-  }
-
-  getConfig() {
-    return {
-      name: this.name,
-      width: this._width || 'full',
-      label: this._label || this.name,
-      placeholder: this._placeholder,
-      description: this._description,
-      tooltip: this._tooltip,
-      required: this._required || false,
-      type: this._isNumber ? 'number' : this._isEmail ? 'email' : 'text',
-      beforeContent: this._beforeContent,
-      afterContent: this._afterContent,
-    };
-  }
-}
-
-const form = (...items: (Row | FieldBuilder)[]) => {
+const form = (...items: (BaseField | Row)[]) => {
   const rows = items.map((item) => {
     if ('fields' in item) {
       return item;
@@ -213,14 +172,18 @@ const form = (...items: (Row | FieldBuilder)[]) => {
   };
 };
 
-const row = (...fields: FieldBuilder[]): Row => ({
+const row = (...fields: BaseField[]): Row => ({
   fields,
 });
 
 // Form Builder
 export const f = {
-  text: (name: string) => new FieldBuilder(name),
-  // core methods
+  // fields
+  // text: (name: string) => new FieldBuilder(name),
+  text: (name: string) => new TextField(name),
+  select: (name: string, options: SelectOption[]) => new SelectField(name, options),
+
+  // methods
   fields: form,
   row,
   //

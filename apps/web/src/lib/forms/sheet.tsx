@@ -1,9 +1,9 @@
 import { SheetClose, SheetDescription, SheetFooter, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { TabsLayout } from './tabs';
-import { FormConfig } from './form-builder';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/form';
 import { TabsBuilder } from './tabs-builder';
+import { FormConfig } from './types';
 
 interface SheetLayoutProps {
   config: any; //SheetConfig;
