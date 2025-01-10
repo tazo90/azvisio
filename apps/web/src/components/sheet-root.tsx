@@ -17,7 +17,7 @@ export function SheetRoot() {
       // onOpenChange={(open) => !open && closeSheet(activeSheet.id)}
     >
       <SheetContent
-        className={cn('h-full p-0', getSheetWidth(activeSheet.config._width))}
+        className={cn('h-full overflow-hidden p-0', getSheetWidth(activeSheet.config._width))}
         onInteractOutside={(e) => e.preventDefault()}
       >
         <SheetLayout

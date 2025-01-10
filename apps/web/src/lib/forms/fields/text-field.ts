@@ -41,8 +41,8 @@ export class TextField extends BaseField {
   getConfig() {
     return {
       ...this.config,
-      isEmail: this._isEmail,
-      isNumber: this._isNumber,
+      // isEmail: this._isEmail,
+      // isNumber: this._isNumber,
     };
   }
 }

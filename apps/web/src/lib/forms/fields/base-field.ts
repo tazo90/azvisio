@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { BaseFieldConfig, Width } from '../types';
+import { Width } from '../types';
 import React from 'react';
 
 export type FieldType = 'text' | 'select' | 'button' | 'checkbox' | 'date' | 'radio' | 'switch' | 'textarea';

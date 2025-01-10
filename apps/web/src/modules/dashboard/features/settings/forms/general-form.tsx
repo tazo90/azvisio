@@ -9,7 +9,7 @@ const settingsGeneralForm = f
   .description('Update your general account settings')
   .submit('Save', 'default', 'w-1/4');
 
-export function SettingsGeneralForm({ className, onSubmit, ...props }: FormProps) {
+export function SettingsGeneralForm({ className, onSubmit, isLoading, ...props }: FormProps) {
   return (
     <div className={cn('flex flex-col gap-6', className)} {...props}>
       <Form form={settingsGeneralForm} onSubmit={onSubmit} />

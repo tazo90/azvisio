@@ -13,20 +13,20 @@ interface SheetLayoutProps {
 export const SheetLayout = ({ config, onSubmit, onClose }: SheetLayoutProps) => {
   return (
     <div className="flex flex-col h-full">
-      <div className="flex flex-col gap-4 h-full px-4 py-2">
+      <div className="px-4 py-2">
         <SheetHeader className="py-0">
           <SheetClose onClick={onClose} />
           <SheetTitle>{config._title}</SheetTitle>
           {config._description && <SheetDescription className="text-sm">{config._description}</SheetDescription>}
         </SheetHeader>
+      </div>
 
-        <div className="py-3">
-          {config._content instanceof TabsBuilder ? (
-            <TabsLayout asSheet config={config._content} onSubmit={onSubmit} />
-          ) : (
-            <Form asSheet form={config._content as FormConfig} onSubmit={onSubmit} />
-          )}
-        </div>
+      <div className="grow h-full px-4" style={{ overflowY: 'auto', paddingTop: '10px', paddingBottom: '40px' }}>
+        {config._content instanceof TabsBuilder ? (
+          <TabsLayout asSheet config={config._content} onSubmit={onSubmit} />
+        ) : (
+          <Form asSheet form={config._content as FormConfig} onSubmit={onSubmit} />
+        )}
       </div>
 
       {config.footer && (

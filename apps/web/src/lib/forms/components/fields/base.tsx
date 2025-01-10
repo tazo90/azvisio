@@ -8,7 +8,7 @@ export function BaseFieldComponent({ beforeContent, required, label, tooltip, de
       <div className="flex items-center gap-2">
         <FormLabel>{label}</FormLabel>
         {beforeContent}
-        {required && <span className="text-red-500">*</span>}
+        {required && <span className="text-destructive">*</span>}
         {tooltip && (
           <TooltipProvider delayDuration={100}>
             <Tooltip>
