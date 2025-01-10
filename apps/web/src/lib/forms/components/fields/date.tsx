@@ -23,7 +23,7 @@ export function DateFieldComponent(props: DateFieldComponentProps) {
         <PopoverTrigger asChild>
           <Button
             variant="outline"
-            className={cn('w-full justify-start text-left font-normal', !value && 'text-muted-foreground')}
+            className={cn('w-full h-6 rounded-none justify-start text-left text-sm', !value && 'text-muted-foreground')}
           >
             <CalendarIcon className="mr-2 h-4 w-4" />
             {value ? format(value, 'PPP') : <span>Pick a date</span>}

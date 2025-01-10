@@ -20,7 +20,6 @@ export function BaseFieldComponent({ beforeContent, required, label, tooltip, de
           </TooltipProvider>
         )}
       </div>
-      {description && <p className="text-[0.8rem] text-muted-foreground">{description}</p>}
     </>
   );
 }

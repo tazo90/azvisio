@@ -20,7 +20,7 @@ export function TextareaFieldComponent(props: TextareaFieldComponentProps) {
         placeholder={placeholder}
         rows={rows}
         maxLength={maxLength}
-        className={cn(!resize && 'resize-none')}
+        className={cn('rounded-none', !resize && 'resize-none')}
       />
       {maxLength && (
         <div className="text-xs text-muted-foreground text-right">
