@@ -61,7 +61,9 @@ const demoForm = f
         new Date('2024-01-01'), // holidays
         new Date('2024-12-25'),
       ])
-      .defaultValue(new Date())
+      .defaultValue(new Date()),
+    f.textarea('bio').label('Biography').placeholder('Tell us about yourself').rows(4).maxLength(500).required(),
+    f.textarea('notes').label('Additional notes').placeholder('Any additional information').resize(false).rows(2)
   )
 
   .title('Demo form', 'left')

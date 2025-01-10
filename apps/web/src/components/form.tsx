@@ -12,6 +12,7 @@ import { DateFieldComponent, SwitchFieldComponent, TextFieldComponent } from '@/
 import { SelectFieldComponent } from '@/lib/forms/components/fields/select';
 import { CheckboxFieldComponent } from '@/lib/forms/components/fields/checkbox';
 import { RadioFieldComponent } from '@/lib/forms/components/fields/radio';
+import { TextareaFieldComponent } from '@/lib/forms/components/fields/textarea';
 
 const fieldComponents = {
   text: TextFieldComponent,
@@ -20,6 +21,7 @@ const fieldComponents = {
   date: DateFieldComponent,
   radio: RadioFieldComponent,
   switch: SwitchFieldComponent,
+  textarea: TextareaFieldComponent,
 };
 
 interface FormProps {

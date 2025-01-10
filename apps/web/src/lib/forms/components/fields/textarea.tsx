@@ -1,0 +1,32 @@
+import { Textarea } from '@/components/ui/textarea';
+import { TextareaField } from '../../fields';
+import { cn } from '@/lib/utils';
+import { BaseFieldComponent } from './base';
+
+interface TextareaFieldComponentProps {
+  field: ReturnType<TextareaField['getConfig']>;
+  onChange: (value: string) => void;
+  value: string;
+}
+
+export function TextareaFieldComponent(props: TextareaFieldComponentProps) {
+  const { placeholder, rows, resize, maxLength, onChange, value } = props;
+  return (
+    <div className="space-y-2">
+      <BaseFieldComponent {...props} />
+      <Textarea
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        placeholder={placeholder}
+        rows={rows}
+        maxLength={maxLength}
+        className={cn(!resize && 'resize-none')}
+      />
+      {maxLength && (
+        <div className="text-xs text-muted-foreground text-right">
+          {value?.length}/{maxLength}
+        </div>
+      )}
+    </div>
+  );
+}

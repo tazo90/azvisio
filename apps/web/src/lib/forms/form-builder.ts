@@ -1,7 +1,18 @@
 import { z } from 'zod';
 import { sheet } from './sheet-builder';
-import { ActionConfig, Align, FormConfig, RadioOption, Row, SelectOption, SubmitConfig, Width } from './types';
-import { BaseField, CheckboxField, DateField, RadioField, SelectField, SwitchField, TextField } from './fields';
+import { ActionConfig, Align, FormConfig, Row, SubmitConfig, Width } from './types';
+import {
+  BaseField,
+  CheckboxField,
+  DateField,
+  RadioField,
+  RadioOption,
+  SelectField,
+  SelectOption,
+  SwitchField,
+  TextareaField,
+  TextField,
+} from './fields';
 
 const form = (...items: (BaseField | Row)[]) => {
   const rows = items.map((item) => {
@@ -91,6 +102,7 @@ export const f = {
   radio: (name: string, options: RadioOption[]) => new RadioField(name, options),
   switch: (name: string) => new SwitchField(name),
   date: (name: string) => new DateField(name),
+  textarea: (name: string) => new TextareaField(name),
 
   // methods
   fields: form,

@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { BaseFieldConfig, Width } from '../types';
 import React from 'react';
 
-export type FieldType = 'text' | 'select' | 'button' | 'checkbox' | 'date' | 'radio' | 'switch';
+export type FieldType = 'text' | 'select' | 'button' | 'checkbox' | 'date' | 'radio' | 'switch' | 'textarea';
 export interface BaseFieldConfig {
   name: string;
   type: FieldType;

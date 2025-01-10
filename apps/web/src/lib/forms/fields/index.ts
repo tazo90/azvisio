@@ -5,3 +5,4 @@ export * from './radio-field';
 export * from './select-field';
 export * from './switch-field';
 export * from './text-field';
+export * from './textarea-field';
