@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { sheet } from './sheet-builder';
-import { ActionConfig, Align, FormConfig, Row, SubmitConfig, Width } from './types';
+import { ActionConfig, Align, FormConfig, FormSection, Row, SubmitConfig, Width } from './types';
 import {
   BaseField,
   CheckboxField,
@@ -14,23 +14,49 @@ import {
   TextField,
 } from './fields';
 
-const form = (...items: (BaseField | Row)[]) => {
-  const rows = items.map((item) => {
-    if ('fields' in item) {
-      return item;
-    }
+const section = (title: string, ...args: (string | BaseField | Row)[]) => {
+  // Check if first argument is string (description)
+  const hasDescription = typeof args[0] === 'string';
+  const description = hasDescription ? args[0] : undefined;
+  const fields = hasDescription ? args.slice(1) : args;
 
-    return {
-      fields: [item],
-    };
+  const rows = fields.map((item) => {
+    if ('fields' in item) return item;
+    return { fields: [item] };
   });
 
-  const allFields = rows.flatMap((r) => r.fields);
+  return {
+    type: 'section' as const,
+    title,
+    description,
+    fields: rows,
+  };
+};
+const form = (...items: (BaseField | Row | FormSection)[]) => {
+  const extractFields = (items: (BaseField | Row | FormSection)[]): BaseField[] => {
+    return items.flatMap((item) => {
+      if ('type' in item && item.type === 'section') {
+        // If section, then recurrently extract fields from rows
+        return item.fields.flatMap((row) => row.fields);
+      }
+      if ('fields' in item) {
+        // If row then return fields
+        return item.fields;
+      }
+      // Single field
+      return [item];
+    });
+  };
+
+  const allFields = extractFields(items);
 
   const schema = z.object(Object.fromEntries(allFields.map((field) => [field.name, field.getSchema()])));
 
   const config: FormConfig = {
-    rows: rows || [],
+    rows: items.map((item) => {
+      if ('type' in item || 'fields' in item) return item;
+      return { fields: [item] };
+    }),
     _title: {
       text: '',
       align: 'center',
@@ -107,6 +133,7 @@ export const f = {
   // methods
   fields: form,
   row,
+  section,
   //
   sheet,
 };

@@ -84,24 +84,41 @@ export const Form = ({ form, asSheet = false, onSubmit, defaultValues = {} }: Fo
   const renderForm = () => {
     return (
       <BaseForm {...methods}>
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="grid gap-6">
-            {form._header && form._header}
-            {/* Check if rows exists */}
-            {form.rows?.map((row, index) => (
+        <form onSubmit={handleSubmit} className="space-y-8">
+          <div className="mb-4">{form._header && form._header}</div>
+
+          {form.rows.map((item, index) => {
+            if ('type' in item && item.type === 'section') {
+              return (
+                <div key={index} className="space-y-4">
+                  <div className="pb-2 border-b">
+                    <h3 className="font-medium">{item.title}</h3>
+                    {item.description && <p className="text-sm text-muted-foreground mt-1">{item.description}</p>}
+                  </div>
+                  <div className="space-y-4">
+                    {item.fields.map((row, rowIndex) => (
+                      <div key={rowIndex} className="grid grid-cols-12 gap-4">
+                        {row.fields.map(renderField)}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              );
+            }
+
+            return (
               <div key={index} className="grid grid-cols-12 gap-4">
-                {row.fields.map(renderField)}
+                {item.fields.map(renderField)}
               </div>
-            ))}
-            {/* If form is single field */}
-            {form.fields?.map((field) => renderField(field))}
-          </div>
-          {/* Hide form submit button when form is inside sheet */}
+            );
+          })}
+
           {!asSheet && (
             <Button type="submit" variant={form._submit.variant} className={form._submit.className}>
               {form._submit.label}
             </Button>
           )}
+
           {form._footer && <div className="mt-4">{form._footer}</div>}
         </form>
       </BaseForm>

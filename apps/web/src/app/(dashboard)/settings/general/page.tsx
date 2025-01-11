@@ -6,7 +6,7 @@ import { t } from '@/lib/forms/tabs-builder';
 import { SettingsDeleteAccountForm } from '@/modules/dashboard/features/settings/forms/delete-account-form';
 import { SettingsGeneralForm } from '@/modules/dashboard/features/settings/forms/general-form';
 import { useSheetStore } from '@/stores/use-sheet-store';
-import { LockIcon, UserIcon } from 'lucide-react';
+import { BellIcon, LockIcon, UserIcon } from 'lucide-react';
 
 const demoForm = f
   .fields(
@@ -77,6 +77,35 @@ const demoForm2 = f
   .title('Demo form', 'left')
   .description('Demo form desc');
 
+const demoForm3 = f
+  .fields(
+    f.section(
+      'Personal Information',
+      'Enter your personal details',
+      f.text('first_name').label('First name').required(),
+      f.text('last_name').label('Last name').required()
+    ),
+    f.section(
+      'Contact Information',
+      'How can we reach you?',
+      f.text('email').label('Email').email().required(),
+      f.text('phone').label('Phone')
+    ),
+    f.section(
+      'Preferences',
+      // 'This is description',
+      f.switch('notifications').label('Enable notifications'),
+      f
+        .select('theme', [
+          { label: 'Light', value: 'light' },
+          { label: 'Dark', value: 'dark' },
+        ])
+        .label('Theme')
+    )
+  )
+  .title('Demo form', 'left')
+  .description('Demo form desc');
+
 const testSheet = f
   .sheet({ width: 'md' })
   .title('Test Settings')
@@ -104,11 +133,11 @@ const userSheet = f
         description: 'Update your security settings',
         icon: <LockIcon className="w-4 h-4" />,
       })
-    // .tab('Notifications', notificationsForm, {
-    //   description: 'Configure notification preferences',
-    //   icon: <BellIcon className="w-4 h-4" />,
-    //   disabled: true, // tab będzie wyłączony
-    // })
+      .tab('Notifications', demoForm3, {
+        description: 'Configure notification preferences',
+        icon: <BellIcon className="w-4 h-4" />,
+        // disabled: true, //
+      })
   )
   .footer({
     submitLabel: 'Save',

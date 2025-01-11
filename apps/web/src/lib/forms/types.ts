@@ -3,8 +3,15 @@ import { BaseField } from './fields';
 export type Width = 'full' | '1/2' | '1/3' | '1/4';
 export type Align = 'center' | 'left' | 'right';
 
+export interface FormSection {
+  type: 'section';
+  title: string;
+  description?: string;
+  fields: Row[]; // możemy mieć wiele rows w sekcji
+}
+
 export interface FormConfig {
-  rows: Row[];
+  rows: Row[] | FormSection[];
   _title?: {
     text: string;
     align: Align;
