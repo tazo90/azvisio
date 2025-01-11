@@ -16,11 +16,11 @@ const SheetClose = ({ className, onClick }) => {
     <SheetPrimitive.Close
       onClick={onClick}
       className={cn(
-        'absolute right-6 top-5 rounded-sm opacity-50 ring-offset-background transition-opacity hover:opacity-70 focus:outline-none focus:ring-0 disabled:pointer-events-none data-[state=open]:bg-secondary',
+        'absolute right-6 top-5 ring-offset-background transition-opacity focus:outline-none focus:ring-0 disabled:pointer-events-none data-[state=open]:bg-secondary hover:bg-red-700',
         className
       )}
     >
-      <X className="h-5 w-5" />
+      <X className="h-6 w-5 text-gray-500 hover:text-white" />
       <span className="sr-only">Close</span>
     </SheetPrimitive.Close>
   );
