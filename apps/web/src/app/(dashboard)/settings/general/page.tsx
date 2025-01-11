@@ -6,7 +6,7 @@ import { t } from '@/lib/forms/tabs-builder';
 import { SettingsDeleteAccountForm } from '@/modules/dashboard/features/settings/forms/delete-account-form';
 import { SettingsGeneralForm } from '@/modules/dashboard/features/settings/forms/general-form';
 import { useSheetStore } from '@/stores/use-sheet-store';
-import { BellIcon, LockIcon, UserIcon } from 'lucide-react';
+import { BellIcon, LockIcon, MailIcon, UserIcon } from 'lucide-react';
 
 const demoForm = f
   .fields(
@@ -121,8 +121,25 @@ const verticalForm = f
 
 const horizontalForm = f
   .fields(
-    f.text('name').label('Name').required().tooltip('This is a tooltip'),
-    f.text('email').label('Email'),
+    f
+      .text('name')
+      .label('Name')
+      .required()
+      .tooltip('This is a tooltip')
+      .description(
+        <div className="flex items-center gap-2 text-xs text-muted-foreground">
+          <MailIcon className="h-3 w-3" />
+          <span>We'll never share your email</span>
+        </div>
+      ),
+    f
+      .text('email')
+      .label('Email')
+      .description(
+        <a href="#" className="text-[0.8rem] text-blue-500">
+          Create new
+        </a>
+      ),
     f.section(
       'Preferences',
       // 'This is description',

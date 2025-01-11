@@ -1,11 +1,14 @@
 import { cn } from '../utils';
+import { FormLayoutType } from './types';
+
+interface LayoutConfig {
+  type: FormLayoutType;
+  labelWidth?: string;
+  controlWidth?: string;
+}
 
 interface GridLayoutProps {
-  layout?: {
-    type: 'vertical' | 'horizontal';
-    labelWidth?: string;
-    controlWidth?: string;
-  };
+  layout?: LayoutConfig;
   label: React.ReactNode;
   control: React.ReactNode;
 }

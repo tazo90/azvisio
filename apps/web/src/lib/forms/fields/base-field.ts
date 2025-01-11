@@ -9,7 +9,7 @@ export interface BaseFieldConfig {
   width?: Width;
   label?: string;
   placeholder?: string;
-  description?: string;
+  description?: string | React.ReactNode;
   tooltip?: string;
   required?: boolean;
 }

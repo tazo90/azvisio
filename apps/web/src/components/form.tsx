@@ -91,11 +91,15 @@ export const Form = ({ form, asSheet = false, onSubmit, defaultValues = {} }: Fo
                 </div>
               }
               control={
-                <div className="space-y-1">
+                <div className="space-y-0.5">
                   <FormControl>
                     <FieldComponent {...formField} {...config} />
                   </FormControl>
-                  {config.description && <p className="text-xs text-muted-foreground">{config.description}</p>}
+                  {config.description && typeof config.description === 'string' ? (
+                    <p className="text-xs text-muted-foreground">{config.description}</p>
+                  ) : (
+                    config.description
+                  )}
                   {config.afterContent}
                   <FormMessage />
                 </div>
@@ -110,7 +114,7 @@ export const Form = ({ form, asSheet = false, onSubmit, defaultValues = {} }: Fo
   const renderForm = () => {
     return (
       <BaseForm {...methods}>
-        <form onSubmit={handleSubmit} className="space-y-8">
+        <form onSubmit={handleSubmit} className="space-y-4">
           <div className="mb-4">{form._header && form._header}</div>
 
           {form.rows.map((item, index) => {
