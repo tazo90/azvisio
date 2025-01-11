@@ -73,5 +73,6 @@ const config: Config = {
     },
   },
   plugins: [require('tailwindcss-animate')],
+  safelist: ['w-1/4', 'w-1/3', 'w-1/2', 'w-3/4', 'w-2/3', 'w-1/2', 'max-w-xl', 'max-w-2xl', 'max-w-3xl', 'max-w-4xl'],
 };
 export default config;

@@ -115,6 +115,28 @@ const testSheet = f
     submitLabel: 'Save',
   });
 
+const verticalForm = f
+  .fields(f.text('name').label('Name').required(), f.text('email').label('Email'))
+  .layout('vertical');
+
+const horizontalForm = f
+  .fields(
+    f.text('name').label('Name').required().tooltip('This is a tooltip'),
+    f.text('email').label('Email'),
+    f.section(
+      'Preferences',
+      // 'This is description',
+      f.switch('notifications').label('Enable notifications'),
+      f
+        .select('theme', [
+          { label: 'Light', value: 'light' },
+          { label: 'Dark', value: 'dark' },
+        ])
+        .label('Theme')
+    )
+  )
+  .layout('horizontal', '1/3', '2/3');
+
 const userSheet = f
   .sheet({ width: 'full' })
   .title('User profile')
@@ -137,6 +159,14 @@ const userSheet = f
         description: 'Configure notification preferences',
         icon: <BellIcon className="w-4 h-4" />,
         // disabled: true, //
+      })
+      .tab('Vertical Form', verticalForm, {
+        description: 'Vertical form',
+        icon: <BellIcon className="w-4 h-4" />,
+      })
+      .tab('Horizontal Form', horizontalForm, {
+        description: 'Horizontal form',
+        icon: <BellIcon className="w-4 h-4" />,
       })
   )
   .footer({

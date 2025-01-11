@@ -13,6 +13,9 @@ import { SelectFieldComponent } from '@/lib/forms/components/fields/select';
 import { CheckboxFieldComponent } from '@/lib/forms/components/fields/checkbox';
 import { RadioFieldComponent } from '@/lib/forms/components/fields/radio';
 import { TextareaFieldComponent } from '@/lib/forms/components/fields/textarea';
+import { GridLayout } from '@/lib/forms/grid-layout';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { InfoIcon } from 'lucide-react';
 
 const fieldComponents = {
   text: TextFieldComponent,
@@ -66,15 +69,38 @@ export const Form = ({ form, asSheet = false, onSubmit, defaultValues = {} }: Fo
               'col-span-3': config.width === '1/4',
             })}
           >
-            <FormControl>
-              <FieldComponent {...formField} {...config} />
-            </FormControl>
-
-            {config.description && <p className="text-xs text-muted-foreground">{config.description}</p>}
-
-            {config.afterContent}
-
-            <FormMessage />
+            <GridLayout
+              layout={form._layout}
+              label={
+                <div className="flex items-center gap-1">
+                  <FormLabel className="text-xs">{config.label}</FormLabel>
+                  {config.beforeContent}
+                  {config.required && <span className="font-semibold text-destructive">*</span>}
+                  {config.tooltip && (
+                    <div className="pl-2">
+                      <TooltipProvider delayDuration={100}>
+                        <Tooltip>
+                          <TooltipTrigger>
+                            <InfoIcon className="text-gray-500" style={{ width: '12px', height: '14px' }} />
+                          </TooltipTrigger>
+                          <TooltipContent className="py-0.5 px-2">{config.tooltip}</TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    </div>
+                  )}
+                </div>
+              }
+              control={
+                <div className="space-y-1">
+                  <FormControl>
+                    <FieldComponent {...formField} {...config} />
+                  </FormControl>
+                  {config.description && <p className="text-xs text-muted-foreground">{config.description}</p>}
+                  {config.afterContent}
+                  <FormMessage />
+                </div>
+              }
+            />
           </FormItem>
         )}
       />
@@ -97,7 +123,7 @@ export const Form = ({ form, asSheet = false, onSubmit, defaultValues = {} }: Fo
                   </div>
                   <div className="space-y-4">
                     {item.fields.map((row, rowIndex) => (
-                      <div key={rowIndex} className="grid grid-cols-12 gap-4">
+                      <div key={rowIndex} className="grid grid-cols-12 gap-4 max-w-2xl">
                         {row.fields.map(renderField)}
                       </div>
                     ))}
@@ -107,7 +133,7 @@ export const Form = ({ form, asSheet = false, onSubmit, defaultValues = {} }: Fo
             }
 
             return (
-              <div key={index} className="grid grid-cols-12 gap-4">
+              <div key={index} className="grid grid-cols-12 gap-4 max-w-2xl">
                 {item.fields.map(renderField)}
               </div>
             );

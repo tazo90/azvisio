@@ -2,7 +2,6 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
 import { RadioField } from '../../fields';
-import { BaseFieldComponent } from './base';
 
 interface RadioFieldComponentProps {
   field: ReturnType<RadioField['getConfig']>;
@@ -15,7 +14,6 @@ export function RadioFieldComponent(props: RadioFieldComponentProps) {
 
   return (
     <>
-      <BaseFieldComponent {...props} />
       <RadioGroup
         defaultValue={defaultValue}
         value={value}

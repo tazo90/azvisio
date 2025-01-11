@@ -3,6 +3,8 @@ import { BaseField } from './fields';
 export type Width = 'full' | '1/2' | '1/3' | '1/4';
 export type Align = 'center' | 'left' | 'right';
 
+export type FormLayout = 'vertical' | 'horizontal';
+
 export interface FormSection {
   type: 'section';
   title: string;
@@ -29,6 +31,11 @@ export interface FormConfig {
   };
   _action?: {
     form: FormConfig;
+  };
+  _layout?: {
+    type: FormLayout;
+    labelWidth?: string; // e.g '1/3', '1/4'
+    controlWidth?: string;
   };
 }
 

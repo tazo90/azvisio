@@ -5,7 +5,6 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { DateField } from '../../fields';
-import { BaseFieldComponent } from './base';
 
 interface DateFieldComponentProps {
   field: ReturnType<DateField['getConfig']>;
@@ -18,7 +17,6 @@ export function DateFieldComponent(props: DateFieldComponentProps) {
 
   return (
     <>
-      <BaseFieldComponent {...props} />
       <Popover>
         <PopoverTrigger asChild>
           <Button

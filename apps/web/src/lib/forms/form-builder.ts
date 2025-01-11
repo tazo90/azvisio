@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { sheet } from './sheet-builder';
-import { ActionConfig, Align, FormConfig, FormSection, Row, SubmitConfig, Width } from './types';
+import { ActionConfig, Align, FormConfig, FormLayout, FormSection, Row, SubmitConfig, Width } from './types';
 import {
   BaseField,
   CheckboxField,
@@ -110,6 +110,10 @@ const form = (...items: (BaseField | Row | FormSection)[]) => {
     },
     action(config: ActionConfig) {
       this._action = config;
+      return this;
+    },
+    layout(type: FormLayout, labelWidth?: string, controlWidth?: string) {
+      this._layout = { type, labelWidth, controlWidth };
       return this;
     },
   };

@@ -21,7 +21,7 @@ export const SheetLayout = ({ config, onSubmit, onClose }: SheetLayoutProps) => 
         </SheetHeader>
       </div>
 
-      <div className="grow h-full px-4" style={{ overflowY: 'auto', paddingTop: '10px', paddingBottom: '40px' }}>
+      <div className="grow h-full px-4" style={{ overflowY: 'auto', paddingBottom: '40px' }}>
         {config._content instanceof TabsBuilder ? (
           <TabsLayout asSheet config={config._content} onSubmit={onSubmit} />
         ) : (
