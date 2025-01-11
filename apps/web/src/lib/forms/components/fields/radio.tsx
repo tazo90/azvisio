@@ -20,12 +20,14 @@ export function RadioFieldComponent(props: RadioFieldComponentProps) {
         defaultValue={defaultValue}
         value={value}
         onValueChange={onChange}
-        className={cn('gap-4', layout === 'horizontal' ? 'flex' : 'flex flex-col')}
+        className={cn('gap-2', layout === 'horizontal' ? 'flex' : 'flex flex-col')}
       >
         {options.map((option) => (
           <div key={option.value} className="flex items-center gap-2">
             <RadioGroupItem value={option.value} id={`${name}-${option.value}`} />
-            <Label htmlFor={`${name}-${option.value}`}>{option.label}</Label>
+            <Label className="text-xs" htmlFor={`${name}-${option.value}`}>
+              {option.label}
+            </Label>
           </div>
         ))}
       </RadioGroup>

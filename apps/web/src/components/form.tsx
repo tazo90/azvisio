@@ -70,7 +70,7 @@ export const Form = ({ form, asSheet = false, onSubmit, defaultValues = {} }: Fo
               <FieldComponent {...formField} {...config} />
             </FormControl>
 
-            {config.description && <p className="text-[0.8rem] text-muted-foreground">{config.description}</p>}
+            {config.description && <p className="text-xs text-muted-foreground">{config.description}</p>}
 
             {config.afterContent}
 

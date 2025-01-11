@@ -23,14 +23,12 @@ export function CheckboxFieldComponent({
       <div className="grid gap-1.5 leading-none">
         <Label
           htmlFor={name}
-          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          className="text-xs font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
         >
           {label}
           {required && <span className="pl-2 text-red-500">*</span>}
         </Label>
-        {description && (
-          <p className="text-sm text-muted-foreground">You agree to our Terms of Service and Privacy Policy.</p>
-        )}
+        {description && <p className="text-xs text-muted-foreground">{description}</p>}
       </div>
     </div>
   );
