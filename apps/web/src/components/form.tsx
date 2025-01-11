@@ -87,11 +87,14 @@ export const Form = ({ form, asSheet = false, onSubmit, defaultValues = {} }: Fo
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid gap-6">
             {form._header && form._header}
-            {form.rows.map((row, index) => (
+            {/* Check if rows exists */}
+            {form.rows?.map((row, index) => (
               <div key={index} className="grid grid-cols-12 gap-4">
                 {row.fields.map(renderField)}
               </div>
             ))}
+            {/* If form is single field */}
+            {form.fields?.map((field) => renderField(field))}
           </div>
           {/* Hide form submit button when form is inside sheet */}
           {!asSheet && (

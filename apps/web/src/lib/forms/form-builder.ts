@@ -30,7 +30,7 @@ const form = (...items: (BaseField | Row)[]) => {
   const schema = z.object(Object.fromEntries(allFields.map((field) => [field.name, field.getSchema()])));
 
   const config: FormConfig = {
-    rows,
+    rows: rows || [],
     _title: {
       text: '',
       align: 'center',

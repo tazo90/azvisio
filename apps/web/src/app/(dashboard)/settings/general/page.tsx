@@ -6,6 +6,7 @@ import { t } from '@/lib/forms/tabs-builder';
 import { SettingsDeleteAccountForm } from '@/modules/dashboard/features/settings/forms/delete-account-form';
 import { SettingsGeneralForm } from '@/modules/dashboard/features/settings/forms/general-form';
 import { useSheetStore } from '@/stores/use-sheet-store';
+import { LockIcon, UserIcon } from 'lucide-react';
 
 const demoForm = f
   .fields(
@@ -91,10 +92,23 @@ const userSheet = f
   .description('Manage user profile')
   .content(
     t
-      // .tabs()
-      .tabs('sections')
-      .tab('Profile', demoForm2)
-      .tab('General', f.fields(f.text('name').label('Name'), f.text('email').label('Email')))
+      .tabs('tabs') // 'sections'
+      .orientation('vertical') // 'horizontal'
+      .fullWidth(false)
+      .className('gap-x-6')
+      .tab('Profile', demoForm2, {
+        description: 'Manage your personal information',
+        icon: <UserIcon className="w-4 h-4" />,
+      })
+      .tab('Security', demoForm, {
+        description: 'Update your security settings',
+        icon: <LockIcon className="w-4 h-4" />,
+      })
+    // .tab('Notifications', notificationsForm, {
+    //   description: 'Configure notification preferences',
+    //   icon: <BellIcon className="w-4 h-4" />,
+    //   disabled: true, // tab będzie wyłączony
+    // })
   )
   .footer({
     submitLabel: 'Save',
