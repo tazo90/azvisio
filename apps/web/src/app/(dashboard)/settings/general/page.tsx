@@ -2,6 +2,7 @@
 
 import { Button } from '@/components/ui/button';
 import { f } from '@/lib/forms/form-builder';
+import { t } from '@/lib/forms/tabs-builder';
 import { SettingsDeleteAccountForm } from '@/modules/dashboard/features/settings/forms/delete-account-form';
 import { SettingsGeneralForm } from '@/modules/dashboard/features/settings/forms/general-form';
 import { useSheetStore } from '@/stores/use-sheet-store';
@@ -88,7 +89,13 @@ const userSheet = f
   .sheet({ width: 'full' })
   .title('User profile')
   .description('Manage user profile')
-  .content(demoForm2)
+  .content(
+    t
+      // .tabs()
+      .tabs('sections')
+      .tab('Profile', demoForm2)
+      .tab('General', f.fields(f.text('name').label('Name'), f.text('email').label('Email')))
+  )
   .footer({
     submitLabel: 'Save',
   });

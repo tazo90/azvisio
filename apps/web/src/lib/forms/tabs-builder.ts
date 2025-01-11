@@ -1,4 +1,6 @@
-import { FormConfig } from './form-builder';
+import { FormConfig } from './types';
+
+type TabMode = 'tabs' | 'sections';
 
 interface TabConfig {
   label: string;
@@ -7,35 +9,29 @@ interface TabConfig {
 
 export interface TabsConfig {
   tabs: TabConfig[];
+  mode: TabMode;
 }
 
-interface SheetConfig {
-  _title: string;
-  _description?: string;
-  _content: React.ReactNode | FormConfig | TabsConfig;
-  _footer?: {
-    submitLabel?: string;
-    cancelLabel?: string;
-    // variant?: ButtonVariant;
-  };
-}
-
-// tabs-builder.ts
 export class TabsBuilder {
-  private _tabs: TabConfig[] = [];
+  private tabs: TabConfig[] = [];
+  private mode: TabMode;
+
+  constructor(mode: TabMode = 'tabs') {
+    this.mode = mode;
+  }
 
   tab(label: string, content: TabConfig['content']) {
-    this._tabs.push({ label, content });
+    this.tabs.push({ label, content });
     return this;
   }
 
   getConfig(): TabsConfig {
     return {
-      tabs: this._tabs,
+      tabs: this.tabs,
+      mode: this.mode,
     };
   }
 }
-
 export const t = {
-  tabs: () => new TabsBuilder(),
+  tabs: (mode?: TabMode) => new TabsBuilder(mode),
 };
