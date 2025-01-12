@@ -11,10 +11,9 @@ import clsx from 'clsx';
 import { Button } from '../../../components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../../components/ui/card';
 import { cn } from '@/lib/utils';
-import { useState } from 'react';
 import { Sheet, SheetContent } from '@/components/ui/sheet';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { InfoIcon } from 'lucide-react';
+import { InfoIcon, Loader2, XCircleIcon } from 'lucide-react';
 import { SheetLayout } from '../layouts/sheet-layout';
 import {
   CheckboxFieldComponent,
@@ -27,6 +26,9 @@ import {
 import { TextareaFieldComponent } from './fields/textarea';
 import { GridLayout } from '../layouts/grid-layout';
 import { getSheetWidth } from '../utils/get-sheet-width';
+import { UseMutationResult } from '@tanstack/react-query';
+import React from 'react';
+import { Alert, AlertDescription } from '@/components/ui/alert';
 
 const fieldComponents = {
   text: TextFieldComponent,
@@ -38,23 +40,61 @@ const fieldComponents = {
   textarea: TextareaFieldComponent,
 };
 
-interface FormProps {
+export type FormProps<T = any> = {
   form: ReturnType<typeof form>;
-  onSubmit: (data: any) => void;
+  className?: string;
+  asSheet?: boolean;
+  onSubmit: UseMutationResult<T> | ((data: any) => Promise<void>);
   defaultValues?: Record<string, any>;
-}
+};
+
+type FormError = {
+  message: string;
+  errors?: Record<string, string[]>;
+};
 
 export const Form = ({ form, asSheet = false, onSubmit, defaultValues = {} }: FormProps) => {
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isDialogOpen, setIsDialogOpen] = React.useState(false);
+  const [apiError, setApiError] = React.useState<FormError | null>(null);
 
   const methods = useForm({
     // resolver: zodResolver(form.schema),
     defaultValues,
   });
 
+  // Reset API error when form changes
+  React.useEffect(() => {
+    const subscription = methods.watch(() => {
+      if (apiError) {
+        setApiError(null);
+      }
+    });
+
+    return () => subscription.unsubscribe();
+  }, [methods, apiError]);
+
   const handleSubmit = methods.handleSubmit((data) => {
+    setApiError(null);
+
     if (form._action) {
       setIsDialogOpen(true);
+    } else if ('mutate' in onSubmit) {
+      onSubmit.mutate(data, {
+        onError: (error: any) => {
+          // Let's assume that API error has structure { message, errors }
+          if (error.errors) {
+            // Set errors on form fields
+            Object.entries(error.errors).forEach(([field, messages]) => {
+              methods.setError(field, {
+                type: 'server',
+                message: Array.isArray(messages) ? messages[0] : messages,
+              });
+            });
+          }
+
+          setApiError(error);
+        },
+      });
     } else {
       onSubmit(data);
     }
@@ -124,6 +164,16 @@ export const Form = ({ form, asSheet = false, onSubmit, defaultValues = {} }: Fo
     return (
       <BaseForm {...methods}>
         <form onSubmit={handleSubmit} className="space-y-4">
+          {/* General error */}
+          {apiError && (
+            <Alert variant="destructive" className="rounded-sm">
+              <XCircleIcon className="h-4 w-4" />
+              <AlertDescription className="text-xs">
+                {apiError.response?.data?.message || apiError.message}
+              </AlertDescription>
+            </Alert>
+          )}
+
           <div className="mb-4">{form._header && form._header}</div>
 
           {form.rows.map((item, index) => {
@@ -153,9 +203,20 @@ export const Form = ({ form, asSheet = false, onSubmit, defaultValues = {} }: Fo
           })}
 
           {!asSheet && (
-            <Button type="submit" variant={form._submit.variant} className={form._submit.className}>
-              {form._submit.label}
-            </Button>
+            <>
+              <Button
+                type="submit"
+                variant={form._submit.variant}
+                className={form._submit.className}
+                disabled={'mutate' in onSubmit ? onSubmit.isPending : false}
+              >
+                {form._submit.label}
+                {'mutate' in onSubmit && onSubmit.isPending && <Loader2 className="ml-2 h-4 w-4 animate-spin" />}
+              </Button>
+              {/* {'mutate' in onSubmit && onSubmit.isError && !apiError && (
+                <p className="text-sm text-destructive">An error occurred. Please try again.</p>
+              )} */}
+            </>
           )}
 
           {form._footer && <div className="mt-4">{form._footer}</div>}
@@ -192,7 +253,7 @@ export const Form = ({ form, asSheet = false, onSubmit, defaultValues = {} }: Fo
               onClose={() => setIsDialogOpen(false)}
               onSubmit={(data) => {
                 setIsDialogOpen(false);
-                onSubmit(data);
+                'mutate' in onSubmit ? onSubmit.mutate(data) : onSubmit(data);
               }}
             />
           </SheetContent>

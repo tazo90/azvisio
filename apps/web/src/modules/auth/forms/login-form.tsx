@@ -1,16 +1,16 @@
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-import { Form } from '@/lib/fantom/components/form';
-import { FormProps } from '@/types';
+import { Form, FormProps } from '@/lib/fantom/components/form';
 import { f } from '@/lib/fantom';
 
 const loginForm = f
   .fields(
-    f.row(f.text('email').label('Email').placeholder('m@example.com')),
+    f.row(f.text('email').label('Email').placeholder('m@example.com').required()),
     f.row(
       f
         .text('password')
         .label('Password')
+        .required()
         .before(
           <a href="#" className="ml-auto text-sm underline-offset-4 hover:underline">
             Forgot your password?
@@ -57,7 +57,7 @@ const loginForm = f
   )
   .submit('Login');
 
-export function LoginForm({ className, onSubmit = (data: any) => {}, ...props }: FormProps) {
+export function LoginForm({ className, onSubmit, ...props }: FormProps) {
   return (
     <div className={cn('flex flex-col gap-6', className)} {...props}>
       <Form form={loginForm} onSubmit={onSubmit} />
