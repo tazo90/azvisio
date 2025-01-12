@@ -1,8 +1,8 @@
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-import { f } from '@/lib/forms/form-builder';
 import { Form } from '@/lib/fantom/components/form';
 import { FormProps } from '@/types';
+import { f } from '@/lib/fantom';
 
 const loginForm = f
   .fields(
@@ -22,7 +22,7 @@ const loginForm = f
   .description('Login with your Apple or Google account')
   .header(
     <>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 mb-4">
         <Button variant="outline" className="w-full">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <path

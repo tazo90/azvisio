@@ -84,7 +84,7 @@ const formBuilder = (...items: (BaseField | Row | FormSection)[]) => {
     } as SubmitConfig,
     _header: null,
     _footer: null,
-    _width: 'w-2/3',
+    _width: 'w-full', // w-2/3
   };
 
   return {

@@ -52,15 +52,13 @@ export const Form = ({ form, asSheet = false, onSubmit, defaultValues = {} }: Fo
     defaultValues,
   });
 
-  const handleSubmit = (e: React.FormEvent, data: any) => {
-    e.preventDefault();
-
+  const handleSubmit = methods.handleSubmit((data) => {
     if (form._action) {
       setIsDialogOpen(true);
     } else {
       onSubmit(data);
     }
-  };
+  });
 
   const renderField = (field) => {
     const config = field.getConfig();
