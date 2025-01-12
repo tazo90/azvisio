@@ -1,8 +1,7 @@
 import { cn } from '@/lib/utils';
-import { f } from '@/lib/forms/form-builder';
-import { Form } from '@/components/form';
+import { Form } from '@/lib/fantom/components/form';
 import { FormProps } from '@/types';
-import { t } from '@/lib/forms/tabs-builder';
+import { f } from '@/lib/fantom';
 
 const deleteConfirmationForm = f
   .fields(
@@ -37,7 +36,7 @@ const userSettingsSheet = f
   .description('Manage your account settings')
   .content(
     // deleteConfirmationForm,
-    t
+    f
       .tabs()
       .tab('Profile', deleteConfirmationForm)
       .tab('Foo', f.fields(f.row(f.text('name').label('Name')), f.row(f.text('email').label('Email'))))

@@ -1,16 +1,6 @@
 import { z } from 'zod';
 import { sheet } from './sheet-builder';
-import {
-  ActionConfig,
-  Align,
-  FormConfig,
-  FormLayout,
-  FormSection,
-  FormSectionDescription,
-  Row,
-  SubmitConfig,
-  Width,
-} from './types';
+import { ActionConfig, Align, FormConfig, FormLayout, FormSection, Row, SubmitConfig, Width } from '../types';
 import {
   BaseField,
   CheckboxField,
@@ -22,7 +12,7 @@ import {
   SwitchField,
   TextareaField,
   TextField,
-} from './fields';
+} from '../fields';
 import React from 'react';
 
 const section = (
@@ -57,7 +47,7 @@ const section = (
   } as FormSection;
 };
 
-const form = (...items: (BaseField | Row | FormSection)[]) => {
+const formBuilder = (...items: (BaseField | Row | FormSection)[]) => {
   const extractFields = (items: (BaseField | Row | FormSection)[]): BaseField[] => {
     return items.flatMap((item) => {
       if ('type' in item && item.type === 'section') {
@@ -160,9 +150,9 @@ export const f = {
   textarea: (name: string) => new TextareaField(name),
 
   // methods
-  fields: form,
+  fields: formBuilder, // @TODO: change this name
   row,
   section,
   //
-  sheet,
+  // sheet,
 };

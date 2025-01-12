@@ -1,21 +1,32 @@
 import { useForm } from 'react-hook-form';
-import { Form as BaseForm, FormControl, FormField, FormItem, FormLabel, FormMessage } from './ui/form';
+import {
+  Form as BaseForm,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '../../../components/ui/form';
 import clsx from 'clsx';
-import { Button } from './ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
+import { Button } from '../../../components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../../components/ui/card';
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
 import { Sheet, SheetContent } from '@/components/ui/sheet';
-import { SheetLayout } from '@/lib/forms/sheet';
-import { getSheetWidth } from '@/lib/forms/get-sheet-width';
-import { DateFieldComponent, SwitchFieldComponent, TextFieldComponent } from '@/lib/forms/components/fields';
-import { SelectFieldComponent } from '@/lib/forms/components/fields/select';
-import { CheckboxFieldComponent } from '@/lib/forms/components/fields/checkbox';
-import { RadioFieldComponent } from '@/lib/forms/components/fields/radio';
-import { TextareaFieldComponent } from '@/lib/forms/components/fields/textarea';
-import { GridLayout } from '@/lib/forms/grid-layout';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { InfoIcon } from 'lucide-react';
+import { SheetLayout } from '../layouts/sheet-layout';
+import {
+  CheckboxFieldComponent,
+  DateFieldComponent,
+  RadioFieldComponent,
+  SelectFieldComponent,
+  SwitchFieldComponent,
+  TextFieldComponent,
+} from './fields';
+import { TextareaFieldComponent } from './fields/textarea';
+import { GridLayout } from '../layouts/grid-layout';
+import { getSheetWidth } from '../utils/get-sheet-width';
 
 const fieldComponents = {
   text: TextFieldComponent,

@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils';
-import { f } from '@/lib/forms/form-builder';
-import { Form } from '@/components/form';
+import { Form } from '@/lib/fantom/components/form';
 import { FormProps } from '@/types';
+import { f } from '@/lib/fantom';
 
 const settingsGeneralForm = f
   .fields(f.row(f.text('full_name').label('Full name')))

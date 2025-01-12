@@ -1,8 +1,8 @@
 import { useSheetStore } from '@/stores/use-sheet-store';
-import { Sheet, SheetContent } from './ui/sheet';
-import { SheetLayout } from '@/lib/forms/sheet';
+import { Sheet, SheetContent } from '../../../components/ui/sheet';
 import { cn } from '@/lib/utils';
-import { getSheetWidth } from '@/lib/forms/get-sheet-width';
+import { SheetLayout } from '../layouts/sheet-layout';
+import { getSheetWidth } from '../utils/get-sheet-width';
 
 export function SheetRoot() {
   const activeSheet = useSheetStore((state) => state.getActiveSheet());

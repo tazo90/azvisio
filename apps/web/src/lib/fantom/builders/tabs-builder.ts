@@ -1,4 +1,4 @@
-import { FormConfig } from './types';
+import { FormConfig } from '../types';
 
 type TabMode = 'tabs' | 'sections';
 

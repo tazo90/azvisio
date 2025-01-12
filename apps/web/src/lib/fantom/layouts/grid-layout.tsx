@@ -1,8 +1,8 @@
-import { cn } from '../utils';
-import { FormLayoutType } from './types';
+import { cn } from '../../utils';
+import { FormLayout } from '../types';
 
 interface LayoutConfig {
-  type: FormLayoutType;
+  type: FormLayout;
   labelWidth?: string;
   controlWidth?: string;
 }

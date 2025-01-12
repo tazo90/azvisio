@@ -1,8 +1,7 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { f } from '@/lib/forms/form-builder';
-import { t } from '@/lib/forms/tabs-builder';
+import { f } from '@/lib/fantom';
 import { SettingsDeleteAccountForm } from '@/modules/dashboard/features/settings/forms/delete-account-form';
 import { SettingsGeneralForm } from '@/modules/dashboard/features/settings/forms/general-form';
 import { useSheetStore } from '@/stores/use-sheet-store';
@@ -159,7 +158,7 @@ const userSheet = f
   .title('User profile')
   .description('Manage user profile')
   .content(
-    t
+    f
       .tabs('tabs') // 'sections'
       .orientation('vertical') // 'horizontal'
       .fullWidth(false)

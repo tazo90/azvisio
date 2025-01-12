@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { f } from '@/lib/forms/form-builder';
-import { Form } from '@/components/form';
+import { Form } from '@/lib/fantom/components/form';
 import { FormProps } from '@/types';
 
 const loginForm = f

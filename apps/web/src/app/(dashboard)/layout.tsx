@@ -2,7 +2,7 @@
 
 import { AppSidebar } from '@/components/app-sidebar';
 import { Breadcrumbs } from '@/components/breadcrumbs';
-import { SheetRoot } from '@/components/sheet-root';
+import { SheetRoot } from '@/lib/fantom/components/sheet-root';
 
 import { Separator } from '@/components/ui/separator';
 

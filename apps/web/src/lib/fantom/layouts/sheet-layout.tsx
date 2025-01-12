@@ -1,12 +1,13 @@
 import { SheetClose, SheetDescription, SheetFooter, SheetHeader, SheetTitle } from '@/components/ui/sheet';
-import { TabsLayout } from './tabs';
+import { TabsLayout } from './tabs-layout';
 import { Button } from '@/components/ui/button';
-import { Form } from '@/components/form';
-import { TabsBuilder } from './tabs-builder';
-import { FormConfig } from './types';
+import { Form } from '@/lib/fantom/components/form';
+import { TabsBuilder } from '../builders/tabs-builder';
+import { FormConfig } from '../types';
+import { SheetConfig } from '../builders/sheet-builder';
 
 interface SheetLayoutProps {
-  config: any; //SheetConfig;
+  config: SheetConfig;
   onSubmit: (data: any) => void;
 }
 

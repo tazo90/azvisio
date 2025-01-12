@@ -1,5 +1,5 @@
 import { TabsConfig } from './tabs-builder';
-import { FormConfig } from './types';
+import { FormConfig } from '../types';
 
 export interface SheetConfig {
   _title: string;

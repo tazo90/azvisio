@@ -1,9 +1,9 @@
-import { Form } from '@/components/form';
+import { Form } from '@/lib/fantom/components/form';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import React from 'react';
-import { TabsConfig } from './tabs-builder';
-import { FormConfig } from './types';
-import { cn } from '../utils';
+import { TabsConfig } from '../builders/tabs-builder';
+import { FormConfig } from '../types';
+import { cn } from '../../utils';
 
 interface TabsLayoutProps {
   config: TabsConfig;

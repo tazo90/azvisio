@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils';
 import { f } from '@/lib/forms/form-builder';
-import { Form } from '@/components/form';
+import { Form } from '@/lib/fantom/components/form';
 import { FormProps } from '@/types';
 
 const registerForm = f
