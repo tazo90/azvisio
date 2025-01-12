@@ -47,7 +47,7 @@ export abstract class BaseField {
     return this;
   }
 
-  description(d: string) {
+  description(d: string | React.ReactNode) {
     this.config.description = d;
     return this;
   }

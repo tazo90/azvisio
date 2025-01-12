@@ -8,8 +8,8 @@ export type FormLayout = 'vertical' | 'horizontal';
 export interface FormSection {
   type: 'section';
   title: string;
-  description?: string;
-  fields: Row[]; // możemy mieć wiele rows w sekcji
+  description?: string | React.ReactNode;
+  fields: Row[]; // can have multiple rows in section
 }
 
 export interface FormConfig {

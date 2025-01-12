@@ -32,6 +32,7 @@ const section = (title: string, ...args: (string | BaseField | Row)[]) => {
     fields: rows,
   };
 };
+
 const form = (...items: (BaseField | Row | FormSection)[]) => {
   const extractFields = (items: (BaseField | Row | FormSection)[]): BaseField[] => {
     return items.flatMap((item) => {
