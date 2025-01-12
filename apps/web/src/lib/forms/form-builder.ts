@@ -1,6 +1,16 @@
 import { z } from 'zod';
 import { sheet } from './sheet-builder';
-import { ActionConfig, Align, FormConfig, FormLayout, FormSection, Row, SubmitConfig, Width } from './types';
+import {
+  ActionConfig,
+  Align,
+  FormConfig,
+  FormLayout,
+  FormSection,
+  FormSectionDescription,
+  Row,
+  SubmitConfig,
+  Width,
+} from './types';
 import {
   BaseField,
   CheckboxField,
@@ -13,16 +23,30 @@ import {
   TextareaField,
   TextField,
 } from './fields';
+import React from 'react';
 
-const section = (title: string, ...args: (string | BaseField | Row)[]) => {
-  // Check if first argument is string (description)
-  const hasDescription = typeof args[0] === 'string';
-  const description = hasDescription ? args[0] : undefined;
-  const fields = hasDescription ? args.slice(1) : args;
+const section = (
+  title: string,
+  descriptionOrFirstField: string | React.ReactNode | BaseField | Row,
+  ...restFields: (BaseField | Row)[]
+) => {
+  const isDescription = typeof descriptionOrFirstField === 'string' || React.isValidElement(descriptionOrFirstField);
 
-  const rows = fields.map((item) => {
-    if ('fields' in item) return item;
-    return { fields: [item] };
+  const fieldsToProcess = isDescription ? restFields : [descriptionOrFirstField, ...restFields];
+  const description = isDescription ? descriptionOrFirstField : undefined;
+
+  // Make sure that all fields are BaseField type before conversion to Row
+  const rows = fieldsToProcess.map((item) => {
+    if ('fields' in item && Array.isArray(item.fields)) {
+      return item as Row;
+    }
+
+    // Make sure that item is BaseField type
+    if (item instanceof BaseField) {
+      return { fields: [item] } as Row;
+    }
+
+    throw new Error('Invalid field type');
   });
 
   return {
@@ -30,7 +54,7 @@ const section = (title: string, ...args: (string | BaseField | Row)[]) => {
     title,
     description,
     fields: rows,
-  };
+  } as FormSection;
 };
 
 const form = (...items: (BaseField | Row | FormSection)[]) => {

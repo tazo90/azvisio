@@ -142,7 +142,7 @@ const horizontalForm = f
       ),
     f.section(
       'Preferences',
-      // 'This is description',
+      <p className="text-xs text-gray-800 px-2 py-1 w-3/4 rounded-sm bg-blue-100">Validation permissions...</p>,
       f.switch('notifications').label('Enable notifications'),
       f
         .select('theme', [
