@@ -1,5 +1,15 @@
 import { Input } from '@/components/ui/input';
 
-export function TextFieldComponent(props) {
-  return <Input {...props} type={props.isEmail ? 'email' : 'text'} />;
+export function TextFieldComponent({ password, email, number, ...props }) {
+  let fieldType = 'text';
+
+  if (password) {
+    fieldType = 'password';
+  } else if (email) {
+    fieldType = 'email';
+  } else if (number) {
+    fieldType = 'number';
+  }
+
+  return <Input {...props} type={fieldType} />;
 }

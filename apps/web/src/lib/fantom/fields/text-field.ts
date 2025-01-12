@@ -4,6 +4,7 @@ import { BaseField } from './base-field';
 export class TextField extends BaseField {
   private _isEmail = false;
   private _isNumber = false;
+  private _isPassword = false;
   private _min?: number;
   private _max?: number;
 
@@ -30,6 +31,11 @@ export class TextField extends BaseField {
     this._max = value;
   }
 
+  password() {
+    this._isPassword = true;
+    return this;
+  }
+
   getSchema() {
     let schema = this._isEmail ? z.string().email() : z.string();
     if (this._min) schema = schema.min(this._min);
@@ -41,8 +47,9 @@ export class TextField extends BaseField {
   getConfig() {
     return {
       ...this.config,
-      // isEmail: this._isEmail,
-      // isNumber: this._isNumber,
+      email: this._isEmail,
+      number: this._isNumber,
+      password: this._isPassword,
     };
   }
 }
