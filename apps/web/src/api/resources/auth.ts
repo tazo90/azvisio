@@ -1,4 +1,4 @@
-import { api } from '../client';
+import { http } from '../http-client';
 import { createResource } from '../resource';
 
 interface LoginDTO {
@@ -15,7 +15,7 @@ interface AuthResponse {
 }
 
 export const auth = createResource('/auth').extend({
-  login: (data: LoginDTO) => api.post('/auth/login', data),
-  logout: () => api.post('/auth/logout'),
-  refresh: (token: string) => api.post('/auth/refresh', { token }),
+  login: (data: LoginDTO) => http.post('/login', data),
+  logout: () => http.post('/logout'),
+  refresh: (token: string) => http.post('/refresh', { token }),
 });

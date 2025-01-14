@@ -1,2 +1,2 @@
-export * from './resources/auth';
-export * from './client';
+export * from './resources';
+export * from './http-client';
