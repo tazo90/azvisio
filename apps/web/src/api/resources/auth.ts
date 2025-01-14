@@ -15,7 +15,7 @@ interface AuthResponse {
 }
 
 export const auth = createResource('/auth').extend({
-  login: (data: LoginDTO) => http.post('/login', data),
-  logout: () => http.post('/logout'),
-  refresh: (token: string) => http.post('/refresh', { token }),
+  login: (data: LoginDTO) => http.post('/auth/login', data),
+  logout: () => http.post('/auth/logout'),
+  refresh: (token: string) => http.post('/auth/refresh', { token }),
 });

@@ -1,19 +1,31 @@
 'use client';
 
-import { useState } from 'react';
-// import { signIn } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { LoginForm } from '@/modules/auth/forms/login-form';
 import { useResource } from '@/hooks/use-resource';
 import { api } from '@/api/resources';
+import { useToast } from '@/hooks/use-toast';
+import { authService } from '@/modules/auth/services/auth-service';
 
 export default function LoginPage() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const { toast } = useToast();
+
   const login = useResource(api.auth, 'login', undefined, {
-    onSuccess: (data) => {
-      localStorage.setItem('token', data.accessToken);
+    onSuccess: async (data) => {
+      try {
+        await authService.login({ accessToken: data.accessToken, refreshToken: data.refreshToken }, data.user);
+
+        // Redirect on returnUrl or dashboard
+        const returnUrl = searchParams.get('returnUrl') || '/dashboard';
+        router.replace(returnUrl);
+      } catch (error) {
+        toast.error('Error starting session');
+      }
     },
     onError: (error) => {
-      console.error('Login failed:', error);
+      toast.error('Unauthorized', error);
     },
   });
 

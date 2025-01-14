@@ -1,4 +1,4 @@
-import { auth } from '@/lib/auth';
+import { authService } from '@/modules/auth/services/auth-service';
 import axios from 'axios';
 
 const BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:4000/api';
@@ -10,26 +10,51 @@ export const http = axios.create({
   },
 });
 
-http.interceptors.request.use(async (config) => {
-  const session = await auth();
+http.interceptors.request.use((config) => {
+  const token = authService.getAccessToken();
 
-  console.log('REQ', session);
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
 
-  // const token = localStorage.getItem('token');
-  // if (token) {
-  //   config.headers.Authorization = `Bearer ${token}`;
-  // }
   return config;
 });
 
 http.interceptors.response.use(
   (response) => response.data,
-  (error) => {
-    if (error.response?.status === 401) {
-      // Handle token expiration
-      // localStorage.removeItem('token');
-      // window.location.href = '/login';
+  async (error) => {
+    const originalRequest = error.config;
+
+    if (error.response?.status === 401 && !originalRequest._retry) {
+      originalRequest._retry = true;
+
+      const refreshToken = authService.getRefreshToken();
+      if (!refreshToken) {
+        await authService.logout();
+        window.location.href = '/login';
+        return Promise.reject(error);
+      }
+
+      try {
+        // Try refresh token
+        const { refresh } = await api.auth;
+        const response = await refresh({ refreshToken });
+
+        const { accessToken, refreshToken: newRefreshToken } = response.data;
+
+        // Save new token
+        await authService.login({ accessToken, refreshToken: newRefreshToken }, authService.getUser());
+
+        // Retry original request
+        originalRequest.headers.Authorization = `Bearer ${accessToken}`;
+        // return api(originalRequest)
+      } catch (refreshError) {
+        await authService.logout();
+        window.location.href = '/login';
+        return Promise.reject(refreshError);
+      }
     }
-    return Promise.reject(error);
+
+    return Promise.reject(error.response?.data || error);
   }
 );
