@@ -29,6 +29,7 @@ import { getSheetWidth } from '../utils/get-sheet-width';
 import { UseMutationResult } from '@tanstack/react-query';
 import React from 'react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
+import { useFormTheme } from '../hooks/use-form-theme';
 
 const fieldComponents = {
   text: TextFieldComponent,
@@ -56,6 +57,7 @@ type FormError = {
 export const Form = ({ form, asSheet = false, onSubmit, defaultValues = {} }: FormProps) => {
   const [isDialogOpen, setIsDialogOpen] = React.useState(false);
   const [apiError, setApiError] = React.useState<FormError | null>(null);
+  const { theme, getFieldStyles } = useFormTheme(form._theme);
 
   const methods = useForm({
     // resolver: zodResolver(form.schema),
@@ -109,7 +111,7 @@ export const Form = ({ form, asSheet = false, onSubmit, defaultValues = {} }: Fo
         key={config.name}
         control={methods.control}
         name={config.name}
-        render={({ field: formField }) => (
+        render={({ field: formField, fieldState: { error } }) => (
           <FormItem
             className={clsx({
               'col-span-12': config.width === 'full',
@@ -122,9 +124,9 @@ export const Form = ({ form, asSheet = false, onSubmit, defaultValues = {} }: Fo
               layout={form._layout}
               label={
                 <div className="flex items-center gap-1">
-                  <FormLabel className="text-xs">{config.label}</FormLabel>
+                  <FormLabel className={theme.components.label.base}>{config.label}</FormLabel>
                   {config.beforeContent}
-                  {config.required && <span className="font-semibold text-destructive">*</span>}
+                  {config.required && <span className={theme.components.label.required}>*</span>}
                   {config.tooltip && (
                     <div className="pl-2">
                       <TooltipProvider delayDuration={100}>
@@ -142,7 +144,7 @@ export const Form = ({ form, asSheet = false, onSubmit, defaultValues = {} }: Fo
               control={
                 <div className="space-y-0.5">
                   <FormControl>
-                    <FieldComponent {...formField} {...config} />
+                    <FieldComponent {...formField} {...config} theme={theme} getFieldStyles={getFieldStyles} />
                   </FormControl>
                   {config.description && typeof config.description === 'string' ? (
                     <p className="text-xs text-muted-foreground">{config.description}</p>
@@ -150,7 +152,7 @@ export const Form = ({ form, asSheet = false, onSubmit, defaultValues = {} }: Fo
                     config.description
                   )}
                   {config.afterContent}
-                  <FormMessage />
+                  <FormMessage className={theme.typography.error} />
                 </div>
               }
             />

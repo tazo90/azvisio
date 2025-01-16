@@ -56,7 +56,8 @@ const loginForm = f
       </a>
     </div>
   )
-  .submit('Login');
+  .submit('Login')
+  .theme('modern');
 
 export function LoginForm({ className, onSubmit, ...props }: FormProps) {
   return (

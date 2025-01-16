@@ -37,6 +37,7 @@ export interface FormConfig {
     labelWidth?: string; // e.g '1/3', '1/4'
     controlWidth?: string;
   };
+  _theme?: FormTheme;
 }
 
 export interface ActionConfig {
@@ -53,4 +54,39 @@ export interface SubmitConfig {
 
 export interface Row {
   fields: BaseField[];
+}
+
+export interface FormTheme {
+  name: string;
+  components: {
+    input: {
+      base: string;
+      focus: string;
+      error: string;
+      disabled: string;
+    };
+    select: {
+      base: string;
+      focus: string;
+      error: string;
+      disabled: string;
+    };
+    label: {
+      base: string;
+      required: string;
+      error: string;
+      disabled: string;
+    };
+  };
+  layout: {
+    spacing: string;
+    padding: string;
+    borderRadius: string;
+  };
+  typography: {
+    label: string;
+    input: string;
+    helper: string;
+    error: string;
+  };
 }

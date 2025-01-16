@@ -1,6 +1,6 @@
 import { Input } from '@/components/ui/input';
 
-export function TextFieldComponent({ password, email, number, ...props }) {
+export function TextFieldComponent({ password, email, number, theme, getFieldStyles, ...props }) {
   let fieldType = 'text';
 
   if (password) {
@@ -11,5 +11,5 @@ export function TextFieldComponent({ password, email, number, ...props }) {
     fieldType = 'number';
   }
 
-  return <Input {...props} type={fieldType} />;
+  return <Input {...props} type={fieldType} className={getFieldStyles('input', { size: theme.size })} />;
 }

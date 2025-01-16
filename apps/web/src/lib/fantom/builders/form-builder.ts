@@ -13,6 +13,7 @@ import {
   TextField,
 } from '../fields';
 import React from 'react';
+import { formThemes } from '../themes';
 
 const section = (
   title: string,
@@ -84,6 +85,7 @@ const formBuilder = (...items: (BaseField | Row | FormSection)[]) => {
     _header: null,
     _footer: null,
     _width: 'w-full', // w-2/3
+    _theme: formThemes.default,
   };
 
   return {
@@ -128,6 +130,10 @@ const formBuilder = (...items: (BaseField | Row | FormSection)[]) => {
     },
     layout(type: FormLayout, labelWidth?: string, controlWidth?: string) {
       this._layout = { type, labelWidth, controlWidth };
+      return this;
+    },
+    theme(themeName: string) {
+      this._theme = formThemes[themeName];
       return this;
     },
   };

@@ -8,22 +8,20 @@ interface SelectFieldComponentProps {
 }
 
 export function SelectFieldComponent(props: SelectFieldComponentProps) {
-  const { defaultValue, placeholder, onChange, options, value } = props;
+  const { defaultValue, placeholder, onChange, options, value, theme, getFieldStyles } = props;
 
   return (
-    <>
-      <Select onValueChange={onChange} value={value} defaultValue={defaultValue}>
-        <SelectTrigger>
-          <SelectValue placeholder={placeholder} />
-        </SelectTrigger>
-        <SelectContent>
-          {options.map((option) => (
-            <SelectItem key={option.value} value={option.value}>
-              {option.label}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
-    </>
+    <Select onValueChange={onChange} value={value} defaultValue={defaultValue}>
+      <SelectTrigger className={getFieldStyles('select', {})}>
+        <SelectValue placeholder={placeholder} />
+      </SelectTrigger>
+      <SelectContent>
+        {options.map((option) => (
+          <SelectItem key={option.value} value={option.value}>
+            {option.label}
+          </SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
   );
 }
