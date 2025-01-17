@@ -36,10 +36,10 @@ export function NavMain({
           // Not sub items
           if (!item.items) {
             return (
-              <SidebarMenuItem>
+              <SidebarMenuItem key={item.title}>
                 <SidebarMenuButton tooltip={item.title}>
                   {item.icon && <item.icon />}
-                  <span>{item.title}</span>
+                  <a href={item.url}>{item.title}</a>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             );

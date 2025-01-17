@@ -1,31 +1,33 @@
 'use client';
 
-import { useState } from 'react';
-// import { signIn } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
-import { LoginPage } from '@/modules/auth/pages/login';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { LoginForm } from '@/modules/auth/forms/login-form';
+import { useResource } from '@/hooks/use-resource';
+import { api } from '@/api/resources';
+import { useToast } from '@/hooks/use-toast';
+import { authService } from '@/modules/auth/services/auth-service';
 
-export default function AuthLoginPage() {
-  const [isLoading, setIsLoading] = useState(false);
+export default function LoginPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const { toast } = useToast();
 
-  async function onSubmit(data) {
-    setIsLoading(true);
+  const login = useResource(api.auth, 'login', undefined, {
+    onSuccess: async (data) => {
+      try {
+        await authService.login({ accessToken: data.accessToken, refreshToken: data.refreshToken }, data.user);
 
-    // const result = await signIn('credentials', {
-    //   ...data,
-    //   callbackUrl: window.location.origin,
-    //   redirect: false,
-    // });
+        // Redirect on returnUrl or dashboard
+        const returnUrl = searchParams.get('returnUrl') || '/dashboard';
+        router.replace(returnUrl);
+      } catch (error) {
+        toast.error('Error starting session');
+      }
+    },
+    onError: (error) => {
+      toast.error('Unauthorized', error);
+    },
+  });
 
-    // if (!result?.ok) {
-    //   toast.error('Unauthorized', result?.error);
-    // } else {
-    //   router.push('/dashboard');
-    // }
-
-    // setIsLoading(false);
-  }
-
-  return <LoginPage isLoading={isLoading} onSubmit={onSubmit} />;
+  return <LoginForm onSubmit={login} />;
 }
