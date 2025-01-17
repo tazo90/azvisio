@@ -2,6 +2,7 @@ import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Form, FormProps } from '@/lib/fantom/components/form';
 import { f } from '@/lib/fantom';
+import Link from 'next/link';
 
 const loginForm = f
   .fields(
@@ -51,9 +52,9 @@ const loginForm = f
   .footer(
     <div className="text-center text-sm">
       Don&apos;t have an account?{' '}
-      <a href="#" className="underline underline-offset-4">
+      <Link href="register" className="underline underline-offset-4">
         Sign up
-      </a>
+      </Link>
     </div>
   )
   .submit('Login')
