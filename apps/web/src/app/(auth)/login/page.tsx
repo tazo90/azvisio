@@ -12,10 +12,11 @@ export default function LoginPage() {
   const searchParams = useSearchParams();
   const { toast } = useToast();
 
-  const login = useResource(api.auth, 'login', undefined, {
+  const login = useResource(api.auth, 'login', {
     onSuccess: async (data) => {
       try {
-        await authService.login({ accessToken: data.accessToken, refreshToken: data.refreshToken }, data.user);
+        const { accessToken, refreshToken } = data;
+        await authService.login({ accessToken, refreshToken }, data.user);
 
         // Redirect on returnUrl or dashboard
         const returnUrl = searchParams.get('returnUrl') || '/dashboard';

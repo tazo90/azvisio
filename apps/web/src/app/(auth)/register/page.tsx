@@ -10,7 +10,7 @@ import React from 'react';
 export default function RegisterPage() {
   const [email, setEmail] = React.useState('');
 
-  const register = useResource(api.auth, 'register', undefined, {
+  const register = useResource(api.auth, 'register', {
     onSuccess: async (data) => setEmail(data.email),
   });
 

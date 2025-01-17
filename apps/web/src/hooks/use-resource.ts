@@ -14,11 +14,20 @@ type MutationConfig = {
   onSettled?: () => void;
 };
 
+type ResourceConfig = QueryConfig | MutationConfig;
+
+function isConfig(arg: unknown): arg is ResourceConfig {
+  if (!arg || typeof arg !== 'object') return false;
+
+  const configKeys = ['onSuccess', 'onError', 'enabled', 'staleTime', 'cacheTime', 'onSettled'];
+  return configKeys.some((key) => key in (arg as object));
+}
+
 export function useResource<TData = any, TError = Error>(
   resource: any,
   operationName: string,
-  params?: any,
-  config: QueryConfig | MutationConfig = {}
+  paramsOrConfig?: any | ResourceConfig,
+  maybeConfig?: ResourceConfig
 ): UseQueryResult<TData, TError> | UseMutationResult<TData, TError, any> {
   const operation = resource[operationName];
 
@@ -26,20 +35,19 @@ export function useResource<TData = any, TError = Error>(
     throw new Error(`Operation "${operationName}" not found in resource`);
   }
 
+  const params = isConfig(paramsOrConfig) ? undefined : paramsOrConfig;
+  const config = isConfig(maybeConfig) ? maybeConfig : paramsOrConfig;
+
   // Check HTTP method by analyze source code of function
-  const operationSource = operation.toString();
-  const isGet = operationSource.includes('.get(');
+  const isGet = operation.toString().includes('.get(');
   const isMutation = !isGet;
 
   if (isMutation) {
-    const mutation = useMutation<TData, TError, any>({
-      mutationFn: (variables: any) => operation(variables ?? params),
-      onSuccess: (config as MutationConfig).onSuccess,
-      onError: (error: TError) => {
-        console.error(`Error in ${operationName} operation:`, error);
-        (config as MutationConfig).onError?.(error);
-      },
-      onSettled: (config as MutationConfig).onSettled,
+    const mutation = useMutation<TData, TError>({
+      mutationFn: (variables) => operation(variables ?? params),
+      onSuccess: config?.onSuccess,
+      onError: config?.onError,
+      onSettled: config?.onSettled,
     });
 
     return {
@@ -52,10 +60,11 @@ export function useResource<TData = any, TError = Error>(
   return useQuery<TData, TError>({
     queryKey: [resource.basePath, operationName, params],
     queryFn: () => operation(params),
-    staleTime: (config as QueryConfig).staleTime ?? 5 * 60 * 1000,
-    cacheTime: (config as QueryConfig).cacheTime ?? 30 * 60 * 1000,
-    enabled: (config as QueryConfig).enabled ?? true,
-    onSuccess: (config as QueryConfig).onSuccess,
-    onError: (config as QueryConfig).onError,
+    ...config,
+    staleTime: config?.staleTime ?? 5 * 60 * 1000,
+    cacheTime: config?.cacheTime ?? 30 * 60 * 1000,
+    enabled: config?.enabled ?? true,
+    onSuccess: config?.onSuccess,
+    onError: config?.onError,
   });
 }
