@@ -12,6 +12,8 @@ export interface BaseFieldConfig {
   description?: string | React.ReactNode;
   tooltip?: string;
   required?: boolean;
+  beforeContent?: React.ReactNode | null;
+  afterContent?: React.ReactNode | null;
 }
 
 export abstract class BaseField {
@@ -24,9 +26,9 @@ export abstract class BaseField {
     description: '',
     tooltip: '',
     required: false,
+    beforeContent: null,
+    afterContent: null,
   };
-  protected beforeContent: React.ReactNode = null;
-  protected afterContent: React.ReactNode = null;
 
   constructor(name: string) {
     this.config.name = name;
@@ -63,12 +65,12 @@ export abstract class BaseField {
   }
 
   before(content: React.ReactNode) {
-    this.beforeContent = content;
+    this.config.beforeContent = content;
     return this;
   }
 
   after(content: React.ReactNode) {
-    this.afterContent = content;
+    this.config.afterContent = content;
     return this;
   }
 

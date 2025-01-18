@@ -14,9 +14,9 @@ const loginForm = f
         .password()
         .required()
         .before(
-          <a href="#" className="ml-auto text-sm underline-offset-4 hover:underline">
+          <Link href="/password-reset-request" className="ml-auto text-sm underline-offset-4 hover:underline">
             Forgot your password?
-          </a>
+          </Link>
         )
     )
   )
