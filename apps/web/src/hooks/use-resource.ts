@@ -44,7 +44,16 @@ export function useResource<TData = any, TError = Error>(
 
   if (isMutation) {
     const mutation = useMutation<TData, TError>({
-      mutationFn: (variables) => operation(variables ?? params),
+      mutationFn: (variables) => {
+        let payload = variables ?? params;
+
+        if (config?.onTransform) {
+          // Transform payload
+          payload = config?.onTransform(payload);
+        }
+
+        return operation(payload);
+      },
       onSuccess: config?.onSuccess,
       onError: config?.onError,
       onSettled: config?.onSettled,

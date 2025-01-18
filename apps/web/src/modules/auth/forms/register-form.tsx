@@ -4,8 +4,8 @@ import Link from 'next/link';
 
 const registerForm = f
   .fields(
-    f.row(f.text('email').label('Email').placeholder('m@example.com').required()),
-    f.row(f.text('password').label('Password').password().required())
+    f.text('email').label('Email').placeholder('m@example.com').required(),
+    f.text('password').label('Password').password().required()
   )
   .title('Create a AzVisio account')
   .description('Sign up with your email address')

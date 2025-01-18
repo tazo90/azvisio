@@ -6,19 +6,17 @@ import Link from 'next/link';
 
 const loginForm = f
   .fields(
-    f.row(f.text('email').label('Email').placeholder('m@example.com').required()),
-    f.row(
-      f
-        .text('password')
-        .label('Password')
-        .password()
-        .required()
-        .before(
-          <Link href="/password-reset-request" className="ml-auto text-sm underline-offset-4 hover:underline">
-            Forgot your password?
-          </Link>
-        )
-    )
+    f.text('email').label('Email').placeholder('m@example.com').required(),
+    f
+      .text('password')
+      .label('Password')
+      .password()
+      .required()
+      .before(
+        <Link href="/password-reset-request" className="ml-auto text-sm underline-offset-4 hover:underline">
+          Forgot your password?
+        </Link>
+      )
   )
   .title('Welcome back')
   .description('Login with your Apple or Google account')

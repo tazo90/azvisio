@@ -1,16 +1,16 @@
 import { cn } from '@/lib/utils';
-import { f } from '@/lib/forms/form-builder';
-import { Form } from '@/lib/fantom/components/form';
-import { FormProps } from '@/types';
+import { Form, FormProps } from '@/lib/fantom/components/form';
+import { f } from '@/lib/fantom';
 
 const passwordResetForm = f
   .fields(
-    f.row(f.text('password').label('New password')),
-    f.row(f.text('password_confirm').label('Confirm new password'))
+    f.text('password').label('New password').password().required(),
+    f.text('password_confirm').label('Confirm new password').password().required()
   )
   .title('Set up a new password')
   .description('Choose a new password that is distinct from your previous one.')
-  .submit('Set new password');
+  .submit('Set new password')
+  .theme('modern');
 
 export function PasswordResetForm({ className, onSubmit, ...props }: FormProps) {
   return (

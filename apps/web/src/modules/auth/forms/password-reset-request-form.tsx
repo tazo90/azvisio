@@ -2,7 +2,7 @@ import { cn } from '@/lib/utils';
 import { f, Form, FormProps } from '@/lib/fantom';
 
 const passwordResetRequestForm = f
-  .fields(f.row(f.text('email').label('Email').placeholder('m@example.com')))
+  .fields(f.text('email').label('Email').placeholder('m@example.com'))
   .title('Reset password')
   .description("Provide your account's email address, and we will send you instructions to reset your password.")
   .submit('Send reset instructions')
