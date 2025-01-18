@@ -1,13 +1,12 @@
 import { cn } from '@/lib/utils';
-import { f } from '@/lib/forms/form-builder';
-import { Form } from '@/lib/fantom/components/form';
-import { FormProps } from '@/types';
+import { f, Form, FormProps } from '@/lib/fantom';
 
 const passwordResetRequestForm = f
   .fields(f.row(f.text('email').label('Email').placeholder('m@example.com')))
   .title('Reset password')
   .description("Provide your account's email address, and we will send you instructions to reset your password.")
-  .submit('Send reset instructions');
+  .submit('Send reset instructions')
+  .theme('modern');
 
 export function PasswordResetRequestForm({ className, onSubmit, ...props }: FormProps) {
   return (

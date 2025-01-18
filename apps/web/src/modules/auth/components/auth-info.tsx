@@ -5,12 +5,12 @@ import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
-interface RegisterDonePageProps {
+interface AuthInfoProps {
   title: string;
   description: string;
 }
 
-export function RegisterDonePage({ title, description }: RegisterDonePageProps) {
+export function AuthInfo({ title, description }: AuthInfoProps) {
   return (
     <Card className="text-center">
       <CardHeader className="text-xl gap-3">

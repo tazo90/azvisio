@@ -1,11 +1,21 @@
 'use client';
 
+import { api } from '@/api';
+import { useResource } from '@/hooks/use-resource';
+import { AuthInfo } from '@/modules/auth/components/auth-info';
 import { PasswordResetRequestForm } from '@/modules/auth/forms/password-reset-request-form';
 
 export default function PasswordResetRequestPage() {
-  async function onSendResetRequest(data) {
-    console.log('Password reset', data);
+  const passwordRequest = useResource(api.auth, 'passwordRequest');
+
+  if (passwordRequest.isSuccess) {
+    return (
+      <AuthInfo
+        title="Password reset completed"
+        description="If the email exists, reset instructions have been sent."
+      />
+    );
   }
 
-  return <PasswordResetRequestForm isLoading={false} onSubmit={onSendResetRequest} />;
+  return <PasswordResetRequestForm onSubmit={passwordRequest} />;
 }

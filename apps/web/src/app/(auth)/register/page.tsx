@@ -2,9 +2,8 @@
 
 import { useResource } from '@/hooks/use-resource';
 import { api } from '@/api/resources';
-import { useRouter } from 'next/navigation';
 import { RegisterForm } from '@/modules/auth/forms/register-form';
-import { RegisterDonePage } from '@/modules/auth/components/register-done-page';
+import { AuthInfo } from '@/modules/auth/components/auth-info';
 import React from 'react';
 
 export default function RegisterPage() {
@@ -15,9 +14,7 @@ export default function RegisterPage() {
   });
 
   if (register.isSuccess) {
-    return (
-      <RegisterDonePage title="Registration completed" description={`We just send a verification link to ${email}.`} />
-    );
+    return <AuthInfo title="Registration completed" description={`We just send a verification link to ${email}.`} />;
   }
 
   return <RegisterForm onSubmit={register} />;

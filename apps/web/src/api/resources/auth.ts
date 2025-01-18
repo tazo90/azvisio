@@ -8,6 +8,10 @@ type LoginDTO = {
 
 type RegisterDTO = LoginDTO;
 
+type PasswordResetDTO = {
+  email: string;
+};
+
 interface AuthResponse {
   accessToken: string;
   refreshToken: string;
@@ -22,4 +26,5 @@ export const auth = createResource('/auth').extend({
   logout: () => http.post('/auth/logout'),
   register: (data: RegisterDTO) => http.post('/auth/register', data),
   refresh: (token: string) => http.post('/auth/refresh', { token }),
+  passwordRequest: (data: PasswordResetDTO) => http.post('/auth/password/request', data),
 });
